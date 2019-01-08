@@ -3,7 +3,7 @@
 
     <main role="main" class="container">
 	
-		<a href="privado/videos?op=2&id=-1" class="btn btn-outline-success mb-2">Crear Nuevo Registro</a>
+		<p>Listado Multas</p>
 		
 		<table class="table">
 		  <thead class="thead-dark">
@@ -19,8 +19,8 @@
 			    <tr>		    	
 			      <th scope="row">${v.id}</
 			      <th scope="row">${v.importe}</th>
-			      <th scope="col">concepto</th>
-		     	<th scope="col">fecha</th>
+			  	  <th scope="row">${v.concepto}</
+			      <th scope="row">${v.fecha}</th>
 			    </tr>    
 		    </c:forEach>
 		  </tbody>
