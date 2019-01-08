@@ -150,7 +150,7 @@ CREATE TABLE `multa` (
 
 LOCK TABLES `multa` WRITE;
 /*!40000 ALTER TABLE `multa` DISABLE KEYS */;
-INSERT INTO `multa` VALUES (1,200,'por feo','2019-01-07 10:38:42',2,3),(2,500,'exceso velocidad 240km/h','2019-01-07 10:39:23',4,1),(3,700,'empinar codo 8.0','2018-01-07 10:39:42',1,2),(4,700,'empinar codo 8.0','2019-01-07 10:39:42',1,2),(5,500,'conduccion temeraria','2019-01-05 10:39:42',1,1),(6,400,'por correr','2019-01-02 10:39:42',4,1);
+INSERT INTO `multa` VALUES (1,200,'por feo','2019-01-07 10:38:42',2,3),(2,500,'exceso velocidad 240km/h','2019-01-07 10:39:23',4,1),(3,700,'empinar codo 8.0','2018-01-07 10:39:42',1,2),(4,700,'empinar codo 8.0','2019-01-07 10:39:42',1,4),(5,500,'conduccion temeraria','2019-01-05 10:39:42',1,1),(6,400,'por correr','2019-01-02 10:39:42',4,4);
 /*!40000 ALTER TABLE `multa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-08 10:46:00
+-- Dump completed on 2019-01-08 14:08:29
