@@ -3,8 +3,7 @@
 
     <main role="main" class="container">
 	
-		<a href="privado/videos?op=2&id=-1" class="btn btn-outline-success mb-2">Crear Nuevo Registro</a>
-		
+		<p>Listado Multas</p>		
 		<table class="table">
 		  <thead class="thead-dark">
 		    <tr>
