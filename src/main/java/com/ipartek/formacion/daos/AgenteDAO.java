@@ -30,7 +30,7 @@ public class AgenteDAO {
 	private Agente rowMapper(ResultSet rs) throws SQLException {
 		Agente registro = new Agente();	
 		registro.setId( rs.getLong("id"));
-		registro.setApellido( rs.getString("apellido"));
+		registro.setApellido( rs.getString("nombre"));
 		registro.setPlaca( rs.getInt("placa"));
 		
 		return registro;
