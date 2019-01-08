@@ -22,12 +22,17 @@ import com.ipartek.formacion.pojos.Multa;
  */
 @WebServlet("/privado/listar")
 public class ListarController extends HttpServlet {
+	
 	private static final int ID_AGENTE_PREDEFINIDO = 4;
+	
+	private static final String LISTADO_MULTAS = "listadoMultas.jsp";
+	
+	
 	private static final long serialVersionUID = 1L;
 	private final static Logger LOG = Logger.getLogger(LoginController.class);
 	
 	private AgenteDAO AgenteDAO = null;
-	String view = "listadoMultas.jsp";
+	
 	
 	
 	
@@ -47,7 +52,7 @@ public class ListarController extends HttpServlet {
 		session.setMaxInactiveInterval(60 * 60 * 24 * 365 * 10);
 		multas = AgenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
 		session.setAttribute("multas", multas);
-		request.getRequestDispatcher(view).forward(request, response);
+		request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
 		
 		
 	}
