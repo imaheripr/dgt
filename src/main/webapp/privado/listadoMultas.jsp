@@ -1,21 +1,16 @@
 <%@ include file="../includes/cabecera.jsp"  %>
-
-
-    <main role="main" class="container">
-	
-		<p>Listado Multas</p>		
+ <main role="main" class="container-fluid mt-5">	
 		<table class="table">
-		  <thead class="thead-dark">
+		  <thead class="thead-light">
 		    <tr>
-		      <th scope="col">id</th>
-		      <th scope="col">importe</th>
-		      <th scope="col">concepto</th>
-		      <th scope="col">fecha</th>
+		      <th scope="col">ID</th>
+		      <th scope="col">IMPORTE</th>
+		      <th scope="col">CONCEPTO</th>
+		      <th scope="col">FECHA</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		 
-		 	 <c:forEach items="${multas}" var="m">
+		 <c:forEach items="${multas}" var="m">
 			    <tr>		    	
 			      <td scope="row">${m.id}</td>
 			      <td scope="row">${m.importe}</td>
@@ -25,8 +20,6 @@
 		    </c:forEach>
 		  </tbody>
 		</table>
-
-
-	</main>				
-
+</main>				
+<%@ include file="../includes/footer.jsp"  %>
 

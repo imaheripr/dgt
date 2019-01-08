@@ -1,14 +1,10 @@
-PREUBA CASA PUSH
 <%@ include file="../includes/cabecera.jsp" %> 	
-	
-	<main class="container">
-	
-		<p>	
-		<a href="privado/buscar" class="btn btn-outline-success mb-2">Multar</a>
-		</p>
-		 <p>	
-		<a href="privado/listar" class="btn btn-outline-warning mb-2">Listar Multas</a>
-		</p>	 	
-	</main>   
-</body>	 	
-</html>
+
+<main >
+<section class="container-fluid">
+<a class="btn btn-lg btn-info btn-block mb-5 mt-5" href="privado/listar" role="button">LISTAR TODAS LAS MULTAS</a>
+<a class="btn btn-lg btn-info btn-block" href="privado/buscar" role="button">NUEVA MULTA</a>
+</section>
+</main>
+<%@ include file="../includes/footer.jsp"  %>
+
