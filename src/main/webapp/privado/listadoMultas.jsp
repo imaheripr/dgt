@@ -1,4 +1,4 @@
-<%@ include file="../../includes/cabecera.jsp"  %>
+<%@ include file="../includes/cabecera.jsp"  %>
 
 
     <main role="main" class="container">
