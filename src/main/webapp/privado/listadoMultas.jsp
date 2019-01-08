@@ -15,12 +15,13 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		 	 <c:forEach items="${multas}" var="v">
+		 
+		 	 <c:forEach items="${multas}" var="m">
 			    <tr>		    	
-			      <th scope="row">${v.id}</
-			      <th scope="row">${v.importe}</th>
-			      <th scope="col">concepto</th>
-		     	<th scope="col">fecha</th>
+			      <td scope="row">${m.id}</td>
+			      <td scope="row">${m.importe}</td>
+			      <td scope="col">${m.concepto}</td>
+		     	<td scope="col">${m.fecha}</td>
 			    </tr>    
 		    </c:forEach>
 		  </tbody>

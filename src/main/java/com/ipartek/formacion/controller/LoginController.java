@@ -18,6 +18,7 @@ import com.ipartek.formacion.pojos.Agente;
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final int ID_AGENTE_PREDEFINIDO = 4;
 	private final static Logger LOG = Logger.getLogger(LoginController.class);
 
 	private static final String PRIVADO_PRINCIPAL = "/privado/principal.jsp";
@@ -35,7 +36,7 @@ public class LoginController extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request, response);	;
+		doProcess(request, response);
 	}
 
 	
@@ -49,7 +50,7 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(60 * 60 * 24 * 365 * 10);
 		Agente a = new Agente();
-		a = AgenteDAO.getById(4);
+		a = AgenteDAO.getById(ID_AGENTE_PREDEFINIDO);
 		session.setAttribute("agente_logeado", a);
 		
 		//response.sendRedirect( request.getContextPath() + PRIVADO_PRINCIPAL);

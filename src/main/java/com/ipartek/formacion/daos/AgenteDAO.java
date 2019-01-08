@@ -16,7 +16,7 @@ public class AgenteDAO {
 	
 	private static final String SQL_GET_BY_ID = "SELECT id, nombre, placa, id_departamento FROM agente WHERE id = ?;";
 	private static final String SQL_ALL_MULTAS =
-	"SELECT * FROM agente, multa WHERE agente.id=multa.id_agente AND agente.id=?" 
+	"SELECT multa.id AS 'id_multa', importe, concepto, fecha FROM agente, multa WHERE agente.id=multa.id_agente AND agente.id=?" 
 	;
 	
 	private static AgenteDAO INSTANCE = null;
@@ -74,8 +74,9 @@ public class AgenteDAO {
 			){
 			pst.setLong(1, id);
 			try (ResultSet rs = pst.executeQuery()) {
-				while(rs.next()) { 			
-					multa.setId( rs.getLong("id"));
+				while(rs.next()) { 	
+					multa = new Multa();
+					multa.setId( rs.getLong("id_multa"));
 						multa.setImporte( rs.getInt("importe"));
 						multa.setConcepto( rs.getString("concepto"));
 						multa.setFecha( rs.getString("fecha"));
