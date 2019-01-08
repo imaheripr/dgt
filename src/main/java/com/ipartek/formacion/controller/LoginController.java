@@ -55,6 +55,7 @@ public class LoginController extends HttpServlet {
 		
 		//response.sendRedirect( request.getContextPath() + PRIVADO_PRINCIPAL);
 		request.getRequestDispatcher(PRIVADO_PRINCIPAL).forward(request, response);
+		LOG.debug("Logeado en pagina principal");
 		
 	}
 	

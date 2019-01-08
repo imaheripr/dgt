@@ -62,7 +62,9 @@ public class AgenteDAO {
 		} catch (Exception e) {
 			LOG.fatal("getById:---> "+e);
 		}
+		LOG.debug("Agente_id encontrado");
 		return usuario;
+		
 	}
 	
 	public ArrayList<Multa> getMultas(long id){
@@ -97,6 +99,7 @@ public class AgenteDAO {
 		}catch (Exception e) {
 			LOG.fatal("getMultas:---> "+e);
 		}
+		LOG.debug("Listado multas OK");
 		return multas;
 	}
 	

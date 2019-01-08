@@ -53,7 +53,7 @@ public class ListarController extends HttpServlet {
 		multas = AgenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
 		session.setAttribute("multas", multas);
 		request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
-		
+		LOG.debug("Mostrando listado");
 		
 	}
    
