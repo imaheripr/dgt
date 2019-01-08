@@ -1,41 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../includes/cabecera.jsp"  %>
  <main role="main" class="container-fluid mt-5">	
-		<table class="table">
+
+
+<div class="accordion" id="accordionExample">		
+	<table class="table">
 		  <thead class="thead-light">
 		    <tr>
-		    <%-- 
-		      <th scope="col">ID</th>
-		      <th scope="col">ID</th>
-		    --%>
-		      <th scope="col">FECHA</th>
-		      <th scope="col">IMPORTE</th>
-		      <th scope="col">CONCEPTO</th>
+		      <th scope="col">FECHA </th>
 		      <th scope="col">MATRICULA</th>
-		      <th scope="col">MODELO</th>
-		      <th scope="col">KM</th>
+		       <th></th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		    
 		 <c:forEach items="${multas}" var="m">
 			    <tr>
-			 <%-- 		    	
-			    <td scope="row">${m.id}</td>
-			    <td scope="row">${m.coche.id}</td>
-			 --%>
-			    <td scope="col">
-		     		<fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
+			 	<td scope="col" data-target="#collapse${m.id}">
+		     		
+		     		<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
+			         <fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
+			     </button>
 		     	</td>
-			    <td scope="row">${m.importe}</td>
-			    <td scope="col">${m.concepto}</td>
-		     	<td scope="col">${m.coche.matricula}</td>
-		     	<td scope="col">${m.coche.modelo}</td>
-		     	<td scope="col">${m.coche.km}</td>
+		     	<td scope="col">
+		     	<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
+			          ${m.coche.matricula}
+			     </button>
+			   </td>
+			   	<th scope="col">
+		     	<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
+			         +
+			     </button>
+			   </th>
 		     	
-			    </tr>    
+		     	</tr>  
+		     	<tr id="collapse${m.id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+		     	<td colspan="3">
+		     	<ul>
+		     	<li>Fecha: ${m.fecha}</li>
+		     	<li>Importe: ${m.importe} €</li>
+			    <li>Concept: ${m.concepto}</li>
+		     	<li>Matricula: ${m.coche.matricula}</li>
+		     	<li>Modelo: ${m.coche.modelo}</li>
+		     	<li>Kilometraje: ${m.coche.km}</li>
+		     	
+		     	</ul>
+		     	</td>
+		     	
+		     	</tr>  
 		    </c:forEach>
 		  </tbody>
-		</table>
+		</table>		
+</div>	
+			
 </main>				
 <%@ include file="../includes/footer.jsp"  %>
 
