@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import com.ipartek.formacion.daos.AgentaDAO;
+import com.ipartek.formacion.daos.AgenteDAO;
 import com.ipartek.formacion.pojos.Agente;
 
 @WebServlet("/login")
@@ -20,9 +20,9 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final static Logger LOG = Logger.getLogger(LoginController.class);
 
-	private static final String PRIVADO_PRINCIPAL = "/privado/principal";
+	private static final String PRIVADO_PRINCIPAL = "/privado/principal.jsp";
 	
-	private AgentaDAO AgenteDAO = null;
+	private AgenteDAO AgenteDAO = null;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
