@@ -1,29 +1,42 @@
 package com.ipartek.formacion.pojos;
 
+import java.sql.Date;
 
 public class Multa {
-	
+
 	private Long id;
 	private Integer importe ;
 	private String concepto;
-	private String fecha;
+	private Date fecha;
+	private Coche coche;
+	
 	
 	public Multa() {
 		super();
 		this.id = -1L;
 		this.importe = -1;
 		this.concepto = "";
-		this.fecha = "";
+		this.fecha = null;
+		this.coche= new Coche();
 	}
 	
-	public Multa(Long id, Integer importe, String concepto, String fecha) {
+	public Multa(Long id, Integer importe, String concepto, Date fecha, Coche coche) {
 		this();
 		setId(id);
 		setImporte(importe);
 		setConcepto(concepto);
 		setFecha(fecha);
+		setCoche(coche);
 	}
 
+	
+	public Coche getCoche() {
+		return coche;
+	}
+
+	public void setCoche(Coche coche) {
+		this.coche = coche;
+	}
 
 	public Long getId() {
 		return id;
@@ -55,15 +68,13 @@ public class Multa {
 	}
 
 
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-
 
 	@Override
 	public String toString() {
