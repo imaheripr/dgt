@@ -1,23 +1,27 @@
 package com.ipartek.formacion.pojos;
 
+import java.util.ArrayList;
+
 public class Agente {
 
 	private Long id;
 	private String apellido;
 	private Integer placa;
+
+	private ArrayList<Multa> multa = new ArrayList<Multa>();
 	
 	
 	
 	public Agente() {
 		super();
-		this.id = id;
-		this.apellido = apellido;
-		this.placa = placa;
+		this.id = -1L;
+		this.apellido ="" ;
+		this.placa = -1;
 	}
 
 
 	public Agente(Long id, String apellido, Integer placa, Integer id_departamento) {
-		super();
+		this();
 		setId(id);
 		setApellido(apellido);
 		setPlaca(placa);

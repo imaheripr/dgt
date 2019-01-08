@@ -51,6 +51,8 @@ public class LoginController extends HttpServlet {
 		Agente a = new Agente();
 		a = AgenteDAO.getById(4);
 		session.setAttribute("agente_logeado", a);
+		
+		//response.sendRedirect( request.getContextPath() + PRIVADO_PRINCIPAL);
 		request.getRequestDispatcher(PRIVADO_PRINCIPAL).forward(request, response);
 		
 	}
