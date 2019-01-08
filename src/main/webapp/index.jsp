@@ -1,1 +1,1 @@
-cambio david
+	<% response.sendRedirect ("login"); %>
