@@ -9,5 +9,6 @@
 		 <p>	
 		<a href="privado/listar" class="btn btn-outline-warning mb-2">Listar Multas</a>
 		</p>	 	
-	</main>   	 	
+	</main>   
+</body>	 	
 </html>
