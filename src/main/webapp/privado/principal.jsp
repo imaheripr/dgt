@@ -2,11 +2,12 @@
 <%@ include file="../includes/cabecera.jsp" %> 	
 	
 	<main class="container">
-		<p>
-		<button type="button" class="btn btn-success"  href=""> >Multar</button>	
+	
+		<p>	
+		<a href="privado/buscarMatricula.jsp" class="btn btn-outline-success mb-2">Multar</a>
 		</p>
-		<p>	  
-		<button type="button" class="btn btn-warning"  href=""> >Ver Multas</button>	
-		</p>   	 	
+		 <p>	
+		<a href="privado/listadoMultas.jsp" class="btn btn-outline-warning mb-2">Buscar multas</a>
+		</p>	 	
 	</main>   	 	
 </html>
