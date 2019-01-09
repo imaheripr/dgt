@@ -3,7 +3,7 @@
  <main role="main" class="container mt-5">	
 
 <div class="alert alert-info alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> ${mensaje }
+  <strong> ${mensaje }</strong>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -11,11 +11,11 @@
 
 <form action="privado/buscar" method="post">		
 	<div class="form-group">
-	<label for="buscar">Buscar Matricula</label>
+	<label for="buscar" class="sr-only">Buscar Matricula</label>
 	<input type="text" name="buscar" value="3548MKZ" class="form-control">			    
 	</div>	
 	
-	<div  class="form-group">								
+	<div  class="form-group" class="sr-only">								
 	<button type="submit" class="btn btn-primary btn-block">BUSCAR</button>
 	</div>	
 	

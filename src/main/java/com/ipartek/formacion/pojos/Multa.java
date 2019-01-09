@@ -2,10 +2,20 @@ package com.ipartek.formacion.pojos;
 
 import java.sql.Date;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Multa {
 
 	private Long id;
+	
+//	@NotEmpty
 	private Integer importe ;
+	
+//	@NotEmpty
+//	@Size(min = 10)
 	private String concepto;
 	private Date fecha;
 	private Coche coche;
