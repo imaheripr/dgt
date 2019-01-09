@@ -21,7 +21,7 @@ import com.ipartek.formacion.pojos.Agente;
 import com.ipartek.formacion.pojos.Coche;
 import com.ipartek.formacion.pojos.Multa;
 
-@WebServlet("privado/multar")
+@WebServlet("/privado/multa")
 public class MultaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
