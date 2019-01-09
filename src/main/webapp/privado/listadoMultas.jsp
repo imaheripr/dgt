@@ -13,6 +13,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
+		  
 		    
 		 <c:forEach items="${multas}" var="m">
 			    <tr>
@@ -37,14 +38,31 @@
 		     	<tr id="collapse${m.id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 		     	<td colspan="3">
 		     	<ul>
-		     	<li>Fecha: ${m.fecha}</li>
-		     	<li>Importe: ${m.importe} €</li>
-			    <li>Concept: ${m.concepto}</li>
-		     	<li>Matricula: ${m.coche.matricula}</li>
-		     	<li>Modelo: ${m.coche.modelo}</li>
-		     	<li>Kilometraje: ${m.coche.km}</li>
+		     	
 		     	
 		     	</ul>
+		     	
+		     	<div class="card mb-4 shadow-sm text-center">
+			      <div class="card-header">
+			        <h4 class="my-0 font-weight-normal"> ${m.concepto.toUpperCase()}</h4>
+			      </div>
+			      <div class="card-body">
+			       <h1 class="card-title pricing-card-title">${m.coche.matricula}</h1>
+			        <h2 class="card-title pricing-card-title">${m.importe}€</h2>
+			        <ul class="list-unstyled mt-3 mb-4">
+			         	<li>
+			         	Fecha: ${m.fecha}
+			         	 <p><fmt:formatDate type = "both"  dateStyle = "long" timeStyle = "long" value = "${m.fecha}" /></p>
+			         	</li>
+				     	<li>Importe: ${m.importe} €</li>
+					    <li>Concept: ${m.concepto}</li>
+				     	<li>Matricula: ${m.coche.matricula}</li>
+				     	<li>Modelo: ${m.coche.modelo}</li>
+				     	<li>Kilometraje: ${m.coche.km}</li>
+			        </ul>
+			      </div>
+			    </div>
+			    
 		     	</td>
 		     	
 		     	</tr>  
