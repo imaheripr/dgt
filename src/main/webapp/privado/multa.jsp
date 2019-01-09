@@ -4,7 +4,7 @@
 
 
 <h1></h1>
-<form action="privado/multar" method="post">	
+<form action="privado/multa" method="post">	
 
 	<input type="hidden" name="id_agente" value="${agente_logeado.id}">
 	<input type="hidden" name="id_coche" value="${coche.id}">

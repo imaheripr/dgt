@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Set;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
@@ -33,8 +35,8 @@ public class MultaController extends HttpServlet {
 	private Validator validator;
 	
 	//VISTAS
-	private static final String VIEW_INDEX = "privado/principal.jsp";
-	private static final String VIEW_FORM = "privado/multa.jsp";
+	private static final String VIEW_INDEX = "principal.jsp";
+	private static final String VIEW_FORM = "multa.jsp";
 	private String vista;
 	 
 	//OPERACIONES
@@ -53,6 +55,17 @@ public class MultaController extends HttpServlet {
 			
 	private static MultaDAO MultaDAO = null;
 	private static CocheDAO CocheDAO = null;
+	
+	
+	@Override
+    public void init(ServletConfig config) throws ServletException {    
+    	super.init(config);
+    	MultaDAO = MultaDAO.getInstance();
+    	CocheDAO = CocheDAO.getInstance();
+    	factory  = Validation.buildDefaultValidatorFactory();
+    	validator  = factory.getValidator();
+    	
+    }
 		    
 private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -60,22 +73,27 @@ private void doProcess(HttpServletRequest request, HttpServletResponse response)
 
 		try {
 			// recoger parametros
-			getParametros(request);
+			
 			// realizar operacion
 			switch (operacion) {
 				case OP_INSERTAR:
 					insertar(request);
 					break;	
+				default:
+					insertar(request);
+					break;
 				
 			}
 			
 			
 		}catch (Exception e) {
 			LOG.error(e);	
-			
+			vista = VIEW_FORM;
+			request.setAttribute("mensaje", "ERROR FATAL");	
 			
 		}finally {
 			request.getRequestDispatcher(vista).forward(request, response);
+			 	
 		}	
 	}
 	
@@ -109,7 +127,7 @@ private void doProcess(HttpServletRequest request, HttpServletResponse response)
 		
 		Agente agente = new Agente();
 		int agente_id = Integer.parseInt(id_agente);
-		coche.setId((long)agente_id);
+		agente.setId((long)agente_id);
 		
 		//validar 		
 		Set<ConstraintViolation<Multa>> violations = validator.validate(multa);
@@ -151,13 +169,12 @@ private void doProcess(HttpServletRequest request, HttpServletResponse response)
 	
 	
 	private void getParametros(HttpServletRequest request) {
+		
 		operacion = request.getParameter("operacion");
 		id_agente = request.getParameter("id_agente");
-		id_agente = request.getParameter("id_coche");
-		id_agente = request.getParameter("importe");
-		id_agente = request.getParameter("concepto");
-		LOG.debug( String.format("parametros: %,%,%,%,%", operacion, id_agente, id_coche, importe,concepto ));
-
+		id_coche = request.getParameter("id_coche");
+		importe = request.getParameter("importe");
+		concepto = request.getParameter("concepto");
 		
 	}
 

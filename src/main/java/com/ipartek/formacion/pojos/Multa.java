@@ -11,11 +11,11 @@ public class Multa {
 
 	private Long id;
 	
-//	@NotEmpty
+	@NotEmpty
 	private Integer importe ;
 	
-//	@NotEmpty
-//	@Size(min = 10)
+	@NotEmpty
+	@Size(min = 10)
 	private String concepto;
 	private Date fecha;
 	private Coche coche;
