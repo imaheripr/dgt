@@ -42,19 +42,17 @@
 		     	
 		     	</ul>
 		     	
-		     	<div class="card mb-4 shadow-sm text-center">
+		     	<div class="card mb-4 shadow-sm ">
 			      <div class="card-header">
-			        <h4 class="my-0 font-weight-normal">${m.coche.matricula.toUpperCase()} </h4>
+			        <h4 class="my-0 font-weight-normal text-center">${m.coche.matricula.toUpperCase()} </h4>
 			      </div>
 			      <div class="card-body">
-			       <h1 class="card-title pricing-card-title">${m.concepto}</h1>
-			        <h2 class="card-title pricing-card-title">${m.importe}€</h2>
+			    
 			        <ul class="list-unstyled mt-3 mb-4">
-			         	<li>
-			         	Fecha: ${m.fecha}
-			         	 <p><fmt:formatDate type = "both"  dateStyle = "long" timeStyle = "long" value = "${m.fecha}" /></p>
-			         	</li>
-				     	<li>Importe: ${m.importe} €</li>
+			         	
+			         	<li>Fecha: ${m.fecha}</li>
+			         	<li>Hora: ${m.hora}</li>
+			    		<li>Importe: ${m.importe} €</li>
 					    <li>Concepto: ${m.concepto}</li>
 				     	<li>Matricula: ${m.coche.matricula}</li>
 				     	<li>Modelo: ${m.coche.modelo}</li>

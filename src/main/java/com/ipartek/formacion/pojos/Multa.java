@@ -1,6 +1,7 @@
 package com.ipartek.formacion.pojos;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,7 +19,7 @@ public class Multa {
 	private String concepto;
 	private Date fecha;
 	private Coche coche;
-	
+	private Time hora;
 	
 	public Multa() {
 		super();
@@ -26,16 +27,29 @@ public class Multa {
 		this.importe = -1;
 		this.concepto = "";
 		this.fecha = null;
+		this.hora = null;
 		this.coche= new Coche();
 	}
 	
-	public Multa(Long id, Integer importe, String concepto, Date fecha, Coche coche) {
+	public Multa(Long id, Integer importe, String concepto, Date fecha, Time hora, Coche coche) {
 		this();
 		setId(id);
 		setImporte(importe);
 		setConcepto(concepto);
 		setFecha(fecha);
+		setHora(hora);
 		setCoche(coche);
+	}
+
+	
+	
+
+	public Time getHora() {
+		return hora;
+	}
+
+	public void setHora(Time hora) {
+		this.hora = hora;
 	}
 
 	
@@ -87,7 +101,8 @@ public class Multa {
 
 	@Override
 	public String toString() {
-		return "Multa [id=" + id + ", importe=" + importe + ", concepto=" + concepto + ", fecha=" + fecha + "]";
+		return "Multa [id=" + id + ", importe=" + importe + ", concepto=" + concepto + ", fecha=" + fecha + ", coche="
+				+ coche + ", hora=" + hora + "]";
 	}
 	
 	

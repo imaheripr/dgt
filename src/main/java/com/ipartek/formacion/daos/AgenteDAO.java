@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -83,6 +84,7 @@ public class AgenteDAO {
 						multa.setId( rs.getLong("id_multa"));
 						coche.setId( rs.getLong("id_coche"));
 						multa.setFecha( rs.getDate("fecha"));
+						multa.setHora( rs.getTime("fecha"));
 						multa.setImporte( rs.getInt("importe"));
 						multa.setConcepto( rs.getString("concepto"));
 						coche.setMatricula( rs.getString("matricula"));
