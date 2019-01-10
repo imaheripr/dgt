@@ -6,6 +6,10 @@
 <a class="btn btn-lg btn-info btn-block" href="privado/buscar" role="button">NUEVA MULTA</a>
 </section>
 </main>
+<<<<<<< HEAD
 DAVID CONFLICTO
+=======
+IMANOL CAMBIO CONFLICTO
+>>>>>>> branch 'master' of https://github.com/imaheripr/dgt.git
 <%@ include file="../includes/footer.jsp"  %>
 
