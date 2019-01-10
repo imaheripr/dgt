@@ -25,6 +25,8 @@ import com.ipartek.formacion.pojos.Multa;
 
 @WebServlet("/privado/multa")
 public class MultaController extends HttpServlet {
+	
+
 	private static final long serialVersionUID = 1L;
 
 	// LOG
@@ -36,6 +38,7 @@ public class MultaController extends HttpServlet {
 	// VISTAS
 	private static final String VIEW_INDEX = "principal.jsp";
 	private static final String VIEW_FORM = "multa.jsp";
+	private static final String VIEW_BUSCAR = "buscar";
 	private String vista;
 
 	// OPERACIONES
@@ -84,12 +87,12 @@ public class MultaController extends HttpServlet {
 
 		} catch (Exception e) {
 			LOG.error(e);
-			vista = VIEW_FORM;
+			vista = VIEW_BUSCAR;
 
 			Coche c = new Coche();
 			c = CocheDAO.getMatricula(matricula);
-			request.setAttribute("coche", c);
-			request.setAttribute("mensaje", "ERROR FATAL");
+			request.setAttribute("matricula", c.getMatricula());
+			request.setAttribute("mensaje", "Reinicio");
 
 		} finally {
 			request.getRequestDispatcher(vista).forward(request, response);
@@ -141,9 +144,9 @@ public class MultaController extends HttpServlet {
 		} else { // validacion correcta
 			try {
 				MultaDAO.insert(multa, agente);
-				request.setAttribute("mensaje", "Registro guardado con exito");
+				request.setAttribute("mensaje", "Multa registrada correctamente");
 			} catch (SQLException e) {
-				request.setAttribute("mensaje", "Lo sentimos pero el codigo del video existe");
+				request.setAttribute("mensaje", "Multa no registrada , ERROR");
 			}
 		}
 	}

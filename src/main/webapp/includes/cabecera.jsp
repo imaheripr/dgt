@@ -16,7 +16,7 @@
 
 <header>
 <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
-	<a class="navbar-brand  mr-auto" href="#">Atras</a>
+	<a class="navbar-brand  mr-auto" href="${pageContext.request.contextPath}">Atras</a>
 	<ul class="navbar-nav float-right">
 	<li><span class="badge badge-info mr-3 font-weight-normal">${sessionScope.agente_logeado.apellido}</span></li>
 	</ul>      

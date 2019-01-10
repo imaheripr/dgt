@@ -14,7 +14,7 @@
 	<input type="hidden" name="operacion" value="1">
 	
 	<div class="form-group">
-	<label for="matricula">Matricula</label>
+	<label for="matricula">Matricula seleccionada</label>
 	<input readonly  type="text" name="matricula" value="${coche.matricula }" class="form-control">			    
 	</div>
 	
@@ -25,7 +25,7 @@
 	
 	<div class="form-group">
 	<label for="concepto">Concepto</label>
-	<textarea name="concepto" placeholder="800" class="form-control">minimo 10 caracteres</textarea>		    
+	<textarea name="concepto"  class="form-control" placeholder="minimo 10 caracteres maximo 150"></textarea>		    
 	</div>	
 	
 	

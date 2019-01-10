@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 import com.ipartek.formacion.daos.AgenteDAO;
 import com.ipartek.formacion.pojos.Agente;
 
-@WebServlet("/login")
+@WebServlet("/privado")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final int ID_AGENTE_PREDEFINIDO = 4;
