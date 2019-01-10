@@ -1,9 +1,12 @@
 <%@ include file="../includes/cabecera.jsp" %> 	
 <main role="main" class="container mt-5">	
 
-
-
-<h1></h1>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  <strong> ${mensaje }</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <form action="privado/multa" method="post">	
 
 	<input type="hidden" name="id_agente" value="${agente_logeado.id}">
@@ -12,7 +15,7 @@
 	
 	<div class="form-group">
 	<label for="matricula">Matricula</label>
-	<input disabled readonly type="text" name="matricula" value="${coche.matricula }" class="form-control">			    
+	<input readonly  type="text" name="matricula" value="${coche.matricula }" class="form-control">			    
 	</div>
 	
 	<div class="form-group">
@@ -24,7 +27,6 @@
 	<label for="concepto">Concepto</label>
 	<textarea name="concepto" placeholder="800" class="form-control">minimo 10 caracteres</textarea>		    
 	</div>	
-	${mensaje }
 	
 	
 	<div  class="form-group">								

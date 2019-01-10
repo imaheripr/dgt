@@ -50,7 +50,7 @@ public class MultaController extends HttpServlet {
 	private String id_coche;
 	private String importe;
 	private String concepto;
-			
+	private String matricula;		
 		
 			
 	private static MultaDAO MultaDAO = null;
@@ -73,7 +73,7 @@ private void doProcess(HttpServletRequest request, HttpServletResponse response)
 
 		try {
 			// recoger parametros
-			
+			getParametros(request);
 			// realizar operacion
 			switch (operacion) {
 				case OP_INSERTAR:
@@ -89,7 +89,11 @@ private void doProcess(HttpServletRequest request, HttpServletResponse response)
 		}catch (Exception e) {
 			LOG.error(e);	
 			vista = VIEW_FORM;
-			request.setAttribute("mensaje", "ERROR FATAL");	
+				
+			Coche c = new Coche();
+			c = CocheDAO.getMatricula(matricula);
+			request.setAttribute("coche", c);
+			request.setAttribute("mensaje", "ERROR FATAL");
 			
 		}finally {
 			request.getRequestDispatcher(vista).forward(request, response);
@@ -119,7 +123,19 @@ private void doProcess(HttpServletRequest request, HttpServletResponse response)
 		coche.setId((long)coche_id);
 		
 		Multa multa = new Multa();
-		multa.setImporte(Integer.parseInt(importe));
+		
+		
+//		if(importe.equals("")) {
+//			multa.setImporte(null);
+//		}else {
+//		multa.setImporte(Integer.parseInt(importe));
+//		}
+		
+		try {
+			multa.setImporte(Integer.parseInt(importe));
+		}catch(Exception e){
+			multa.setImporte(null);
+		}
 		multa.setConcepto(concepto);
 		multa.setCoche(coche);
 		
@@ -136,7 +152,17 @@ private void doProcess(HttpServletRequest request, HttpServletResponse response)
 				if ( violations.size() > 0 ) {              // validacion NO correcta
 					 
 				 vista = VIEW_FORM; 
-				 request.setAttribute("mensaje", "CAMPOS INCORRECTOS");	
+				 Coche c = new Coche();
+					c = CocheDAO.getMatricula(matricula);
+					request.setAttribute("coche", c);
+				 
+				 
+				 String mensaje = "<ul>"; 
+				 for (ConstraintViolation<Multa> violation : violations) {					 	
+					 mensaje += String.format("<li> %s : %s </li>" , violation.getPropertyPath(), violation.getMessage() );					
+				 }
+				 mensaje += "</ul>";				 
+				request.setAttribute("mensaje", mensaje);
 				  
 				}else {									  //  validacion correcta
 				
@@ -175,7 +201,7 @@ private void doProcess(HttpServletRequest request, HttpServletResponse response)
 		id_coche = request.getParameter("id_coche");
 		importe = request.getParameter("importe");
 		concepto = request.getParameter("concepto");
-		
+		matricula = request.getParameter("matricula");
 	}
 
 }
