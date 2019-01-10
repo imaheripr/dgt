@@ -6,5 +6,6 @@
 <a class="btn btn-lg btn-info btn-block" href="privado/buscar" role="button">NUEVA MULTA</a>
 </section>
 </main>
+CAMBIO DAVID
 <%@ include file="../includes/footer.jsp"  %>
 
