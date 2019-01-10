@@ -45,7 +45,8 @@ public class MultaController extends HttpServlet {
 	private String operacion;
 	private String id_agente;
 	private String id_coche;
-	private String importe;
+	private String importe1;
+	private Integer importe2;
 	private String concepto;
 	private String matricula;
 
@@ -115,18 +116,7 @@ public class MultaController extends HttpServlet {
 		coche.setId((long) coche_id);
 
 		Multa multa = new Multa();
-
-//		if(importe.equals("")) {
-//			multa.setImporte(null);
-//		}else {
-//		multa.setImporte(Integer.parseInt(importe));
-//		}
-
-		try {
-			multa.setImporte(Integer.parseInt(importe));
-		} catch (Exception e) {
-			multa.setImporte(null);
-		}
+		multa.setImporte(importe2);
 		multa.setConcepto(concepto);
 		multa.setCoche(coche);
 
@@ -163,7 +153,13 @@ public class MultaController extends HttpServlet {
 		operacion = request.getParameter("operacion");
 		id_agente = request.getParameter("id_agente");
 		id_coche = request.getParameter("id_coche");
-		importe = request.getParameter("importe");
+		importe1 = request.getParameter("importe");
+		try {
+			importe2 =  Integer.parseInt(importe1);
+		} catch (Exception e) {
+			importe2 = null;
+		}
+		
 		concepto = request.getParameter("concepto");
 		matricula = request.getParameter("matricula");
 	}
