@@ -9,6 +9,7 @@
     <title>DGT ${agente_logeado.apellido} </title> 
     <base href="${pageContext.request.contextPath}/">
     <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/principal.css">
 </head>
  
 <body>
@@ -16,7 +17,6 @@
 <header>
 <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
 	<a class="navbar-brand  mr-auto" href="#">Atras</a>
-	
 	<ul class="navbar-nav float-right">
 	<li><span class="badge badge-info mr-3 font-weight-normal">${sessionScope.agente_logeado.apellido}</span></li>
 	</ul>      
