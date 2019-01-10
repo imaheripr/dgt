@@ -57,6 +57,7 @@ public class BuscarController extends HttpServlet {
 		
 		if(c!=null) {
 			request.setAttribute("coche", c);
+			request.setAttribute("mensaje", "Todos los campos son obligatorios");
 		request.getRequestDispatcher(MATRICULA_JSP).forward(request, response);
 		}else {
 			request.setAttribute("mensaje", "La matricula no existe");

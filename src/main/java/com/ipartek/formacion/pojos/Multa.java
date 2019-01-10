@@ -10,7 +10,7 @@ public class Multa {
 
 	private Long id;
 	
-	@NotNull(message = "No puede estar vacio.")
+	@NotNull(message = "No puede estar vacio y debe ser un valor numerico")
 	private Integer importe ;
 	
 	@NotEmpty
