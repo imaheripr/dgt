@@ -48,12 +48,11 @@ public class ListarController extends HttpServlet {
 	}
        
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(60 * 60 * 24 * 365 * 10);
-		multas = AgenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
-		session.setAttribute("multas", multas);
-		request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
 		
+		multas = AgenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
+		request.setAttribute("multas", multas);
+		request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
+		LOG.debug("Mostrando listado");
 		
 	}
    

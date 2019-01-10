@@ -1,32 +1,76 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../includes/cabecera.jsp"  %>
+ <main role="main" class="container-fluid mt-5">	
 
 
-    <main role="main" class="container">
-	
-		<p>Listado Multas</p>		
-		<table class="table">
-		  <thead class="thead-dark">
+<div class="accordion" id="accordionExample">		
+	<table class="table">
+		  <thead class="thead-light">
 		    <tr>
-		      <th scope="col">id</th>
-		      <th scope="col">importe</th>
-		      <th scope="col">concepto</th>
-		      <th scope="col">fecha</th>
+		      <th scope="col">FECHA </th>
+		      <th scope="col">MATRICULA</th>
+		       <th></th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		 
-		 	 <c:forEach items="${multas}" var="m">
-			    <tr>		    	
-			      <td scope="row">${m.id}</td>
-			      <td scope="row">${m.importe}</td>
-			      <td scope="col">${m.concepto}</td>
-		     	<td scope="col">${m.fecha}</td>
-			    </tr>    
+		  
+		    
+		 <c:forEach items="${multas}" var="m">
+			    <tr>
+			 	<td scope="col" data-target="#collapse${m.id}">
+		     		
+		     		<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
+			         <fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
+			     </button>
+		     	</td>
+		     	<td scope="col">
+		     	<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
+			          ${m.coche.matricula}
+			     </button>
+			   </td>
+			   	<th scope="col">
+		     	<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
+			         +
+			     </button>
+			   </th>
+		     	
+		     	</tr>  
+		     	<tr id="collapse${m.id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+		     	<td colspan="3">
+		     	<ul>
+		     	
+		     	
+		     	</ul>
+		     	
+		     	<div class="card mb-4 shadow-sm text-center">
+			      <div class="card-header">
+			        <h4 class="my-0 font-weight-normal">${m.coche.matricula.toUpperCase()} </h4>
+			      </div>
+			      <div class="card-body">
+			       <h1 class="card-title pricing-card-title">${m.concepto}</h1>
+			        <h2 class="card-title pricing-card-title">${m.importe}€</h2>
+			        <ul class="list-unstyled mt-3 mb-4">
+			         	<li>
+			         	Fecha: ${m.fecha}
+			         	 <p><fmt:formatDate type = "both"  dateStyle = "long" timeStyle = "long" value = "${m.fecha}" /></p>
+			         	</li>
+				     	<li>Importe: ${m.importe} €</li>
+					    <li>Concepto: ${m.concepto}</li>
+				     	<li>Matricula: ${m.coche.matricula}</li>
+				     	<li>Modelo: ${m.coche.modelo}</li>
+				     	<li>Kilometraje: ${m.coche.km}</li>
+			        </ul>
+			      </div>
+			    </div>
+			    
+		     	</td>
+		     	
+		     	</tr>  
 		    </c:forEach>
 		  </tbody>
-		</table>
-
-
-	</main>				
-
+		</table>		
+</div>	
+			
+</main>				
+<%@ include file="../includes/footer.jsp"  %>
 

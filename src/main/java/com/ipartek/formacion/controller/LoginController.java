@@ -24,13 +24,15 @@ public class LoginController extends HttpServlet {
 	private static final String PRIVADO_PRINCIPAL = "/privado/principal.jsp";
 	
 	private AgenteDAO AgenteDAO = null;
+	Agente a = null;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 
 		super.init(config);
 		AgenteDAO = AgenteDAO.getInstance();
-    	
+		
+		a = new Agente();
 	}
 	
 	
@@ -49,12 +51,13 @@ public class LoginController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(60 * 60 * 24 * 365 * 10);
-		Agente a = new Agente();
+		
 		a = AgenteDAO.getById(ID_AGENTE_PREDEFINIDO);
 		session.setAttribute("agente_logeado", a);
 		
 		//response.sendRedirect( request.getContextPath() + PRIVADO_PRINCIPAL);
 		request.getRequestDispatcher(PRIVADO_PRINCIPAL).forward(request, response);
+		LOG.debug("Logeado en pagina principal");
 		
 	}
 	

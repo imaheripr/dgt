@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import com.ipartek.formacion.pojos.Agente;
+import com.ipartek.formacion.pojos.Coche;
 import com.ipartek.formacion.pojos.Multa;
 
 public class AgenteDAO {
@@ -16,7 +17,7 @@ public class AgenteDAO {
 	
 	private static final String SQL_GET_BY_ID = "SELECT id, nombre, placa, id_departamento FROM agente WHERE id = ?;";
 	private static final String SQL_ALL_MULTAS =
-	"SELECT multa.id AS 'id_multa', importe, concepto, fecha FROM agente, multa WHERE agente.id=multa.id_agente AND agente.id=?" 
+	"SELECT m.id AS 'id_multa', c.id AS 'id_coche',fecha, importe, concepto, matricula, modelo,km FROM agente AS a, multa AS m, coche AS c WHERE a.id=m.id_agente AND m.id_coche=c.id AND a.id=? ORDER BY m.fecha DESC " 
 	;
 	
 	private static AgenteDAO INSTANCE = null;
@@ -59,16 +60,18 @@ public class AgenteDAO {
 				}
 			}
 		} catch (Exception e) {
-			LOG.debug(e);
+			LOG.fatal("getById:---> "+e);
 		}
+		LOG.debug("Agente_id encontrado");
 		return usuario;
+		
 	}
 	
 	public ArrayList<Multa> getMultas(long id){
 		ArrayList<Multa> multas = new ArrayList<Multa>();
 		String sql = SQL_ALL_MULTAS;	
 		Multa multa = null;
-		
+		Coche coche = null;
 		try ( Connection conn = ConnectionManager.getConnection();
 			  PreparedStatement pst = conn.prepareStatement(sql);
 			){
@@ -76,18 +79,27 @@ public class AgenteDAO {
 			try (ResultSet rs = pst.executeQuery()) {
 				while(rs.next()) { 	
 					multa = new Multa();
-					multa.setId( rs.getLong("id_multa"));
+					coche = new Coche();
+						multa.setId( rs.getLong("id_multa"));
+						coche.setId( rs.getLong("id_coche"));
+						multa.setFecha( rs.getDate("fecha"));
 						multa.setImporte( rs.getInt("importe"));
 						multa.setConcepto( rs.getString("concepto"));
-						multa.setFecha( rs.getString("fecha"));
+						coche.setMatricula( rs.getString("matricula"));
+						coche.setModelo( rs.getString("modelo"));
+						coche.setKm( rs.getInt("km"));
+						
+						multa.setCoche(coche);
 						multas.add(multa);
 			
 				} 	
 			}
+
 			
 		}catch (Exception e) {
-			LOG.debug(e);
+			LOG.fatal("getMultas:---> "+e);
 		}
+		LOG.debug("Listado multas OK");
 		return multas;
 	}
 	
