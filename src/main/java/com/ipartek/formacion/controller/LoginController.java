@@ -22,43 +22,42 @@ public class LoginController extends HttpServlet {
 	private final static Logger LOG = Logger.getLogger(LoginController.class);
 
 	private static final String PRIVADO_PRINCIPAL = "/privado/principal.jsp";
-	
+
 	private AgenteDAO AgenteDAO = null;
 	Agente a = null;
-	
+
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 
 		super.init(config);
 		AgenteDAO = AgenteDAO.getInstance();
-		
+
 		a = new Agente();
 	}
-	
-	
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request, response);		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doProcess(request, response);
 	}
-	
-	
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	private void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(60 * 60 * 24 * 365 * 10);
-		
+
 		a = AgenteDAO.getById(ID_AGENTE_PREDEFINIDO);
 		session.setAttribute("agente_logeado", a);
-		
-		//response.sendRedirect( request.getContextPath() + PRIVADO_PRINCIPAL);
+
+		// response.sendRedirect( request.getContextPath() + PRIVADO_PRINCIPAL);
 		request.getRequestDispatcher(PRIVADO_PRINCIPAL).forward(request, response);
 		LOG.debug("Logeado en pagina principal");
-		
+
 	}
-	
+
 }

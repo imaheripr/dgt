@@ -9,16 +9,13 @@ public class Agente {
 	private Integer placa;
 
 	private ArrayList<Multa> multa = new ArrayList<Multa>();
-	
-	
-	
+
 	public Agente() {
 		super();
 		this.id = -1L;
-		this.apellido ="" ;
+		this.apellido = "";
 		this.placa = -1;
 	}
-
 
 	public Agente(Long id, String apellido, Integer placa, Integer id_departamento) {
 		this();
@@ -51,17 +48,9 @@ public class Agente {
 		this.placa = placa;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Agente [id=" + id + ", apellido=" + apellido + ", placa=" + placa + "]";
 	}
 
-	
-
-
-	
-	
-	
-	
 }

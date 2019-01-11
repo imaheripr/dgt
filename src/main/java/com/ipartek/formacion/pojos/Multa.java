@@ -7,20 +7,21 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
 public class Multa {
 
 	private Long id;
-	
+
 	@NotNull(message = "No puede estar vacio y debe ser un valor numerico")
-	private Integer importe ;
-	
+	private Integer importe;
+
 	@NotEmpty
-	@Size(min = 5, max=150)
+	@Size(min = 5, max = 150)
 	private String concepto;
 	private Date fecha;
 	private Coche coche;
 	private Time hora;
-	
+
 	public Multa() {
 		super();
 		this.id = -1L;
@@ -28,9 +29,9 @@ public class Multa {
 		this.concepto = "";
 		this.fecha = null;
 		this.hora = null;
-		this.coche= new Coche();
+		this.coche = new Coche();
 	}
-	
+
 	public Multa(Long id, Integer importe, String concepto, Date fecha, Time hora, Coche coche) {
 		this();
 		setId(id);
@@ -41,9 +42,6 @@ public class Multa {
 		setCoche(coche);
 	}
 
-	
-	
-
 	public Time getHora() {
 		return hora;
 	}
@@ -52,7 +50,6 @@ public class Multa {
 		this.hora = hora;
 	}
 
-	
 	public Coche getCoche() {
 		return coche;
 	}
@@ -65,31 +62,25 @@ public class Multa {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public Integer getImporte() {
 		return importe;
 	}
 
-
 	public void setImporte(Integer importe) {
 		this.importe = importe;
 	}
-
 
 	public String getConcepto() {
 		return concepto;
 	}
 
-
 	public void setConcepto(String concepto) {
 		this.concepto = concepto;
 	}
-
 
 	public Date getFecha() {
 		return fecha;
@@ -104,7 +95,5 @@ public class Multa {
 		return "Multa [id=" + id + ", importe=" + importe + ", concepto=" + concepto + ", fecha=" + fecha + ", coche="
 				+ coche + ", hora=" + hora + "]";
 	}
-	
-	
-	
+
 }

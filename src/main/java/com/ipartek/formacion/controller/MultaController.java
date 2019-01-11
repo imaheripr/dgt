@@ -25,7 +25,6 @@ import com.ipartek.formacion.pojos.Multa;
 
 @WebServlet("/privado/multa")
 public class MultaController extends HttpServlet {
-	
 
 	private static final long serialVersionUID = 1L;
 
@@ -145,7 +144,8 @@ public class MultaController extends HttpServlet {
 			try {
 				MultaDAO.insert(multa, agente);
 				request.setAttribute("mensaje", "Multa registrada correctamente");
-				LOG.debug("AGENTE " + agente_id +" Importe: "+ multa.getImporte() +" Concepto: "+ multa.getConcepto() +" Coche: "+ multa.getCoche().getMatricula());
+				LOG.debug("AGENTE " + agente_id + " Importe: " + multa.getImporte() + " Concepto: "
+						+ multa.getConcepto() + " Coche: " + multa.getCoche().getMatricula());
 			} catch (SQLException e) {
 				request.setAttribute("mensaje", "Multa no registrada , ERROR");
 				LOG.debug("Multa no registrada ");
@@ -160,11 +160,11 @@ public class MultaController extends HttpServlet {
 		id_coche = request.getParameter("id_coche");
 		importe1 = request.getParameter("importe");
 		try {
-			importe2 =  Integer.parseInt(importe1);
+			importe2 = Integer.parseInt(importe1);
 		} catch (Exception e) {
 			importe2 = null;
 		}
-		
+
 		concepto = request.getParameter("concepto");
 		matricula = request.getParameter("matricula");
 	}
