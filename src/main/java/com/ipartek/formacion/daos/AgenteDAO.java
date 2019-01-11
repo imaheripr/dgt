@@ -15,7 +15,7 @@ import com.ipartek.formacion.pojos.Multa;
 public class AgenteDAO {
 
 	private static final String SQL_GET_BY_ID = "SELECT id, nombre, placa, id_departamento FROM agente WHERE id = ?;";
-	private static final String SQL_ALL_MULTAS = "SELECT m.id AS 'id_multa', c.id AS 'id_coche',fecha, importe, concepto, matricula, modelo,km FROM agente AS a, multa AS m, coche AS c WHERE a.id=m.id_agente AND m.id_coche=c.id AND a.id=? ORDER BY m.fecha DESC ";
+	private static final String SQL_ALL_MULTAS = "SELECT m.id AS 'id_multa', c.id AS 'id_coche',fecha, importe, concepto, matricula, modelo,km FROM agente AS a, multa AS m, coche AS c WHERE a.id=m.id_agente AND m.id_coche=c.id AND a.id=? AND m.fecha_baja IS NULL ORDER BY m.fecha DESC ";
 
 	private static AgenteDAO INSTANCE = null;
 	private final static Logger LOG = Logger.getLogger(AgenteDAO.class);

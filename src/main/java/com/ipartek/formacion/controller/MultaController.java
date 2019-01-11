@@ -22,6 +22,7 @@ import com.ipartek.formacion.daos.MultaDAO;
 import com.ipartek.formacion.pojos.Agente;
 import com.ipartek.formacion.pojos.Coche;
 import com.ipartek.formacion.pojos.Multa;
+import com.mysql.jdbc.log.Log;
 
 @WebServlet("/privado/multa")
 public class MultaController extends HttpServlet {
@@ -38,6 +39,7 @@ public class MultaController extends HttpServlet {
 	private static final String VIEW_INDEX = "principal.jsp";
 	private static final String VIEW_FORM = "multa.jsp";
 	private static final String VIEW_BUSCAR = "buscar";
+	private static final String VIEW_LISTADO = "listar";
 	private String vista;
 
 	// OPERACIONES
@@ -81,10 +83,8 @@ public class MultaController extends HttpServlet {
 				insertar(request);
 				break;
 			case OP_ANULAR:
-				insertar(request);
+				anular(request);
 				break;
-
-
 			}
 
 		} catch (Exception e) {
@@ -172,4 +172,19 @@ public class MultaController extends HttpServlet {
 		matricula = request.getParameter("matricula");
 	}
 
+	
+	private void anular (HttpServletRequest request) {
+		Long identificador = Long.parseLong(id_multa);
+		Multa multa = new Multa();
+		multa.setId(identificador);
+		try {
+			multaDAO.update(multa);
+			request.setAttribute("mensaje", "multa anulada");
+			LOG.debug("Anulando multa" + identificador);
+			
+		}catch(Exception e){
+			request.setAttribute("mensaje", "multa no  anulada");
+			LOG.debug("Multa no anulada" + identificador);
+		}
+	}
 }
