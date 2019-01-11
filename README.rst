@@ -23,7 +23,7 @@ UX
 Al registrarse el agente entra en la pagina de bienvenida.
 
 .. image:: capturas/Captura0.JPG
-    :scale: 50 %
+    :scale: 10 %
     :align: center
     
 Si seleccciona listar multas, el agente puede ver todas las multas que ha registrao
