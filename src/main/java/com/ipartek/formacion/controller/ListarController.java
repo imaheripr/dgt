@@ -24,6 +24,7 @@ public class ListarController extends HttpServlet {
 	private static final int ID_AGENTE_PREDEFINIDO = 4;
 
 	private static final String LISTADO_MULTAS = "listadoMultas.jsp";
+	private static final String LISTADO_MULTAS_ANULAR = "listadoMultasAnuladas.jsp";
 
 	private static final long serialVersionUID = 1L;
 	private final static Logger LOG = Logger.getLogger(LoginController.class);
@@ -41,12 +42,19 @@ public class ListarController extends HttpServlet {
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		String operacion = request.getParameter("operacion");
+        if (operacion.equals("0")) {
 		multas = agenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
 		request.setAttribute("multas", multas);
 		request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
 		LOG.debug("Mostrando listado");
-
+        }else if (operacion.equals("1")) {
+        	multas = agenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
+    		request.setAttribute("multas", multas);
+    		request.getRequestDispatcher(LISTADO_MULTAS_ANULAR).forward(request, response);
+    		LOG.debug("Mostrando listado");	
+        }
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

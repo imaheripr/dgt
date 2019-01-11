@@ -11,7 +11,8 @@
   </button>
 </div>
 </c:if>
-<a class="btn btn-lg btn-info btn-block mb-5" href="privado/listar" role="button">LISTAR TODAS LAS MULTAS</a>
+<a class="btn btn-lg btn-info btn-block mb-5" href="privado/listar?operacion=0" role="button">LISTAR TODAS LAS MULTAS</a>
+<a class="btn btn-lg btn-info btn-block" href="privado/listar?operacion=1" role="button">LISTAR MULTAS ANULADAS</a>
 <a class="btn btn-lg btn-info btn-block" href="privado/buscar" role="button">NUEVA MULTA</a>
 </section>
 </main>
