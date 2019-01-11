@@ -15,12 +15,12 @@
 	
 	<div class="form-group">
 	<label for="matricula">Matricula seleccionada</label>
-	<input readonly  type="text" name="matricula" value="${coche.matricula }" class="form-control">			    
+	<input readonly  type="text" name="matricula" value="${coche.matricula }" class="form-control" >			    
 	</div>
 	
 	<div class="form-group">
 	<label for="importe">Importe</label>
-	<input type="text" name="importe" placeholder="Introduce un valor numerico valido" class="form-control">			    
+	<input type="text" name="importe" placeholder="Introduce un valor numerico valido" class="form-control" autofocus>			    
 	</div>	
 	
 	<div class="form-group">
