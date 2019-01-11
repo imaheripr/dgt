@@ -52,14 +52,14 @@ public class MultaController extends HttpServlet {
 	private String concepto;
 	private String matricula;
 
-	private static MultaDAO MultaDAO = null;
-	private static CocheDAO CocheDAO = null;
+	private static MultaDAO multaDAO = null;
+	private static CocheDAO cocheDAO = null;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		MultaDAO = MultaDAO.getInstance();
-		CocheDAO = CocheDAO.getInstance();
+		multaDAO = MultaDAO.getInstance();
+		cocheDAO = CocheDAO.getInstance();
 		factory = Validation.buildDefaultValidatorFactory();
 		validator = factory.getValidator();
 
@@ -89,7 +89,7 @@ public class MultaController extends HttpServlet {
 			vista = VIEW_BUSCAR;
 
 			Coche c = new Coche();
-			c = CocheDAO.getMatricula(matricula);
+			c = cocheDAO.getMatricula(matricula);
 			request.setAttribute("matricula", c.getMatricula());
 			request.setAttribute("mensaje", "Reinicio");
 
@@ -132,7 +132,7 @@ public class MultaController extends HttpServlet {
 		if (violations.size() > 0) { // validacion NO correcta
 			vista = VIEW_FORM;
 			Coche c = new Coche();
-			c = CocheDAO.getMatricula(matricula);
+			c = cocheDAO.getMatricula(matricula);
 			request.setAttribute("coche", c);
 			String mensaje = "<ul>";
 			for (ConstraintViolation<Multa> violation : violations) {
@@ -142,7 +142,7 @@ public class MultaController extends HttpServlet {
 			request.setAttribute("mensaje", mensaje);
 		} else { // validacion correcta
 			try {
-				MultaDAO.insert(multa, agente);
+				multaDAO.insert(multa, agente);
 				request.setAttribute("mensaje", "Multa registrada correctamente");
 				LOG.debug("AGENTE " + agente_id + " Importe: " + multa.getImporte() + " Concepto: "
 						+ multa.getConcepto() + " Coche: " + multa.getCoche().getMatricula());

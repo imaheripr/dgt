@@ -25,12 +25,13 @@ public class BuscarController extends HttpServlet {
 	private static final String BUSCAR_JSP = "buscarMatricula.jsp";
 	private static final String MATRICULA_JSP = "multa.jsp";
 
-	private CocheDAO CocheDAO = null;
+	private CocheDAO cocheDAO = null;
+	
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		CocheDAO = CocheDAO.getInstance();
+		cocheDAO = CocheDAO.getInstance();
 
 	}
 
@@ -47,7 +48,7 @@ public class BuscarController extends HttpServlet {
 
 		String matriculaBuscar = request.getParameter("buscar");
 		Coche c = new Coche();
-		c = CocheDAO.getMatricula(matriculaBuscar);
+		c = cocheDAO.getMatricula(matriculaBuscar);
 
 		if (c != null) {
 			request.setAttribute("coche", c);

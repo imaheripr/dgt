@@ -28,21 +28,21 @@ public class ListarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final static Logger LOG = Logger.getLogger(LoginController.class);
 
-	private AgenteDAO AgenteDAO = null;
+	private static AgenteDAO agenteDAO = null;
 
 	ArrayList<Multa> multas = null;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		AgenteDAO = AgenteDAO.getInstance();
+		agenteDAO = AgenteDAO.getInstance();
 		multas = new ArrayList<Multa>();
 	}
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		multas = AgenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
+		multas = agenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
 		request.setAttribute("multas", multas);
 		request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
 		LOG.debug("Mostrando listado");
