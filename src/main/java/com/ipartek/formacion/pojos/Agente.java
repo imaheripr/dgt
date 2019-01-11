@@ -1,7 +1,5 @@
 package com.ipartek.formacion.pojos;
 
-import java.util.ArrayList;
-
 public class Agente {
 
 	private Long id;
