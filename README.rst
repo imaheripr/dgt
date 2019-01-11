@@ -2,9 +2,13 @@
 MULTOMETRO
 =========================
 
+Aplicación web para moviles , que registra multas.
+
+
 TECNOLOGIAS
 ----------------
-JAVA MySQL
+JAVA, MySQL.
+
 
 DIAGRAMA ER
 ----------------
