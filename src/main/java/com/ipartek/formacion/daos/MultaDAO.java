@@ -41,6 +41,7 @@ public class MultaDAO {
 			int affectedRows = pst.executeUpdate();
 			if (affectedRows == 1) {
 				resul = true;
+				LOG.debug("coche insertado");
 			}
 
 		}
