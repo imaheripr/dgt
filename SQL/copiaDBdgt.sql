@@ -31,7 +31,7 @@ CREATE TABLE `agente` (
   `id_departamento` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_departamento_idx` (`id_departamento`),
-  CONSTRAINT `fk_departamento` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id`)
+  CONSTRAINT `fk_departamento_has_agente` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -98,31 +98,6 @@ INSERT INTO `departamento` VALUES (36,'Alcoholemia'),(38,'Fealdad'),(33,'Ingenie
 UNLOCK TABLES;
 
 --
--- Table structure for table `empleado`
---
-
-DROP TABLE IF EXISTS `empleado`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `empleado` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `apellido` varchar(45) NOT NULL,
-  `id_departamento` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `empleado`
---
-
-LOCK TABLES `empleado` WRITE;
-/*!40000 ALTER TABLE `empleado` DISABLE KEYS */;
-INSERT INTO `empleado` VALUES (1,'Andrade',31),(2,'Jordán',33),(3,'Steinberg',33),(4,'Róbinson',34),(5,'Zolano',34),(6,'Gaspar',36);
-/*!40000 ALTER TABLE `empleado` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `multa`
 --
 
@@ -131,17 +106,19 @@ DROP TABLE IF EXISTS `multa`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `multa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_coche` int(11) NOT NULL,
+  `id_agente` int(11) DEFAULT NULL,
   `importe` float DEFAULT '50',
   `concepto` varchar(255) NOT NULL,
   `fecha` datetime DEFAULT CURRENT_TIMESTAMP,
-  `id_coche` int(11) NOT NULL,
-  `id_agente` int(11) DEFAULT NULL,
+  `fecha_modificacion` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecha_baja` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_multas_coches_idx` (`id_coche`),
   KEY `fk_agente_idx` (`id_agente`),
-  CONSTRAINT `fk_agente` FOREIGN KEY (`id_agente`) REFERENCES `agente` (`id`),
-  CONSTRAINT `fk_multas_coches` FOREIGN KEY (`id_coche`) REFERENCES `coche` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_agente_has_multa` FOREIGN KEY (`id_agente`) REFERENCES `agente` (`id`),
+  CONSTRAINT `fk_coche_has_multa` FOREIGN KEY (`id_coche`) REFERENCES `coche` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +127,7 @@ CREATE TABLE `multa` (
 
 LOCK TABLES `multa` WRITE;
 /*!40000 ALTER TABLE `multa` DISABLE KEYS */;
-INSERT INTO `multa` VALUES (1,200,'por feo','2019-01-07 10:38:42',2,3),(2,500,'exceso velocidad 240km/h','2019-01-07 10:39:23',4,1),(3,700,'empinar codo 8.0','2018-01-07 10:39:42',1,2),(4,700,'empinar codo 8.0','2019-01-07 10:39:42',1,4),(5,500,'conduccion temeraria','2019-01-05 10:39:42',1,1),(6,400,'por correr','2019-01-02 10:39:42',4,4);
+INSERT INTO `multa` VALUES (1,2,3,200,'por feo','2019-01-07 10:38:42','2019-01-11 09:30:15',NULL),(2,4,1,500,'exceso velocidad 240km/h','2019-01-07 10:39:23','2019-01-11 09:30:15',NULL),(3,1,2,700,'empinar codo 8.0','2018-01-07 10:39:42','2019-01-11 09:30:15',NULL),(4,1,4,700,'empinar codo 8.0','2019-01-07 10:39:42','2019-01-11 09:30:15',NULL),(5,1,1,500,'conduccion temeraria','2019-01-05 10:39:42','2019-01-11 09:30:15',NULL),(6,4,4,400,'por correr','2019-01-02 10:39:42','2019-01-11 09:30:15',NULL),(7,1,4,2134,'minimo 10 caracterdsgdsfges','2019-01-10 12:14:24','2019-01-11 09:30:15',NULL);
 /*!40000 ALTER TABLE `multa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-08 14:08:29
+-- Dump completed on 2019-01-11  9:39:59
