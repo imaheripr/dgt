@@ -50,7 +50,7 @@ public class ListarController extends HttpServlet {
 		request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
 		LOG.debug("Mostrando listado");
         }else if (operacion.equals("1")) {
-        	multas = agenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
+        	multas = agenteDAO.getMultasAnuladas(ID_AGENTE_PREDEFINIDO);
     		request.setAttribute("multas", multas);
     		request.getRequestDispatcher(LISTADO_MULTAS_ANULAR).forward(request, response);
     		LOG.debug("Mostrando listado");	
