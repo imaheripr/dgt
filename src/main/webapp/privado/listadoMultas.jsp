@@ -29,18 +29,41 @@
 			     </button>
 			   </td>
 			   	<th scope="col">
-		     	<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
-			         +
-			     </button>
+		     	<button type="button" class="btn btn-outline-danger btn-block mt-4" data-toggle="modal" data-target="#anular">
+				  ELIMINAR
+				</button>
+		
 			   </th>
-		     	
+		     	<!-- Modal -->
+				<div class="modal fade" id="anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        ¿ Estas serguro que deseas eliminar el registro ?
+						    <ul class="list-unstyled mt-3 mb-4">			         	
+					         	<li>Fecha: ${m.fecha}</li>
+					    		<li>Importe: ${m.importe} €</li>
+							    <li>Concepto: ${m.concepto}</li>
+						     	<li>Matricula: ${m.coche.matricula}</li>		     
+					        </ul>			   
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+				        <a href="privado/videos?op=2&id=${m.id}" class="btn btn-danger">ELIMINAR</a>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			
 		     	</tr>  
 		     	<tr id="collapse${m.id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 		     	<td colspan="3">
-		     	<ul>
-		     	
-		     	
-		     	</ul>
 		     	
 		     	<div class="card mb-4 shadow-sm ">
 			      <div class="card-header">
@@ -68,6 +91,16 @@
 		  </tbody>
 		</table>		
 </div>	
+	
+	<!-- Button trigger modal -->
+				<button type="button" class="btn btn-outline-danger btn-block mt-4" data-toggle="modal" data-target="#exampleModal">
+				  ELIMINAR
+				</button>
+		
+				
+			
+	
+	
 			
 </main>				
 <%@ include file="../includes/footer.jsp"  %>
