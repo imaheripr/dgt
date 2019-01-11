@@ -117,7 +117,7 @@ public class MultaController extends HttpServlet {
 		Coche coche = new Coche();
 		int coche_id = Integer.parseInt(id_coche);
 		coche.setId((long) coche_id);
-
+		coche.setMatricula(matricula);
 		Multa multa = new Multa();
 		multa.setImporte(importe2);
 		multa.setConcepto(concepto);
@@ -145,8 +145,10 @@ public class MultaController extends HttpServlet {
 			try {
 				MultaDAO.insert(multa, agente);
 				request.setAttribute("mensaje", "Multa registrada correctamente");
+				LOG.debug("AGENTE " + agente_id +" Importe: "+ multa.getImporte() +" Concepto: "+ multa.getConcepto() +" Coche: "+ multa.getCoche().getMatricula());
 			} catch (SQLException e) {
 				request.setAttribute("mensaje", "Multa no registrada , ERROR");
+				LOG.debug("Multa no registrada ");
 			}
 		}
 	}
