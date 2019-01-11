@@ -30,7 +30,7 @@
 			   </td>
 			   	<th scope="col">
 		     	<button type="button" class="btn btn-outline-danger btn-block mt-4" data-toggle="modal" data-target="#anular">
-				  ELIMINAR
+				ANULAR
 				</button>
 		
 			   </th>
@@ -45,7 +45,7 @@
 				        </button>
 				      </div>
 				      <div class="modal-body">
-				        ¿ Estas serguro que deseas eliminar el registro ?
+				        ¿ Estas serguro que deseas anular la multa ?
 						    <ul class="list-unstyled mt-3 mb-4">			         	
 					         	<li>Fecha: ${m.fecha}</li>
 					    		<li>Importe: ${m.importe} €</li>
@@ -55,7 +55,7 @@
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
-				        <a href="privado/videos?op=2&id=${m.id}" class="btn btn-danger">ELIMINAR</a>
+				        <a href="privado/multa?op=2&id=${m.id}" class="btn btn-danger">ELIMINAR</a>
 				      </div>
 				    </div>
 				  </div>
@@ -90,18 +90,7 @@
 		    </c:forEach>
 		  </tbody>
 		</table>		
-</div>	
-	
-	<!-- Button trigger modal -->
-				<button type="button" class="btn btn-outline-danger btn-block mt-4" data-toggle="modal" data-target="#exampleModal">
-				  ELIMINAR
-				</button>
-		
-				
-			
-	
-	
-			
+</div>				
 </main>				
 <%@ include file="../includes/footer.jsp"  %>
 

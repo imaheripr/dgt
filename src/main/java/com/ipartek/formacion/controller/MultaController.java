@@ -42,9 +42,11 @@ public class MultaController extends HttpServlet {
 
 	// OPERACIONES
 	public static final String OP_INSERTAR = "1";
+	public static final String OP_ANULAR = "2";
 
 	// parametros
 	private String operacion;
+	private String id_multa;
 	private String id_agente;
 	private String id_coche;
 	private String importe1;
@@ -78,9 +80,10 @@ public class MultaController extends HttpServlet {
 			case OP_INSERTAR:
 				insertar(request);
 				break;
-			default:
+			case OP_ANULAR:
 				insertar(request);
 				break;
+
 
 			}
 
@@ -112,7 +115,7 @@ public class MultaController extends HttpServlet {
 	private void insertar(HttpServletRequest request) {
 
 		// crear pojos mediante parametros del formulario
-
+	
 		Coche coche = new Coche();
 		int coche_id = Integer.parseInt(id_coche);
 		coche.setId((long) coche_id);
@@ -141,7 +144,7 @@ public class MultaController extends HttpServlet {
 			mensaje += "</ul>";
 			request.setAttribute("mensaje", mensaje);
 		} else { // validacion correcta
-			try {
+			try {		
 				multaDAO.insert(multa, agente);
 				request.setAttribute("mensaje", "Multa registrada correctamente");
 				LOG.debug("AGENTE " + agente_id + " Importe: " + multa.getImporte() + " Concepto: "
@@ -154,7 +157,7 @@ public class MultaController extends HttpServlet {
 	}
 
 	private void getParametros(HttpServletRequest request) {
-
+		id_multa=request.getParameter("id");
 		operacion = request.getParameter("operacion");
 		id_agente = request.getParameter("id_agente");
 		id_coche = request.getParameter("id_coche");
