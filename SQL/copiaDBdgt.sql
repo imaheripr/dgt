@@ -118,7 +118,7 @@ CREATE TABLE `multa` (
   KEY `fk_agente_idx` (`id_agente`),
   CONSTRAINT `fk_agente_has_multa` FOREIGN KEY (`id_agente`) REFERENCES `agente` (`id`),
   CONSTRAINT `fk_coche_has_multa` FOREIGN KEY (`id_coche`) REFERENCES `coche` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +127,7 @@ CREATE TABLE `multa` (
 
 LOCK TABLES `multa` WRITE;
 /*!40000 ALTER TABLE `multa` DISABLE KEYS */;
-INSERT INTO `multa` VALUES (1,2,3,200,'por feo','2019-01-07 10:38:42','2019-01-11 09:30:15',NULL),(2,4,1,500,'exceso velocidad 240km/h','2019-01-07 10:39:23','2019-01-11 09:30:15',NULL),(3,1,2,700,'empinar codo 8.0','2018-01-07 10:39:42','2019-01-11 09:30:15',NULL),(4,1,4,700,'empinar codo 8.0','2019-01-07 10:39:42','2019-01-11 09:30:15',NULL),(5,1,1,500,'conduccion temeraria','2019-01-05 10:39:42','2019-01-11 09:30:15',NULL),(6,4,4,400,'por correr','2019-01-02 10:39:42','2019-01-11 09:30:15',NULL),(7,1,4,2134,'minimo 10 caracterdsgdsfges','2019-01-10 12:14:24','2019-01-11 09:30:15',NULL);
+INSERT INTO `multa` VALUES (1,2,3,200,'por feo','2019-01-07 10:38:42','2019-01-11 09:30:15',NULL),(2,4,1,500,'exceso velocidad 240km/h','2019-01-07 10:39:23','2019-01-11 09:30:15',NULL),(3,1,2,700,'empinar codo 8.0','2018-01-07 10:39:42','2019-01-11 09:30:15',NULL),(4,1,4,700,'empinar codo 8.0','2019-01-07 10:39:42','2019-01-11 09:30:15',NULL),(5,1,1,500,'conduccion temeraria','2019-01-05 10:39:42','2019-01-11 09:30:15',NULL),(6,4,4,400,'por correr','2019-01-02 10:39:42','2019-01-11 09:30:15',NULL),(7,1,4,2134,'minimo 10 caracterdsgdsfges','2019-01-10 12:14:24','2019-01-11 09:30:15',NULL),(8,1,4,950,'ConducciÃ³n temeraria','2019-01-11 10:03:09','2019-01-11 10:03:09',NULL);
 /*!40000 ALTER TABLE `multa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-11  9:39:59
+-- Dump completed on 2019-01-11 11:51:07
