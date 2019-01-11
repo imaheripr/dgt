@@ -29,13 +29,13 @@
 			     </button>
 			   </td>
 			   	<th scope="col">
-		     	<button type="button" class="btn btn-outline-danger btn-block mt-4" data-toggle="modal" data-target="#anular">
+		     	<button type="button" class="btn btn-outline-danger btn-block mt-4" data-toggle="modal" data-target="#anular${m.id}" >
 				ANULAR
 				</button>
 		
 			   </th>
 		     	<!-- Modal -->
-				<div class="modal fade" id="anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="anular${m.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				      <div class="modal-header">
