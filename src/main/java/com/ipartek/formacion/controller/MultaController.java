@@ -39,7 +39,8 @@ public class MultaController extends HttpServlet {
 	private static final String VIEW_INDEX = "principal.jsp";
 	private static final String VIEW_FORM = "multa.jsp";
 	private static final String VIEW_BUSCAR = "buscar";
-	private static final String VIEW_LISTADO = "listar";
+	//mandamos el parametro de operacion para que lo recoja el servelt y funcione perfecto
+	private static final String VIEW_LISTADO = "listar?operacion=0";
 	private String vista;
 
 	// OPERACIONES

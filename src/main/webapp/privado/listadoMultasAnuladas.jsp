@@ -10,7 +10,7 @@
 </div>
 </c:if>	
 
-
+<h1>Multas Anuladas</h1>
 <div class="accordion" id="accordionExample">		
 	<table class="table">
 		  <thead class="thead-light">
@@ -29,6 +29,7 @@
 		     		
 		     		<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
 			         <fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
+			         <fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />
 			     </button>
 		     	</td>
 		     	<td scope="col">
@@ -37,7 +38,7 @@
 			     </button>
 			   </td>
 			   	<th scope="col">
-		     	<button type="button" class="btn btn-outline-danger btn-block mt-4" data-toggle="modal" data-target="#anular${m.id}" >
+		     	<button type="button" class="btn btn-outline-danger btn-block" data-toggle="modal" data-target="#anular${m.id}" >
 				ANULAR
 				</button>
 		
@@ -55,8 +56,7 @@
 				      <div class="modal-body">
 				        ¿ Estas serguro que deseas anular la multa ?
 						    <ul class="list-unstyled mt-3 mb-4">			         	
-					         	<li>Fecha: ${m.fecha}</li>
-					    		<li>Importe: ${m.importe} €</li>
+					         	<li>Fecha: ${m.fecha} ${m.hora}>
 							    <li>Concepto: ${m.concepto}</li>
 						     	<li>Matricula: ${m.coche.matricula}</li>		     
 					        </ul>			   

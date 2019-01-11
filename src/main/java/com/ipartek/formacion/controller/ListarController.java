@@ -43,6 +43,7 @@ public class ListarController extends HttpServlet {
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		// AKI esta el fallo que  venia sin parametro se quedaba loco el SERVLET
 		String operacion = request.getParameter("operacion");
         if (operacion.equals("0")) {
 		multas = agenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
