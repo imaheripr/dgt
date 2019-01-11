@@ -55,6 +55,9 @@ public class ListarController extends HttpServlet {
     		request.setAttribute("multas", multas);
     		request.getRequestDispatcher(LISTADO_MULTAS_ANULAR).forward(request, response);
     		LOG.debug("Mostrando listado");	
+        }else {
+        	request.getRequestDispatcher("/404.jsp").forward(request, response);
+    		
         }
 	}
 
