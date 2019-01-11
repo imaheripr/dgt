@@ -181,7 +181,7 @@ public class MultaController extends HttpServlet {
 			multaDAO.update(multa);
 			request.setAttribute("mensaje", "multa anulada");
 			LOG.debug("Anulando multa" + identificador);
-			
+			vista =VIEW_LISTADO;
 		}catch(Exception e){
 			request.setAttribute("mensaje", "multa no  anulada");
 			LOG.debug("Multa no anulada" + identificador);
