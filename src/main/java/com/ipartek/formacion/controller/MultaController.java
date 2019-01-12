@@ -169,6 +169,8 @@ public class MultaController extends HttpServlet {
 			importe2 = Integer.parseInt(importe1);
 		} catch (Exception e) {
 			importe2 = null;
+			
+		}finally {
 			request.setAttribute("importe", importe1);
 			request.setAttribute("concepto", concepto);
 		}
