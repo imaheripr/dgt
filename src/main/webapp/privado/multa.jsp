@@ -20,12 +20,12 @@
 	
 	<div class="form-group">
 	<label for="importe">Importe</label>
-	<input type="text" name="importe" placeholder="Introduce un valor numerico valido" class="form-control" autofocus>			    
+	<input type="text" name="importe" placeholder="Introduce un valor numerico valido" value="${importe!=null ? importe : ''}" class="form-control" autofocus>			    
 	</div>	
-	
+	                                                                          
 	<div class="form-group">
 	<label for="concepto">Concepto</label>
-	<textarea name="concepto"  class="form-control" placeholder="minimo 10 caracteres maximo 150"></textarea>		    
+	<textarea name="concepto"  class="form-control" placeholder="minimo 10 caracteres maximo 150">${concepto!=null ? concepto : ''}</textarea>		    
 	</div>	
 	
 	

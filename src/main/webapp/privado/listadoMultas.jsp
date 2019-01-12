@@ -65,7 +65,7 @@
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
-				        <a href="privado/multa?operacion=2&id=${m.id}" class="btn btn-danger">ELIMINAR</a>
+				        <a href="privado/multa?operacion=2&id=${m.id}" class="btn btn-danger">ANULAR</a>
 				      </div>
 				    </div>
 				  </div>

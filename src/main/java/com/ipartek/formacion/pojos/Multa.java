@@ -16,7 +16,7 @@ public class Multa {
 	private Integer importe;
 
 	@NotEmpty
-	@Size(min = 5, max = 150)
+	@Size(min = 10, max = 150)
 	private String concepto;
 	private Date fecha;
 	private Coche coche;

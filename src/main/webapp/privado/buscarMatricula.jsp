@@ -12,7 +12,7 @@
 <form action="privado/buscar" method="post">		
 	<div class="form-group">
 	<label for="buscar" class="sr-only">Buscar Matricula</label>
-	<input type="text" name="buscar" value="3548MKZ" class="form-control" autofocus>			    
+	<input type="text" name="buscar"  class="form-control" autofocus value="${matricula!=null ? matricula : '3548MKZ'}">			    
 	</div>	
 	
 	<div  class="form-group" class="sr-only">								

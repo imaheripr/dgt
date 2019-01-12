@@ -22,7 +22,6 @@ import com.ipartek.formacion.daos.MultaDAO;
 import com.ipartek.formacion.pojos.Agente;
 import com.ipartek.formacion.pojos.Coche;
 import com.ipartek.formacion.pojos.Multa;
-import com.mysql.jdbc.log.Log;
 
 @WebServlet("/privado/multa")
 public class MultaController extends HttpServlet {
@@ -144,6 +143,7 @@ public class MultaController extends HttpServlet {
 			}
 			mensaje += "</ul>";
 			request.setAttribute("mensaje", mensaje);
+			
 		} else { // validacion correcta
 			try {		
 				multaDAO.insert(multa, agente);
@@ -163,14 +163,15 @@ public class MultaController extends HttpServlet {
 		id_agente = request.getParameter("id_agente");
 		id_coche = request.getParameter("id_coche");
 		importe1 = request.getParameter("importe");
+		concepto = request.getParameter("concepto");
+		matricula = request.getParameter("matricula");
 		try {
 			importe2 = Integer.parseInt(importe1);
 		} catch (Exception e) {
 			importe2 = null;
+			request.setAttribute("importe", importe1);
+			request.setAttribute("concepto", concepto);
 		}
-
-		concepto = request.getParameter("concepto");
-		matricula = request.getParameter("matricula");
 	}
 
 	

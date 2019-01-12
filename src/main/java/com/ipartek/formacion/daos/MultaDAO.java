@@ -1,7 +1,6 @@
 package com.ipartek.formacion.daos;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
