@@ -42,13 +42,14 @@ public class AgenteDAO {
 
 	public Agente getById(long id) {
 
-		Agente usuario = null;
-		String sql = SQL_GET_BY_ID;
-		try (Connection conn = ConnectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(sql);) {
-			pst.setLong(1, id);
-			try (ResultSet rs = pst.executeQuery()) {
-				while (rs.next()) {
-					usuario = rowMapper(rs);
+		Agente usuario = null; 									// objeto tipo Agente Pojo
+		String sql = SQL_GET_BY_ID;								// consulta sql
+		try (Connection conn = ConnectionManager.getConnection(); 
+		PreparedStatement pst = conn.prepareStatement(sql);) {	// CREO OBJETO CONNECTION
+			pst.setLong(1, id); 								// RECOJO PARAMETROS Del formulario
+			try (ResultSet rs = pst.executeQuery()) { 			// EJECUTAR SQL
+				while (rs.next()) {								// RECORRER BASE DE DATOS MEDIANtE METODO RS.NEXT.
+					usuario = rowMapper(rs);				
 				}
 			}
 		} catch (Exception e) {
