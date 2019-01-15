@@ -46,70 +46,64 @@
 	</div>
 </c:forEach>
 
-<div class="accordion" id="accordionExample">	
+
+ <div class="accordion" id="accordionExample">	
 <table id="example" class="table tablaOrdenable" style="width:100%"> 
         <thead>
             <tr>
-                <th>Fecha</th>
+                <th>Fecha y Hora</th>            
+                <th>Importe</th>
+                <th>Concepto</th>
                 <th>Matricula</th>
-                <th>Anular</th>             
+                <th>Modelo</th>
+                <th>Kilometro</th>
+                <th>Anular</th>
+                                   
             </tr>
         </thead>
         <tbody>
 	         <c:forEach items="${multas}" var="m">	        
+	            
 	            <tr>
-	               	<td scope="col" data-target="#collapse${m.id}">
-			     		<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
+	               	<td>		     		
 				         	<fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
-				          	<fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />
-				     	</button>
+				          	<fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />				     
 			     	</td>
-	               	
-	               	<td scope="col">
-			     		<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
-				          	${m.coche.matricula}
-				     	</button>			   	
-				   	</td>
-	               	
-	               	<td scope="col">
+			     	<td >${m.importe}</td>	
+				   	<td>${m.concepto}</td>               	
+	               	<td>${m.coche.matricula}</td>
+					<td>${m.coche.modelo}</td> 
+					<td>${m.coche.km}</td>
+	               	<td>
 			     		<button type="button" class="btn btn-outline-danger btn-block" data-toggle="modal" data-target="#anular${m.id}" >
 							ANULAR
 						</button>
-				   	</td>         
-	            </tr> 
-	           
-	           
-	            <tr id="collapse${m.id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-			     	<td colspan="3">	
-				     	<div class="card mb-4 shadow-sm ">
-						      <div class="card-header">
-						        	<h4 class="my-0 font-weight-normal text-center">${m.coche.matricula.toUpperCase()} </h4>
-						      </div>
-						      <div class="card-body">			    
-						       	 <ul class="list-unstyled mt-3 mb-4">			         	
-						         	<li>Fecha: ${m.fecha}</li>
-						         	<li>Hora: ${m.hora}</li>
-						    		<li>Importe: ${m.importe} €</li>
-								    <li>Concepto: ${m.concepto}</li>
-							     	<li>Matricula: ${m.coche.matricula}</li>
-							     	<li>Modelo: ${m.coche.modelo}</li>
-							     	<li>Kilometraje: ${m.coche.km}</li>
-						        </ul>
-						      </div>
-					    </div>		    
-			     	</td>	     	
-		     	</tr> 	                      
-	        </c:forEach>          
+				   	</td>  			             
+	            </tr>
+	                                                   
+	        </c:forEach>                  
         </tbody>      
         <tfoot>
             <tr>
-                <th>Fecha</th>
+                <th>Fecha y Hora</th>             
+                <th>Importe</th>
+                <th>Concepto</th>
                 <th>Matricula</th>
-                <th>Anular</th>          
+                <th>Modelo</th>
+                <th>Kilometro</th> 
+                <th>Anular</th>
+                                        
             </tr>
         </tfoot>
-    </table>	
-   </div>		
+        
+        
+    </table>
+    
+    
+ </div>
+ 
+ 
+
 </main>				
 <%@ include file="../includes/footer.jsp"  %>
 
