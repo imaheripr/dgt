@@ -46,6 +46,7 @@
 	</div>
 </c:forEach>
 
+<div class="accordion" id="accordionExample">	
 <table id="example" class="table tablaOrdenable" style="width:100%"> 
         <thead>
             <tr>
@@ -63,17 +64,41 @@
 				          	<fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />
 				     	</button>
 			     	</td>
+	               	
 	               	<td scope="col">
 			     		<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
 				          	${m.coche.matricula}
-				     	</button>
+				     	</button>			   	
 				   	</td>
+	               	
 	               	<td scope="col">
 			     		<button type="button" class="btn btn-outline-danger btn-block" data-toggle="modal" data-target="#anular${m.id}" >
 							ANULAR
 						</button>
 				   	</td>         
-	            </tr>           
+	            </tr> 
+	           
+	           
+	            <tr id="collapse${m.id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+			     	<td colspan="3">	
+				     	<div class="card mb-4 shadow-sm ">
+						      <div class="card-header">
+						        	<h4 class="my-0 font-weight-normal text-center">${m.coche.matricula.toUpperCase()} </h4>
+						      </div>
+						      <div class="card-body">			    
+						       	 <ul class="list-unstyled mt-3 mb-4">			         	
+						         	<li>Fecha: ${m.fecha}</li>
+						         	<li>Hora: ${m.hora}</li>
+						    		<li>Importe: ${m.importe} €</li>
+								    <li>Concepto: ${m.concepto}</li>
+							     	<li>Matricula: ${m.coche.matricula}</li>
+							     	<li>Modelo: ${m.coche.modelo}</li>
+							     	<li>Kilometraje: ${m.coche.km}</li>
+						        </ul>
+						      </div>
+					    </div>		    
+			     	</td>	     	
+		     	</tr> 	                      
 	        </c:forEach>          
         </tbody>      
         <tfoot>
@@ -83,7 +108,8 @@
                 <th>Anular</th>          
             </tr>
         </tfoot>
-    </table>		
+    </table>	
+   </div>		
 </main>				
 <%@ include file="../includes/footer.jsp"  %>
 
