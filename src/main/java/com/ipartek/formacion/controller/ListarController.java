@@ -45,20 +45,25 @@ public class ListarController extends HttpServlet {
 		
 		// AKI esta el fallo que  venia sin parametro se quedaba loco el SERVLET
 		String operacion = request.getParameter("operacion");
-        if (operacion.equals("0")) {
-		multas = agenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
-		request.setAttribute("multas", multas);
-		request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
-		LOG.debug("Mostrando listado");
-        }else if (operacion.equals("1")) {
-        	multas = agenteDAO.getMultasAnuladas(ID_AGENTE_PREDEFINIDO);
-    		request.setAttribute("multas", multas);
-    		request.getRequestDispatcher(LISTADO_MULTAS_ANULAR).forward(request, response);
-    		LOG.debug("Mostrando listado");	
-        }else {
-        	request.getRequestDispatcher("/404.jsp").forward(request, response);
-    		
-        }
+		try {
+	        if (operacion.equals("0")) {
+			multas = agenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
+			request.setAttribute("multas", multas);
+			request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
+			LOG.debug("Mostrando listado");
+	        }else if (operacion.equals("1")) {
+	        	multas = agenteDAO.getMultasAnuladas(ID_AGENTE_PREDEFINIDO);
+	    		request.setAttribute("multas", multas);
+	    		request.getRequestDispatcher(LISTADO_MULTAS_ANULAR).forward(request, response);
+	    		LOG.debug("Mostrando listado");	
+	        }else {
+	        	request.getRequestDispatcher("/404.jsp").forward(request, response);
+	    		
+	        }
+		}catch(Exception e) {
+			LOG.debug("Cambiado el parametro en la url");	
+			request.getRequestDispatcher("/404.jsp").forward(request, response);
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
