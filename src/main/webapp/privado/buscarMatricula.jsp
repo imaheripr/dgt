@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../includes/cabecera.jsp"  %>
- <main role="main" class="container mt-5">	
+ <main role="main" class="container">	
 
 <div class="alert alert-info alert-dismissible fade show" role="alert">
   <strong> ${mensaje }</strong>

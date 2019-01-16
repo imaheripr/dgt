@@ -1,6 +1,12 @@
+
+
 .container-fluid{
 	padding-left : 15px ;
 }
 
-
+main{
+	text-align:center;
+	margin-top:10px;
+}
 /* !important  para matar clases si normalmente no me deja */
+
