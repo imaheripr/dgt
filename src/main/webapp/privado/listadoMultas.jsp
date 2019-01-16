@@ -55,13 +55,11 @@
                 <th>Concepto</th>
                 <th>Modelo</th>
                 <th>Kilometro</th>
-                <th>Anular</th>
-                                   
+                <th>Anular</th>                                  
             </tr>
         </thead>
         <tbody>
-	         <c:forEach items="${multas}" var="m">	        
-	            
+	         <c:forEach items="${multas}" var="m">	                    
 	            <tr>
 	               	<td>		     		
 				         	<fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
@@ -77,8 +75,7 @@
 							ANULAR
 						</button>
 				   	</td>  			             
-	            </tr>
-	                                                   
+	            </tr>                                                   
 	        </c:forEach>                  
         </tbody>      
         <tfoot>
@@ -89,19 +86,11 @@
                 <th>Concepto</th>               
                 <th>Modelo</th>
                 <th>Kilometro</th> 
-                <th>Anular</th>
-                                        
+                <th>Anular</th>                                      
             </tr>
-        </tfoot>
-        
-        
-    </table>
-    
-    
+        </tfoot>      
+    </table>   
  </div>
- 
- 
-
 </main>				
 <%@ include file="../includes/footer.jsp"  %>
 

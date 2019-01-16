@@ -110,7 +110,7 @@ public class AgenteDAO {
 			//parametro entrada
 			cs.setLong(1, id);
 			
-			try (ResultSet rs = cs.executeQuery()) {
+			try (ResultSet rs = cs.executeQuery()) { //
 				while (rs.next()) {
 					multa = new Multa();
 					coche = new Coche();
