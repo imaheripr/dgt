@@ -14,28 +14,34 @@ import com.ipartek.formacion.pojos.Coche;
 import com.ipartek.formacion.pojos.Multa;
 
 public class AgenteDAO {
-
+	
+	// consultas sql con procedimientos almacenados
 	private static final String SQL_GET_BY_ID = "{call agente_getById(?)}";
 	private static final String SQL_ALL_MULTAS = "{call agente_getMultas(?)}";
 	private static final String SQL_ALL_MULTAS_ANULADAS = "{call agente_getMultasAnuladas(?)}";
 	private static final String SQL_LOGIN = "{call agente_login(?,?)}";
 	
+	// dao con instance /singleton
 	private static AgenteDAO INSTANCE = null;
+	
+	// log para mensajes
 	private final static Logger LOG = Logger.getLogger(AgenteDAO.class);
 	
-
+	// metodo constructor superclase
 	private AgenteDAO() {
 		super();
 	}
 
+	// metodo instance/ singleton
 	public synchronized static AgenteDAO getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new AgenteDAO();
 		}
 		return INSTANCE;
 	}
-
-	private Agente rowMapper(ResultSet rs) throws SQLException {
+	
+	// row mapper para recoger parametros
+	private Agente rowMapper(ResultSet rs) throws SQLException { 
 		Agente registro = new Agente();
 		registro.setId(rs.getLong("id"));
 		registro.setApellido(rs.getString("nombre"));
@@ -44,10 +50,11 @@ public class AgenteDAO {
 		return registro;
 	}
 
+	// metodo para obtener  id
 	public Agente getById(long id) {
 
 		Agente usuario = null; 									// objeto tipo Agente Pojo
-		String sql = SQL_GET_BY_ID;							// consulta sql
+		String sql = SQL_GET_BY_ID;								// consulta sql
 		try (Connection conn = ConnectionManager.getConnection(); 
 			CallableStatement cs = conn.prepareCall(sql);) {	// CREO OBJETO CONNECTION
 			
@@ -66,8 +73,10 @@ public class AgenteDAO {
 		return usuario;
 
 	}
+	 
 	
-	public ArrayList<Multa> getMultas(long id) {
+	// metodo getMultas para incluir todas las multas ACTIVAS como elementos de un arraylist
+	public ArrayList<Multa> getMultas(long id) {    			
 		ArrayList<Multa> multas = new ArrayList<Multa>();
 		String sql = SQL_ALL_MULTAS;	
 		Multa multa = null;
@@ -79,12 +88,14 @@ public class AgenteDAO {
 				while (rs.next()) {
 					multa = new Multa();
 					coche = new Coche();
+					
 					multa.setId(rs.getLong("id_multa"));
-					coche.setId(rs.getLong("id_coche"));
 					multa.setFecha(rs.getDate("fecha"));
 					multa.setHora(rs.getTime("fecha"));
 					multa.setImporte(rs.getFloat("importe"));
 					multa.setConcepto(rs.getString("concepto"));
+					
+					coche.setId(rs.getLong("id_coche"));
 					coche.setMatricula(rs.getString("matricula"));
 					coche.setModelo(rs.getString("modelo"));
 					coche.setKm(rs.getInt("km"));
@@ -102,6 +113,7 @@ public class AgenteDAO {
 		return multas;
 	}
 
+	// metodo getMultas para incluir todas las multas ANULADAS como elementos de un arraylist
 	public ArrayList<Multa> getMultasAnuladas(long id) {
 		ArrayList<Multa> multas = new ArrayList<Multa>();
 		String sql = SQL_ALL_MULTAS_ANULADAS;
@@ -126,10 +138,8 @@ public class AgenteDAO {
 					coche.setMatricula(rs.getString("matricula"));
 					coche.setModelo(rs.getString("modelo"));
 					coche.setKm(rs.getInt("km"));
-
 					multa.setCoche(coche);
 					multas.add(multa);
-
 				}
 			}
 
@@ -141,10 +151,10 @@ public class AgenteDAO {
 	}
 	
 	
-	
-public Agente login (Integer placa, String pass) {
+	// METODO PARA LOGIN
+	public Agente login (Integer placa, String pass) {
 		
-	Agente usuario = null;
+		Agente usuario = null;
 		String sql = SQL_LOGIN;
 		
 		try ( Connection conn = ConnectionManager.getConnection();
@@ -170,7 +180,5 @@ public Agente login (Integer placa, String pass) {
 		}		
 		return usuario;
 	}
-	
-	
 
-}
+} // FIN DAO

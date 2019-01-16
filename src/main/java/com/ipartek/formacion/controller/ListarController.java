@@ -21,19 +21,24 @@ import com.ipartek.formacion.pojos.Multa;
  */
 @WebServlet("/privado/listar")
 public class ListarController extends HttpServlet {
-
-
-
+	
+	//  lógica de serialización,
+	private static final long serialVersionUID = 1L; 
+	
+	// consultas con procedimientos almacenados
 	private static final String LISTADO_MULTAS = "listadoMultas.jsp";
 	private static final String LISTADO_MULTAS_ANULAR = "listadoMultasAnuladas.jsp";
 
-	private static final long serialVersionUID = 1L;
+	//log 	
 	private final static Logger LOG = Logger.getLogger(LoginController.class);
 
+	// dao
 	private static AgenteDAO agenteDAO = null;
 
-	ArrayList<Multa> multas = null;
-
+	// arry list
+	private ArrayList<Multa> multas = null;
+		
+	// metodo init para dao, objeto ...
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -44,37 +49,42 @@ public class ListarController extends HttpServlet {
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		// AKI esta el fallo que  venia sin parametro se quedaba loco el SERVLET
-		String operacion = request.getParameter("operacion");
+		// recojo parametros
+		String operacion = request.getParameter("operacion"); // operacion para saber si multas activas o anuladas
 		String id = request.getParameter("id");
+		
 		try {
 			Long identificador = Long.parseLong(id);	
-	        if (operacion.equals("0")) {
+	        
+			if (operacion.equals("0")) {  // si recibo parametro operacion 0 listo multas activas
 			multas = agenteDAO.getMultas(identificador);
 			request.setAttribute("multas", multas);
 			request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
 			LOG.debug("Mostrando listado");
-	        }else if (operacion.equals("1")) {
+	        
+			}else if (operacion.equals("1")) { // si recibo 1 listo multas anuladas
 	        	multas = agenteDAO.getMultasAnuladas(identificador);
 	    		request.setAttribute("multas", multas);
 	    		request.getRequestDispatcher(LISTADO_MULTAS_ANULAR).forward(request, response);
 	    		LOG.debug("Mostrando listado");	
-	        }else {
-	        	request.getRequestDispatcher("/404.jsp").forward(request, response);
-	    		
+	        
+			}else {  // si recibo cualquier otra cosa que no sea ni 1 ni 0
+	        	request.getRequestDispatcher("/404.jsp").forward(request, response);	    		
 	        }
+		
 		}catch(Exception e) {
 			LOG.debug("Cambiado el parametro en la url");	
 			request.getRequestDispatcher("/404.jsp").forward(request, response);
 		}
 	}
 
+	// lo que me llege por doGet va doProcess
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doProcess(request, response);
-
 	}
-
+	
+	// lo que me llege por doPost va doProcess
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doProcess(request, response);

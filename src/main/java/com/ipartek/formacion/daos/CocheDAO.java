@@ -10,25 +10,34 @@ import com.ipartek.formacion.pojos.Coche;
 import java.sql.CallableStatement;
 
 public class CocheDAO {
-
+	
+	// DAO
 	private static CocheDAO INSTANCE = null;
+	
+	// LOG PARA MENSAJES
 	private final static Logger LOG = Logger.getLogger(AgenteDAO.class);
-
-	//private static final String SQL_GET_MATRICULA = "SELECT id, matricula, modelo, km FROM coche WHERE matricula =?;";
+	
+	// CONSULTA SQL CON PROCEDIMIENTO ALMACENADO
 	private static final String SQL_GET_MATRICULA = "call dgt.coche_get_matricula(?);";
-	// SELECT id, matricula, modelo, km FROM coche WHERE matricula ='3548MKZ';
-
+	
+	// CONSULTA SIN PROCEDIMIENTO ALMACENADO
+	//private static final String SQL_GET_MATRICULA = "SELECT id, matricula, modelo, km FROM coche WHERE matricula =?;";
+	
+	
+	//metodo constructor superclase
 	private CocheDAO() {
 		super();
 	}
-
+	
+	// instance/singleton
 	public synchronized static CocheDAO getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new CocheDAO();
 		}
 		return INSTANCE;
 	}
-
+	
+	// metodo para obtener matricula y resto parametros coche
 	public Coche getMatricula(String matricula) {
 		String sql = SQL_GET_MATRICULA;
 		Coche coche = null;

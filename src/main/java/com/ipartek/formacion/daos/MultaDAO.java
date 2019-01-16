@@ -12,17 +12,23 @@ import com.ipartek.formacion.pojos.Agente;
 import com.ipartek.formacion.pojos.Multa;
 
 public class MultaDAO {
+	
+	// dao
 	private static MultaDAO INSTANCE = null;
+	
+	// log 
 	private final static Logger LOG = Logger.getLogger(MultaDAO.class);
 
-
-	private static final String SQL_INSERT = "{call multa_insert(?,?,?,?,?)}";
+	// consultas sql con parametros almacenados
+	private static final String SQL_INSERT = "{call multa_insert(?,?,?,?,?)}"; // tantos interrogantes como parametros de entrada  y salida
 	private static final String SQL_UPDATE = "{call multa_update(?,?)}";
 	
+	// metodo constructor superclase
 	private MultaDAO() {
 		super();
 	}
 
+	// instance singleton
 	public synchronized static MultaDAO getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new MultaDAO();
@@ -30,14 +36,15 @@ public class MultaDAO {
 		return INSTANCE;
 	}
 
+	// metodo para insertar multa
 	public boolean insert(Multa multa, Agente agente) throws SQLException {
 
 		boolean resul = false;
 		String sql = SQL_INSERT;
-		try (
-				Connection conn = ConnectionManager.getConnection(); 
-				CallableStatement cs = conn.prepareCall(sql);) {
-
+		try (Connection conn = ConnectionManager.getConnection(); 
+			CallableStatement cs = conn.prepareCall(sql);) {
+			
+			// parametros de entrada
 			cs.setFloat(1, multa.getImporte());
 			cs.setString(2, multa.getConcepto());
 			cs.setLong(3, multa.getCoche().getId());
@@ -58,14 +65,15 @@ public class MultaDAO {
 		return resul;
 	}
 
+	// metodo para actualizar multa
 	public boolean update(Multa m) throws SQLException {
 		
 		boolean resul = false;
 		String sql = SQL_UPDATE;
 		try (Connection conn = ConnectionManager.getConnection(); 
-				CallableStatement cs = conn.prepareCall(sql);) {
+			CallableStatement cs = conn.prepareCall(sql);) {
 
-		
+			// parametros de entrada
 			cs.setLong(1, m.getId());
 			
 			//parametro de salida

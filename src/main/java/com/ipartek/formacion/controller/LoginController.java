@@ -86,7 +86,7 @@ public class LoginController extends HttpServlet {
 		String view = VIEW_LOGIN;
 			
 		// para lógica
-		boolean redirect = false;
+		boolean redirect = false;  // para redireccionar la ruta
 		Integer placaInt = 0; // para parseo 
 		
 		try {
@@ -125,16 +125,15 @@ public class LoginController extends HttpServlet {
 
 			} else { // validacion OK
 
-				agente = agenteDAO.login(placaInt, pass);
-				if (agente == null) {
+				agente = agenteDAO.login(placaInt, pass); 						// objeto con atributos de parametros recogidos
+				if (agente == null) { 											// si al comparar con la base de datos devuelve objeto vacio
 
-					request.setAttribute("error", "Credenciales incorrectas");
-				} else {
-					session.setAttribute("agente_logeado", agente);
+					request.setAttribute("error", "Credenciales incorrectas"); 
+				} else {														// si devuelve objeto con parametros que coinciden con la base de datos
+					session.setAttribute("agente_logeado", agente);  
 					redirect = true;
 					LOG.debug("Logeado en pagina principal");
 				}
-
 			}
 
 		} catch (Exception e) {
@@ -143,12 +142,11 @@ public class LoginController extends HttpServlet {
 		} finally {
 
 			if (redirect) {
-				response.sendRedirect(request.getContextPath() + PRIVADO_PRINCIPAL);
+				response.sendRedirect(request.getContextPath() + PRIVADO_PRINCIPAL); // si existe agente voy a principal
 			} else {
-				request.getRequestDispatcher(view).forward(request, response);
+				request.getRequestDispatcher(view).forward(request, response);  	 // si no existe vuelvo a login
 			}
 		}
-
 	}
 
 }

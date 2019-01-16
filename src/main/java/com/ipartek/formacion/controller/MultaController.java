@@ -38,8 +38,9 @@ public class MultaController extends HttpServlet {
 	private static final String VIEW_INDEX = "principal.jsp";
 	private static final String VIEW_FORM = "multa.jsp";
 	private static final String VIEW_BUSCAR = "buscar";
-	//mandamos el parametro de operacion para que lo recoja el servelt y funcione perfecto
-	private static final String VIEW_LISTADO = "listar?operacion=0";
+	private static final String VIEW_LISTADO = "listar?operacion=0";  // con operacion 0 para listar multas activas
+		
+	// Variable para vistas
 	private String vista;
 
 	// OPERACIONES
@@ -77,12 +78,13 @@ public class MultaController extends HttpServlet {
 		try {
 			// recoger parametros
 			getParametros(request);
+			
 			// realizar operacion
 			switch (operacion) {
-			case OP_INSERTAR:
+			case OP_INSERTAR: 		// si recibo operacion 1
 				insertar(request);
 				break;
-			case OP_ANULAR:
+			case OP_ANULAR:			// si recibo operacion 2
 				anular(request);
 				break;
 			}
@@ -102,22 +104,29 @@ public class MultaController extends HttpServlet {
 		}
 	}
 
+	// lo que recibo por doGet lo envio a doProcess
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
+	// lo que recibo por doPost lo envio a doProcess
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
-	private void insertar(HttpServletRequest request) {
-
-		// crear pojos mediante parametros del formulario
 	
+	// metodo para insertar multa
+	private void insertar(HttpServletRequest request) {
+	
+		// coche para incluir parametros
 		Coche coche = new Coche();
+		
+		// parseo parametro id_coche
 		int coche_id = Integer.parseInt(id_coche);
+		
+		// to do rowmapper para recoger parametros y simplificar codigo
 		coche.setId((long) coche_id);
 		coche.setMatricula(matricula);
 		Multa multa = new Multa();
@@ -146,10 +155,13 @@ public class MultaController extends HttpServlet {
 			
 		} else { // validacion correcta
 			try {		
-				multaDAO.insert(multa, agente);
+				multaDAO.insert(multa, agente);  // dao para incluir parametros mediante dao
 				request.setAttribute("mensaje", "Multa registrada correctamente");
+				
+				// mensajes log
 				LOG.debug("AGENTE " + agente_id + " Importe: " + multa.getImporte() + " Concepto: "
 						+ multa.getConcepto() + " Coche: " + multa.getCoche().getMatricula());
+			
 			} catch (SQLException e) {
 				request.setAttribute("mensaje", "Multa no registrada , ERROR");
 				LOG.debug("Multa no registrada ");
@@ -157,6 +169,7 @@ public class MultaController extends HttpServlet {
 		}
 	}
 
+	// metodo para recoger parametros
 	private void getParametros(HttpServletRequest request) {
 		id_multa=request.getParameter("id");
 		operacion = request.getParameter("operacion");
@@ -176,16 +189,27 @@ public class MultaController extends HttpServlet {
 		}
 	}
 
-	
+	// metodo para anular multas
 	private void anular (HttpServletRequest request) {
+		
+		//parseo id_multa
 		Long identificador = Long.parseLong(id_multa);
-		Multa multa = new Multa();
+		
+		// multa para incluir parametro 
+		Multa multa = new Multa(); 
+		
+		//modificar id multa por parseo
 		multa.setId(identificador);
+		
 		try {
-			multaDAO.update(multa);
+			multaDAO.update(multa);  // metodo dao update con parametros incluidso en multa ( identificador que es el parseo de id_multa)
 			request.setAttribute("mensaje", "multa anulada");
-			LOG.debug("Anulando multa" + identificador);
-			vista =VIEW_LISTADO;
+			
+			LOG.debug("Anulando multa" + identificador);  // mensje log
+			
+			
+			vista =VIEW_LISTADO;  // ruta a listado multas activadas
+		
 		}catch(Exception e){
 			request.setAttribute("mensaje", "multa no  anulada");
 			LOG.debug("Multa no anulada" + identificador);
