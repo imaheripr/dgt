@@ -15,11 +15,14 @@ import com.ipartek.formacion.pojos.Multa;
 
 public class AgenteDAO {
 
-	private static final String SQL_GET_BY_ID = "SELECT id, nombre, placa, id_departamento FROM agente WHERE id = ?;";
-	private static final String SQL_ALL_MULTAS = "SELECT m.id AS 'id_multa', c.id AS 'id_coche',fecha, importe, concepto, matricula, modelo,km FROM agente AS a, multa AS m, coche AS c WHERE a.id=m.id_agente AND m.id_coche=c.id AND a.id=? AND m.fecha_baja IS NULL ORDER BY m.fecha DESC ";
-	private static final String SQL_ALL_MULTAS_ANULADAS = "SELECT m.id AS 'id_multa', c.id AS 'id_coche',fecha, importe, concepto, matricula, modelo,km FROM agente AS a, multa AS m, coche AS c WHERE a.id=m.id_agente AND m.id_coche=c.id AND a.id=? AND m.fecha_baja IS NOT NULL ORDER BY m.fecha DESC ";
+	private static final String SQL_GET_BY_ID = "{call agente_getById(?)}";
+	private static final String SQL_ALL_MULTAS = "{call agente_getMultas(?)}";
+	private static final String SQL_ALL_MULTAS_ANULADAS = "{call agente_getMultasAnuladas(?)}";
+	private static final String SQL_LOGIN = "SELECT id, nombre, placa, id_departamento, password FROM agente WHERE placa = ? AND password = ?;";
+	
 	private static AgenteDAO INSTANCE = null;
 	private final static Logger LOG = Logger.getLogger(AgenteDAO.class);
+	
 
 	private AgenteDAO() {
 		super();
@@ -44,7 +47,7 @@ public class AgenteDAO {
 	public Agente getById(long id) {
 
 		Agente usuario = null; 									// objeto tipo Agente Pojo
-		String sql = "{call agente_getById(?)}";							// consulta sql
+		String sql = SQL_GET_BY_ID;							// consulta sql
 		try (Connection conn = ConnectionManager.getConnection(); 
 			CallableStatement cs = conn.prepareCall(sql);) {	// CREO OBJETO CONNECTION
 			
@@ -66,7 +69,7 @@ public class AgenteDAO {
 	
 	public ArrayList<Multa> getMultas(long id) {
 		ArrayList<Multa> multas = new ArrayList<Multa>();
-		String sql = "{call agente_getMultas(?)}";	
+		String sql = SQL_ALL_MULTAS;	
 		Multa multa = null;
 		Coche coche = null;
 		try (Connection conn = ConnectionManager.getConnection(); 
@@ -101,7 +104,7 @@ public class AgenteDAO {
 
 	public ArrayList<Multa> getMultasAnuladas(long id) {
 		ArrayList<Multa> multas = new ArrayList<Multa>();
-		String sql = "{call agente_getMultasAnuladas(?)}";
+		String sql = SQL_ALL_MULTAS_ANULADAS;
 		Multa multa = null;
 		Coche coche = null;
 		try (Connection conn = ConnectionManager.getConnection(); 
@@ -136,5 +139,35 @@ public class AgenteDAO {
 		LOG.debug("Listado multas OK");
 		return multas;
 	}
+	
+	
+	
+public Agente login (Integer placa, String pass) {
+		
+	Agente usuario = null;
+		String sql = SQL_LOGIN;
+		
+		try ( Connection conn = ConnectionManager.getConnection();
+			  PreparedStatement pst = conn.prepareStatement(sql);
+				){						
+					pst.setInt(1, placa);
+					pst.setString(2, pass);			
+					try ( ResultSet rs = pst.executeQuery() ){											
+							while(rs.next()) { 						
+								Agente registro = new Agente();
+								registro.setId( rs.getLong("id"));
+								registro.setApellido(rs.getString("nombre"));		
+								registro.setPlaca( rs.getInt("placa"));
+								registro.setPassword(rs.getString("password"));		
+								return registro;								
+							}						
+					}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return usuario;
+	}
+	
+	
 
 }

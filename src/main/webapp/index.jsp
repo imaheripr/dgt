@@ -1,1 +1,1 @@
-	<% response.sendRedirect ("privado"); %>
+	<% response.sendRedirect ("login"); %>
