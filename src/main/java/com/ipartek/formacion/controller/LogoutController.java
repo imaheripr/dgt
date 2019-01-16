@@ -23,7 +23,7 @@ public class LogoutController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		session.removeAttribute("agente");
+		session.removeAttribute("agente_logeado");
 		session.invalidate();
 		session = null;
 		
