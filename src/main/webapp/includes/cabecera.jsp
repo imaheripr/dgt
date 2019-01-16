@@ -24,7 +24,7 @@
 
 <header>
 <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
-	<a class="navbar-brand  mr-auto" href="${pageContext.request.contextPath}"><i class="fas fa-home fa-2x"></i></a>
+	<a class="navbar-brand  mr-auto" href="${pageContext.request.contextPath}/privado/principal"><i class="fas fa-home fa-2x"></i></a>
 	
 	<ul class="navbar-nav float-right">
        <li><a href="logout" class="badge badge-info mr-3 font-weight-normal">Logout</a></li>
