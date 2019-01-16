@@ -22,13 +22,15 @@
 	<label for="importe">Importe</label>
 	<input type="text" name="importe" placeholder="Introduce un valor numerico valido" value="${importe!=null ? importe : ''}" class="form-control" autofocus>			    
 	</div>	
+		
 	                                                                          
 	<div class="form-group">
-	<label for="concepto">Concepto</label>
-	<textarea name="concepto"  class="form-control" placeholder="minimo 10 caracteres maximo 150">${concepto!=null ? concepto : ''}</textarea>		    
+	<label for="concepto">Concepto  <span id="contadorLabel">(0/250)</span></label>
+	 <br>
+	<textarea name="concepto"  class="form-control" placeholder="minimo 10 caracteres maximo 150"  id="concepto" cols="30" rows="10" >${concepto!=null ? concepto : ''}</textarea>		    
 	</div>	
 	
-	
+
 	<div  class="form-group">								
 	<button type="submit" class="btn btn-primary btn-block">MULTAR</button>
 	</div>	
