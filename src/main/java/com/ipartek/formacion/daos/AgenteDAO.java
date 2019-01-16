@@ -1,5 +1,6 @@
 package com.ipartek.formacion.daos;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,11 +44,14 @@ public class AgenteDAO {
 	public Agente getById(long id) {
 
 		Agente usuario = null; 									// objeto tipo Agente Pojo
-		String sql = SQL_GET_BY_ID;								// consulta sql
+		String sql = "{call agente_getById(?)}";							// consulta sql
 		try (Connection conn = ConnectionManager.getConnection(); 
-		PreparedStatement pst = conn.prepareStatement(sql);) {	// CREO OBJETO CONNECTION
-			pst.setLong(1, id); 								// RECOJO PARAMETROS Del formulario
-			try (ResultSet rs = pst.executeQuery()) { 			// EJECUTAR SQL
+			CallableStatement cs = conn.prepareCall(sql);) {	// CREO OBJETO CONNECTION
+			
+			// parametro entrada
+			cs.setLong(1, id); 									// RECOJO PARAMETROS Del formulario
+			
+			try (ResultSet rs = cs.executeQuery()) { 			// EJECUTAR SQL
 				while (rs.next()) {								// RECORRER BASE DE DATOS MEDIANtE METODO RS.NEXT.
 					usuario = rowMapper(rs);				
 				}
@@ -59,15 +63,16 @@ public class AgenteDAO {
 		return usuario;
 
 	}
-
+	
 	public ArrayList<Multa> getMultas(long id) {
 		ArrayList<Multa> multas = new ArrayList<Multa>();
-		String sql = SQL_ALL_MULTAS;
+		String sql = "{call agente_getMultas(?)}";	
 		Multa multa = null;
 		Coche coche = null;
-		try (Connection conn = ConnectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(sql);) {
-			pst.setLong(1, id);
-			try (ResultSet rs = pst.executeQuery()) {
+		try (Connection conn = ConnectionManager.getConnection(); 
+				CallableStatement cs = conn.prepareCall(sql);) {
+			cs.setLong(1, id);
+			try (ResultSet rs = cs.executeQuery()) {
 				while (rs.next()) {
 					multa = new Multa();
 					coche = new Coche();
@@ -96,12 +101,16 @@ public class AgenteDAO {
 
 	public ArrayList<Multa> getMultasAnuladas(long id) {
 		ArrayList<Multa> multas = new ArrayList<Multa>();
-		String sql = SQL_ALL_MULTAS_ANULADAS;
+		String sql = "{call agente_getMultasAnuladas(?)}";
 		Multa multa = null;
 		Coche coche = null;
-		try (Connection conn = ConnectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(sql);) {
-			pst.setLong(1, id);
-			try (ResultSet rs = pst.executeQuery()) {
+		try (Connection conn = ConnectionManager.getConnection(); 
+				CallableStatement cs = conn.prepareCall(sql);) {
+			
+			//parametro entrada
+			cs.setLong(1, id);
+			
+			try (ResultSet rs = cs.executeQuery()) {
 				while (rs.next()) {
 					multa = new Multa();
 					coche = new Coche();
