@@ -37,7 +37,7 @@ public class MultaDAO {
 		String sql = SQL_INSERT;
 		try (Connection conn = ConnectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(sql);) {
 
-			pst.setInt(1, multa.getImporte());
+			pst.setFloat(1, multa.getImporte());
 			pst.setString(2, multa.getConcepto());
 			pst.setLong(3, multa.getCoche().getId());
 			pst.setLong(4, agente.getId());
