@@ -7,13 +7,15 @@ import java.sql.ResultSet;
 import org.apache.log4j.Logger;
 
 import com.ipartek.formacion.pojos.Coche;
+import java.sql.CallableStatement;
 
 public class CocheDAO {
 
 	private static CocheDAO INSTANCE = null;
 	private final static Logger LOG = Logger.getLogger(AgenteDAO.class);
 
-	private static final String SQL_GET_MATRICULA = "SELECT id, matricula, modelo, km FROM coche WHERE matricula =?;";
+	//private static final String SQL_GET_MATRICULA = "SELECT id, matricula, modelo, km FROM coche WHERE matricula =?;";
+	private static final String SQL_GET_MATRICULA = "call dgt.coche_get_matricula(?);";
 	// SELECT id, matricula, modelo, km FROM coche WHERE matricula ='3548MKZ';
 
 	private CocheDAO() {
@@ -30,9 +32,10 @@ public class CocheDAO {
 	public Coche getMatricula(String matricula) {
 		String sql = SQL_GET_MATRICULA;
 		Coche coche = null;
-		try (Connection conn = ConnectionManager.getConnection(); PreparedStatement pst = conn.prepareStatement(sql);) {
-			pst.setString(1, matricula);
-			try (ResultSet rs = pst.executeQuery()) {
+		try (Connection conn = ConnectionManager.getConnection(); 
+				CallableStatement cs = conn.prepareCall(sql);) {
+						cs.setString(1, matricula);
+			try (ResultSet rs = cs.executeQuery()) {
 				while (rs.next()) {
 					coche = new Coche();
 					coche.setId(rs.getLong("id"));
