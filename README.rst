@@ -13,7 +13,8 @@ Maquetado con BOOTSTRAP.
 
 Apendice Base de Datos
 ***************************
-Instalar la base de datos adjunta, carpeta SQL.
+Instalar la base de datos adjunta, carpeta SQL, o puedes acceder mediante el siguiente enlace:
+https://github.com/imaheripr/dgt/blob/master/SQL/copiaDBdgt.sql
 
 DIAGRAMA ENTIDAD-RELACION
 ----------------
