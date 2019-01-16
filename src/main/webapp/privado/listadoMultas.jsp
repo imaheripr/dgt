@@ -12,11 +12,8 @@
 </div>
 </c:if>	
 
-<h1>Multas Activas</h1>
-
-
-		  
-		    
+<h5 class= "t" >Multas Activas</h5>
+	    
 <c:forEach items="${multas}" var="m">			
 <!-- Modal -->
 	<div class="modal fade" id="anular${m.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -32,9 +29,10 @@
 					¿ Estas serguro que deseas anular la multa ?
 					<ul class="list-unstyled mt-3 mb-4">			         	
 					<li>Fecha: ${m.fecha}</li>
+					<li>Matricula: ${m.coche.matricula}</li>	
 					<li>Importe: ${m.importe} €</li>
 					<li>Concepto: ${m.concepto}</li>
-					<li>Matricula: ${m.coche.matricula}</li>		     
+							     
 					</ul>			   
 				</div>
 				<div class="modal-footer">
@@ -51,10 +49,10 @@
 <table id="example" class="table tablaOrdenable" style="width:100%"> 
         <thead>
             <tr>
-                <th>Fecha y Hora</th>            
+                <th>Fecha y Hora</th> 
+                <th>Matricula</th>           
                 <th>Importe</th>
                 <th>Concepto</th>
-                <th>Matricula</th>
                 <th>Modelo</th>
                 <th>Kilometro</th>
                 <th>Anular</th>
@@ -69,9 +67,9 @@
 				         	<fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
 				          	<fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />				     
 			     	</td>
+			     	<td>${m.coche.matricula}</td>
 			     	<td >${m.importe}</td>	
-				   	<td>${m.concepto}</td>               	
-	               	<td>${m.coche.matricula}</td>
+				   	<td>${m.concepto}</td>               		
 					<td>${m.coche.modelo}</td> 
 					<td>${m.coche.km}</td>
 	               	<td>
@@ -85,10 +83,10 @@
         </tbody>      
         <tfoot>
             <tr>
-                <th>Fecha y Hora</th>             
+                <th>Fecha y Hora</th> 
+                <th>Matricula</th>            
                 <th>Importe</th>
-                <th>Concepto</th>
-                <th>Matricula</th>
+                <th>Concepto</th>               
                 <th>Modelo</th>
                 <th>Kilometro</th> 
                 <th>Anular</th>
