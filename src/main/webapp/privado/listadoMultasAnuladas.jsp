@@ -12,7 +12,7 @@
 </div>
 </c:if>	
 
-<h1>Multas Anuladas</h1>
+<h5>Multas Anuladas</h5>
 		    
 
 <table id="example" class="table tablaOrdenable" style="width:100%"> 
@@ -25,17 +25,11 @@
         <tbody>
 	         <c:forEach items="${multas}" var="m">	        
 	            <tr>
-	               	<td scope="col" data-target="#collapse${m.id}">
-			     		<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
+	               	<td>     		
 				         	<fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
-				          	<fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />
-				     	</button>
+				          	<fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />				     
 			     	</td>
-	               	<td scope="col">
-			     		<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${m.id}" aria-expanded="false" aria-controls="collapseTwo">
-				          	${m.coche.matricula}
-				     	</button>
-				   	</td>        
+	               	<td>${m.coche.matricula}</td>        
 	            </tr>           
 	        </c:forEach>          
         </tbody>      

@@ -12,7 +12,7 @@
 </div>
 </c:if>	
 
-<h5 class= "t" >Multas Activas</h5>
+<h5>Multas Activas</h5>
 	    
 <c:forEach items="${multas}" var="m">			
 <!-- Modal -->
