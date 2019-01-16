@@ -9,7 +9,7 @@ public class Agente {
 	private Long id;
 	private String apellido;
 	
-	@NotNull
+	@NotNull(message = "No puede estar vacio y debe ser un valor numerico")
 	private Integer placa;
 	
 	@NotEmpty

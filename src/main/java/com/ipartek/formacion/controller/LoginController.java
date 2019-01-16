@@ -88,6 +88,13 @@ public class LoginController extends HttpServlet {
 		catch(Exception e) {
 			request.setAttribute("error", "Solo numeros");
 		}
+		
+		try {
+			placaInt = Integer.parseInt(placa);
+		} catch (Exception e) {
+			placaInt = null;
+			
+		}
 
 		try {
 			

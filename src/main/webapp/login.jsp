@@ -20,27 +20,23 @@
     <link href="css/gly.css" rel="stylesheet">
   </head>
 
-  <body class="text-center">
+  <body >
   <form  novalidate class="form-signin" method="post" action="login">
     
-   	<h1 class="h3 mb-3 font-weight-normal text-center">Acceso Agente</h1>
+   	<h1 class="h3 mb-3 font-weight-normal">Acceso Agente</h1>
    	
    	<div class="mb-1">
-    <label for=""placa"" class="sr-only">Email</label>
+    <label for="placa" >Email</label>
     <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-      </div>
+    
       <input type="text" id="placa" name=placa class="form-control"  value="444"  >
     </div>
   </div> 
   
   <div class="mb-1">
-    <label for="pass" class="sr-only">Contraseña</label>
+    <label for="pass" >Contraseña</label>
     <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-      </div>
+     
       <input type="text" class="form-control" id="pass" name="pass" placeholder="Pa$$w0rd" value="123456">
     </div>
   </div>  
