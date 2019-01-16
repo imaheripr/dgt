@@ -22,7 +22,7 @@ import com.ipartek.formacion.pojos.Multa;
 @WebServlet("/privado/listar")
 public class ListarController extends HttpServlet {
 
-	private static final int ID_AGENTE_PREDEFINIDO = 4;
+
 
 	private static final String LISTADO_MULTAS = "listadoMultas.jsp";
 	private static final String LISTADO_MULTAS_ANULAR = "listadoMultasAnuladas.jsp";
