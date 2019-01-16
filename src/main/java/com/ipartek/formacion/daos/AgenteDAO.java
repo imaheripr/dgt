@@ -18,7 +18,7 @@ public class AgenteDAO {
 	private static final String SQL_GET_BY_ID = "{call agente_getById(?)}";
 	private static final String SQL_ALL_MULTAS = "{call agente_getMultas(?)}";
 	private static final String SQL_ALL_MULTAS_ANULADAS = "{call agente_getMultasAnuladas(?)}";
-	private static final String SQL_LOGIN = "SELECT id, nombre, placa, id_departamento, password FROM agente WHERE placa = ? AND password = ?;";
+	private static final String SQL_LOGIN = "{call agente_login(?,?)}";
 	
 	private static AgenteDAO INSTANCE = null;
 	private final static Logger LOG = Logger.getLogger(AgenteDAO.class);
@@ -148,11 +148,14 @@ public Agente login (Integer placa, String pass) {
 		String sql = SQL_LOGIN;
 		
 		try ( Connection conn = ConnectionManager.getConnection();
-			  PreparedStatement pst = conn.prepareStatement(sql);
-				){						
-					pst.setInt(1, placa);
-					pst.setString(2, pass);			
-					try ( ResultSet rs = pst.executeQuery() ){											
+				CallableStatement cs = conn.prepareCall(sql);) {
+				
+			// parametros entrada
+				cs.setInt(1, placa);
+				cs.setString(2, pass);	
+				
+					try ( ResultSet rs = cs.executeQuery() ){	
+						
 							while(rs.next()) { 						
 								Agente registro = new Agente();
 								registro.setId( rs.getLong("id"));
