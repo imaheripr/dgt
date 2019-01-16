@@ -11,6 +11,7 @@
 	
  	$(document).ready(function() {
     	$('.tablaOrdenable').DataTable( {
+    		"order": [[ 0, "desc" ]],
     		responsive: true,
     		"pageLength": 25,
     		 "language": {

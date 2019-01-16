@@ -13,7 +13,7 @@ public class Multa {
 	private Long id;
 
 	@NotNull(message = "No puede estar vacio y debe ser un valor numerico")
-	private Integer importe;
+	private Float importe;
 
 	@NotEmpty
 	@Size(min = 10, max = 150)
@@ -25,14 +25,14 @@ public class Multa {
 	public Multa() {
 		super();
 		this.id = -1L;
-		this.importe = -1;
+		this.importe = (float) -1;
 		this.concepto = "";
 		this.fecha = null;
 		this.hora = null;
 		this.coche = new Coche();
 	}
 
-	public Multa(Long id, Integer importe, String concepto, Date fecha, Time hora, Coche coche) {
+	public Multa(Long id, Float importe, String concepto, Date fecha, Time hora, Coche coche) {
 		this();
 		setId(id);
 		setImporte(importe);
@@ -66,11 +66,11 @@ public class Multa {
 		this.id = id;
 	}
 
-	public Integer getImporte() {
+	public Float getImporte() {
 		return importe;
 	}
 
-	public void setImporte(Integer importe) {
+	public void setImporte(Float importe) {
 		this.importe = importe;
 	}
 

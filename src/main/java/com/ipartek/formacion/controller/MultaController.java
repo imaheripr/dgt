@@ -52,7 +52,7 @@ public class MultaController extends HttpServlet {
 	private String id_agente;
 	private String id_coche;
 	private String importe1;
-	private Integer importe2;
+	private Float importe2;
 	private String concepto;
 	private String matricula;
 
@@ -166,7 +166,7 @@ public class MultaController extends HttpServlet {
 		concepto = request.getParameter("concepto");
 		matricula = request.getParameter("matricula");
 		try {
-			importe2 = Integer.parseInt(importe1);
+			importe2 = Float.parseFloat(importe1);
 		} catch (Exception e) {
 			importe2 = null;
 			

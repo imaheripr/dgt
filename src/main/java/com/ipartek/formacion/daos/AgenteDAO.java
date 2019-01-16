@@ -75,7 +75,7 @@ public class AgenteDAO {
 					coche.setId(rs.getLong("id_coche"));
 					multa.setFecha(rs.getDate("fecha"));
 					multa.setHora(rs.getTime("fecha"));
-					multa.setImporte(rs.getInt("importe"));
+					multa.setImporte(rs.getFloat("importe"));
 					multa.setConcepto(rs.getString("concepto"));
 					coche.setMatricula(rs.getString("matricula"));
 					coche.setModelo(rs.getString("modelo"));
@@ -109,7 +109,7 @@ public class AgenteDAO {
 					coche.setId(rs.getLong("id_coche"));
 					multa.setFecha(rs.getDate("fecha"));
 					multa.setHora(rs.getTime("fecha"));
-					multa.setImporte(rs.getInt("importe"));
+					multa.setImporte(rs.getFloat("importe"));
 					multa.setConcepto(rs.getString("concepto"));
 					coche.setMatricula(rs.getString("matricula"));
 					coche.setModelo(rs.getString("modelo"));
