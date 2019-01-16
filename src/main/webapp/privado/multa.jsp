@@ -30,7 +30,7 @@
 	
 	
 	<div  class="form-group">								
-	<button type="submit" class="btn btn-primary btn-block">INSERTAR</button>
+	<button type="submit" class="btn btn-primary btn-block">MULTAR</button>
 	</div>	
 	
 </form>

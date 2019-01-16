@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `dgt` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `dgt`;
+CREATE DATABASE  IF NOT EXISTS `javaee` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `javaee`;
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: dgt
+-- Host: localhost    Database: javaee
 -- ------------------------------------------------------
 -- Server version	8.0.12
 
@@ -18,122 +18,242 @@ USE `dgt`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `agente`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `agente`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `agente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  `placa` int(11) NOT NULL,
-  `id_departamento` int(11) DEFAULT NULL,
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador',
+  `email` varchar(150) NOT NULL,
+  `password` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_departamento_idx` (`id_departamento`),
-  CONSTRAINT `fk_departamento_has_agente` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `agente`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `agente` WRITE;
-/*!40000 ALTER TABLE `agente` DISABLE KEYS */;
-INSERT INTO `agente` VALUES (1,'majonei',111,37),(2,'jony walker',222,36),(3,'monk',333,38),(4,'takelberri',444,39),(5,'tontini',555,39);
-/*!40000 ALTER TABLE `agente` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'admin@admin.com','12345678'),(6,'marianiko@pepemail.com','12345678'),(12,'mariano@matriano.com','12345678'),(15,'auraga@ipartek','12345678'),(17,'mariano@matriano.com.es','123456879'),(20,'hayavamos@gamil.com','12345678'),(21,'paramertro3@estasi.com','12345678'),(22,'mini3ddrum@gmail.com','12345678');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `coche`
+-- Table structure for table `video`
 --
 
-DROP TABLE IF EXISTS `coche`;
+DROP TABLE IF EXISTS `video`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `coche` (
+CREATE TABLE `video` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `matricula` varchar(10) NOT NULL,
-  `modelo` varchar(45) NOT NULL DEFAULT 'cuatro latas',
-  `km` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `matricula_UNIQUE` (`matricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `coche`
---
-
-LOCK TABLES `coche` WRITE;
-/*!40000 ALTER TABLE `coche` DISABLE KEYS */;
-INSERT INTO `coche` VALUES (1,'3548MKZ','toyota yaris',500),(2,'9605EFH','fiat multipla',800),(3,'5674MBD','GTR',1800),(4,'BI0020AZ','flagoneta',47500);
-/*!40000 ALTER TABLE `coche` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `departamento`
---
-
-DROP TABLE IF EXISTS `departamento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `departamento` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `nombre_UNIQUE` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `departamento`
---
-
-LOCK TABLES `departamento` WRITE;
-/*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
-INSERT INTO `departamento` VALUES (36,'Alcoholemia'),(38,'Fealdad'),(33,'Ingeniería'),(35,'Mercadeo'),(39,'Oficinistas'),(34,'Producción'),(37,'Velocidad'),(31,'Ventas');
-/*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `multa`
---
-
-DROP TABLE IF EXISTS `multa`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `multa` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_coche` int(11) NOT NULL,
-  `id_agente` int(11) DEFAULT NULL,
-  `importe` float DEFAULT '50',
-  `concepto` varchar(255) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `codigo` varchar(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `fecha` datetime DEFAULT CURRENT_TIMESTAMP,
-  `fecha_modificacion` datetime DEFAULT CURRENT_TIMESTAMP,
-  `fecha_baja` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_multas_coches_idx` (`id_coche`),
-  KEY `fk_agente_idx` (`id_agente`),
-  CONSTRAINT `fk_agente_has_multa` FOREIGN KEY (`id_agente`) REFERENCES `agente` (`id`),
-  CONSTRAINT `fk_coche_has_multa` FOREIGN KEY (`id_coche`) REFERENCES `coche` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `codigo_UNIQUE` (`codigo`),
+  KEY `FK_USUARIO_idx` (`id_usuario`),
+  CONSTRAINT `FK_USUARIO` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `multa`
+-- Dumping data for table `video`
 --
 
-LOCK TABLES `multa` WRITE;
-/*!40000 ALTER TABLE `multa` DISABLE KEYS */;
-INSERT INTO `multa` VALUES (1,2,3,200,'por feo','2019-01-07 10:38:42','2019-01-11 09:30:15',NULL),(2,4,1,500,'exceso velocidad 240km/h','2019-01-07 10:39:23','2019-01-11 09:30:15',NULL),(3,1,2,700,'empinar codo 8.0','2018-01-07 10:39:42','2019-01-11 09:30:15',NULL),(4,1,4,700,'empinar codo 8.0','2019-01-07 10:39:42','2019-01-11 09:30:15',NULL),(5,1,1,500,'conduccion temeraria','2019-01-05 10:39:42','2019-01-11 09:30:15',NULL),(6,4,4,400,'por correr','2019-01-02 10:39:42','2019-01-11 09:30:15',NULL),(7,1,4,2134,'minimo 10 caracterdsgdsfges','2019-01-10 12:14:24','2019-01-11 09:30:15',NULL),(8,1,4,950,'ConducciÃ³n temeraria','2019-01-11 10:03:09','2019-01-11 10:03:09',NULL);
-/*!40000 ALTER TABLE `multa` ENABLE KEYS */;
+LOCK TABLES `video` WRITE;
+/*!40000 ALTER TABLE `video` DISABLE KEYS */;
+INSERT INTO `video` VALUES (1,'Surf Search Spot 2 0 video promo','LPDhuthFD98',1,'2019-01-14 08:48:01'),(2,'Sojahfjsrduj','94HwzFGH5gY',6,'2019-01-14 08:48:01'),(4,'Fito & Fitipaldis - Los huesos de los besos (Videoclip oficial)','nmoXDU4BAgI',15,'2019-01-14 08:48:01'),(5,'La Fuga - Por verte sonreir','hdQ99wLYc2g',6,'2019-01-14 08:48:01');
+/*!40000 ALTER TABLE `video` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'dgt'
+-- Dumping routines for database 'javaee'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_contar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuario_contar`( OUT total INT )
+BEGIN
+	
+    -- usamos INTO para asignar valora la variable de salida
+    SELECT count(*) INTO total FROM usuario; 
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_contar_email` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuario_contar_email`( IN cadena VARCHAR(255) , OUT total INT )
+BEGIN
+
+	SELECT COUNT(*) INTO total FROM usuario WHERE email LIKE CONCAT('%',cadena,'%');
+	
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_delete` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuario_delete`( IN p_id LONG )
+BEGIN
+DELETE FROM `usuario` WHERE id = p_id ;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_getAll` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuario_getAll`()
+BEGIN
+ SELECT id, email, password FROM usuario ORDER BY id DESC LIMIT 500;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_getById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuario_getById`( IN p_id LONG )
+BEGIN
+	
+    SELECT id, email, password FROM usuario WHERE id = p_id;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_insert` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuario_insert`( 
+	IN p_email VARCHAR(150) , 
+    IN p_password VARCHAR(45), 
+    OUT o_id LONG)
+BEGIN
+
+	-- ejecutamos insert
+	INSERT INTO `usuario` (`email`, `password`) VALUES ( p_email, p_password );
+    
+	-- retornamos ID generado
+	SET o_id = LAST_INSERT_ID();
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_login` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuario_login`(
+	
+    IN p_email VARCHAR(150) , 
+    IN p_password VARCHAR(45) )
+BEGIN
+SELECT  `email`, `password` FROM usuario WHERE password = p_password;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_update` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuario_update`(
+	IN p_email VARCHAR(150) , 
+    IN p_password VARCHAR(45), 
+    IN p_id LONG)
+BEGIN
+UPDATE `usuario` SET `email` = p_email , `password` = p_password, `id`=p_id WHERE id = p_id;
+
+-- retornamos ID generado
+	-- SET o_id = LAST_INSERT_ID();
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -144,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-11 11:51:07
+-- Dump completed on 2019-01-16 12:04:01
