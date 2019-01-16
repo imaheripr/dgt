@@ -21,12 +21,14 @@
   </head>
 
   <body >
+  
+ 
   <form  novalidate class="form-signin" method="post" action="login">
-    
+   
    	<h1 class="h3 mb-3 font-weight-normal">Acceso Agente</h1>
    	
    	<div class="mb-1">
-    <label for="placa" >Email</label>
+    <label for="placa" >Agente</label>
     <div class="input-group">
     
       <input type="text" id="placa" name=placa class="form-control"  value="444"  >
