@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -45,14 +46,16 @@ public class ListarController extends HttpServlet {
 		
 		// AKI esta el fallo que  venia sin parametro se quedaba loco el SERVLET
 		String operacion = request.getParameter("operacion");
+		String id = request.getParameter("id");
 		try {
+			Long identificador = Long.parseLong(id);	
 	        if (operacion.equals("0")) {
-			multas = agenteDAO.getMultas(ID_AGENTE_PREDEFINIDO);
+			multas = agenteDAO.getMultas(identificador);
 			request.setAttribute("multas", multas);
 			request.getRequestDispatcher(LISTADO_MULTAS).forward(request, response);
 			LOG.debug("Mostrando listado");
 	        }else if (operacion.equals("1")) {
-	        	multas = agenteDAO.getMultasAnuladas(ID_AGENTE_PREDEFINIDO);
+	        	multas = agenteDAO.getMultasAnuladas(identificador);
 	    		request.setAttribute("multas", multas);
 	    		request.getRequestDispatcher(LISTADO_MULTAS_ANULAR).forward(request, response);
 	    		LOG.debug("Mostrando listado");	
