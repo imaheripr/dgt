@@ -23,9 +23,7 @@ public class PrincipalController extends HttpServlet {
 	private static final String PRINCIPAL_JSP = "principal.jsp";
 	
 	private static AgenteDAO agenteDAO = null;
-
-    
-    
+  
     @Override
     public void init(ServletConfig config) throws ServletException {    
     	super.init(config);
@@ -33,12 +31,9 @@ public class PrincipalController extends HttpServlet {
     	
     }
 
-
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	
-		
 		request.getRequestDispatcher(PRINCIPAL_JSP).forward(request, response);
 	}
 

@@ -46,6 +46,7 @@ public class MultaController extends HttpServlet {
 	// OPERACIONES
 	public static final String OP_INSERTAR = "1";
 	public static final String OP_ANULAR = "2";
+	public static final String OP_ACTIVAR = "3";
 
 	// parametros
 	private String operacion;
@@ -87,7 +88,11 @@ public class MultaController extends HttpServlet {
 			case OP_ANULAR:			// si recibo operacion 2
 				anular(request);
 				break;
+			case OP_ACTIVAR:			// si recibo operacion 2
+				activar(request);
+				break;
 			}
+			
 
 		} catch (Exception e) {
 			LOG.error(e);
@@ -122,13 +127,11 @@ public class MultaController extends HttpServlet {
 	
 		// coche para incluir parametros
 		Coche coche = new Coche();
-		
-		// parseo parametro id_coche
 		int coche_id = Integer.parseInt(id_coche);
-		
-		// to do rowmapper para recoger parametros y simplificar codigo
 		coche.setId((long) coche_id);
 		coche.setMatricula(matricula);
+		
+		
 		Multa multa = new Multa();
 		multa.setImporte(importe2);
 		multa.setConcepto(concepto);
@@ -215,4 +218,32 @@ public class MultaController extends HttpServlet {
 			LOG.debug("Multa no anulada" + identificador);
 		}
 	}
+
+	// metodo para volver a activar multas
+		private void activar(HttpServletRequest request) {
+			
+			//parseo id_multa
+			Long identificador = Long.parseLong(id_multa);
+			
+			// multa para incluir parametro 
+			Multa multa = new Multa(); 
+			
+			//modificar id multa por parseo
+			multa.setId(identificador);
+			
+			try {
+				multaDAO.activar(multa);  // metodo dao update con parametros incluidso en multa ( identificador que es el parseo de id_multa)
+				request.setAttribute("mensaje", "la multa se ha vuelto a activar");
+				
+				LOG.debug("Activantdo multa" + identificador);  // mensje log
+				
+				
+				vista =VIEW_INDEX;  // ruta a listado multas activadas
+			
+			}catch(Exception e){
+				request.setAttribute("mensaje", "la multa no se ha vuelto a activar");
+				LOG.debug("Multa no activada" + identificador);
+			}
+		}
+
 }

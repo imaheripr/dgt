@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.ipartek.formacion.daos.AgenteDAO;
+import com.ipartek.formacion.daos.CocheDAO;
+import com.ipartek.formacion.pojos.Coche;
 import com.ipartek.formacion.pojos.Multa;
 
 /**
@@ -34,9 +36,11 @@ public class ListarController extends HttpServlet {
 
 	// dao
 	private static AgenteDAO agenteDAO = null;
+	private static CocheDAO cocheDAO = null;  // nuevo
 
 	// arry list
 	private ArrayList<Multa> multas = null;
+	private Coche coche = null;   // nuevo
 		
 	// metodo init para dao, objeto ...
 	@Override
@@ -44,6 +48,7 @@ public class ListarController extends HttpServlet {
 		super.init(config);
 		agenteDAO = AgenteDAO.getInstance();
 		multas = new ArrayList<Multa>();
+		coche = new Coche();
 	}
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -52,10 +57,11 @@ public class ListarController extends HttpServlet {
 		// recojo parametros
 		String operacion = request.getParameter("operacion"); // operacion para saber si multas activas o anuladas
 		String id = request.getParameter("id");
+	
 		
 		try {
-			Long identificador = Long.parseLong(id);	
-	        
+			Long identificador = Long.parseLong(id);
+   
 			if (operacion.equals("0")) {  // si recibo parametro operacion 0 listo multas activas
 			multas = agenteDAO.getMultas(identificador);
 			request.setAttribute("multas", multas);
@@ -64,7 +70,12 @@ public class ListarController extends HttpServlet {
 	        
 			}else if (operacion.equals("1")) { // si recibo 1 listo multas anuladas
 	        	multas = agenteDAO.getMultasAnuladas(identificador);
+	        	
+	        
+	        	
 	    		request.setAttribute("multas", multas);
+	    	
+	    		
 	    		request.getRequestDispatcher(LISTADO_MULTAS_ANULAR).forward(request, response);
 	    		LOG.debug("Mostrando listado");	
 	        

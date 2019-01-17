@@ -22,6 +22,7 @@ public class MultaDAO {
 	// consultas sql con parametros almacenados
 	private static final String SQL_INSERT = "{call multa_insert(?,?,?,?,?)}"; // tantos interrogantes como parametros de entrada  y salida
 	private static final String SQL_UPDATE = "{call multa_update(?,?)}";
+	private static final String SQL_ACTIVAR = "{call multa_activar(?,?)}";
 	
 	// metodo constructor superclase
 	private MultaDAO() {
@@ -89,5 +90,28 @@ public class MultaDAO {
 
 	}
 
+	// metodo para vover a activar la multa
+	public boolean activar(Multa m) throws SQLException {
+		
+		boolean resul = false;
+		String sql = SQL_ACTIVAR;
+		try (Connection conn = ConnectionManager.getConnection(); 
+			CallableStatement cs = conn.prepareCall(sql);) {
+
+			// parametros de entrada
+			cs.setLong(1, m.getId());
+			
+			//parametro de salida
+			cs.registerOutParameter(2, Types.INTEGER );
+	
+			int affectedRows = cs.executeUpdate();
+			if (affectedRows == 1) {
+				m.setId( cs.getLong(2) );	
+				resul = true;
+			}
+		}
+		return resul;
+
+	}
 	
 }
