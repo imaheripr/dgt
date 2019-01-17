@@ -17,7 +17,8 @@
 
     <!-- Custom styles for this template -->
     <link href="css/login.css" rel="stylesheet">
-    <link href="css/gly.css" rel="stylesheet">
+<!-- FONT AWESOME -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   </head>
 
   <body >
@@ -25,21 +26,29 @@
 	   
 	   	<h1 class="h3 mb-3 font-weight-normal">Acceso Agente</h1>
 	   	
-	   	  <div class="mb-1">
-		    <label for="placa" >Agente</label>
-		    <div class="input-group">   
+	   	  
+	  	  	<div class="mb-1">
+		   <label for="placa" >Agente</label>
+		    <div class="input-group">
+		      <div class="input-group-prepend">
+		        <span class="input-group-text"><i class="fas fa-address-book"></i></span>
+		      </div>
 		     	<input type="text" id="placa" name=placa class="form-control"  value= "${not empty placa ? placa : '444'}" >
 		    </div>
-	  	  </div> 
+		  </div> 
 	  
 		  <div class="mb-1">
 		    <label for="pass" >Contraseña</label>
-		    <div class="input-group">	     
+		    <div class="input-group">	
+		     
+		      <div class="input-group-prepend">
+		        <span class="input-group-text">  <i class="fas fa-unlock-alt"></i>  </span>
+		      </div>
 		      <input type="text" class="form-control" id="pass" name="pass" placeholder="Pa$$w0rd" value="${not empty pass ? pass : '123456'}">
 		    </div>
 		  </div>  
 	 
-	      <button class="btn btn-lg  btn-block mb-3 mt-3  btn-outline-primary" type="submit">
+	      <button class="btn btn-lg  btn-block mb-3 mt-3  btn-info" type="submit">
 	      Acceder
 	      </button>
 	   
