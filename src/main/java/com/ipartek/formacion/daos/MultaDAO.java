@@ -127,6 +127,7 @@ public class MultaDAO {
 			// parametros de entrada
 			cs.setLong(1, m.getId());
 			cs.setFloat(2, m.getImporte());
+			
 						
 			//parametro de salida
 			cs.registerOutParameter(3, Types.INTEGER );
