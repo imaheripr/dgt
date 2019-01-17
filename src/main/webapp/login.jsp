@@ -28,14 +28,14 @@
 	   	  <div class="mb-1">
 		    <label for="placa" >Agente</label>
 		    <div class="input-group">   
-		     	<input type="text" id="placa" name=placa class="form-control"  value="444"  >
+		     	<input type="text" id="placa" name=placa class="form-control"  value= "${not empty placa ? placa : '444'}" >
 		    </div>
 	  	  </div> 
 	  
 		  <div class="mb-1">
 		    <label for="pass" >Contraseña</label>
 		    <div class="input-group">	     
-		      <input type="text" class="form-control" id="pass" name="pass" placeholder="Pa$$w0rd" value="123456">
+		      <input type="text" class="form-control" id="pass" name="pass" placeholder="Pa$$w0rd" value="${not empty pass ? pass : '123456'}">
 		    </div>
 		  </div>  
 	 

@@ -122,6 +122,8 @@ public class LoginController extends HttpServlet {
 				}
 				errores += "</ul>";
 				request.setAttribute("error", errores);
+				request.setAttribute("placa", placa);
+				request.setAttribute("pass", pass);
 
 			} else { // validacion OK
 
