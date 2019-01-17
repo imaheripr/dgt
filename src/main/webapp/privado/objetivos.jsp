@@ -13,9 +13,32 @@
 
 </c:if>
 
-<a class="btn btn-lg btn-info btn-block mb-3" href="privado/objetivo_agente?op=2&id=${sessionScope.agente_logeado.id}" role="button">OBJETIVOS ANUALES</a>
-<a class="btn btn-lg btn-info btn-block  mb-3" href="#" role="button">OBJETIVOS MENSUALES</a>
+<h5>Actual</h5>
+ <ul>
+<li>Mes Actual: 300/1000</li>
+<li>Año Actual: 3000/12000</li>
+ </ul>
+ 
+ 
+ <hr>
+ <h5>Historico</h5>
+ <form>
+<label for="anio">Selecciona el año</label>
+ <select>
+ <c:forEach items="${anios}" var="a">
+  <option value="${a}">${a}</option>
+</c:forEach>
+</select> 
+<button>Seleccionar</button>
+</form>
 
+
+ <ul>
+<li>TOTAL:</li>
+<li>Enero</li>
+ </ul>
+ 
+ 
 </section>
 </main>
 <%@ include file="../includes/footer.jsp"  %>
