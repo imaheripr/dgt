@@ -145,6 +145,7 @@ public class AgenteDAO {
 					coche.setMatricula(rs.getString("matricula"));
 					coche.setModelo(rs.getString("modelo"));
 					coche.setKm(rs.getInt("km"));
+					
 					multa.setCoche(coche);
 					multas.add(multa);
 				}

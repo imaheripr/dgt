@@ -23,6 +23,8 @@ public class MultaDAO {
 	private static final String SQL_INSERT = "{call multa_insert(?,?,?,?,?)}"; // tantos interrogantes como parametros de entrada  y salida
 	private static final String SQL_UPDATE = "{call multa_update(?,?)}";
 	private static final String SQL_ACTIVAR = "{call multa_activar(?,?)}";
+	private static final String SQL_OBJETIVOS = "{call multa_objetivos(?,?,?)}";
+	
 	
 	// metodo constructor superclase
 	private MultaDAO() {
@@ -101,6 +103,7 @@ public class MultaDAO {
 			// parametros de entrada
 			cs.setLong(1, m.getId());
 			
+			
 			//parametro de salida
 			cs.registerOutParameter(2, Types.INTEGER );
 	
@@ -114,16 +117,28 @@ public class MultaDAO {
 
 	}
 	
-	public boolean objetivos (Multa m) throws SQLException {
+	public boolean objetivos(Multa m) throws SQLException {
 		
 		boolean resul = false;
-		String sql = "";
+		String sql  = SQL_OBJETIVOS;
 		try (Connection conn = ConnectionManager.getConnection(); 
 			CallableStatement cs = conn.prepareCall(sql);) {
 
-	
-		}
-		return resul;
+			// parametros de entrada
+			cs.setLong(1, m.getId());
+			cs.setFloat(2, m.getImporte());
+						
+			//parametro de salida
+			cs.registerOutParameter(3, Types.INTEGER );
+						
+						
+			int affectedRows = cs.executeUpdate();
+			if (affectedRows == 1) {
+				m.setId( cs.getLong(3) );	
+				resul = true;
+				}
+			}
+			return resul;
 
 	}
 

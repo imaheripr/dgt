@@ -21,6 +21,7 @@ public class Multa {
 	private Date fecha;
 	private Coche coche;
 	private Time hora;
+	private Agente agente;  // nuevo para objetivos
 
 	public Multa() {
 		super();
@@ -30,9 +31,10 @@ public class Multa {
 		this.fecha = null;
 		this.hora = null;
 		this.coche = new Coche();
+		this.agente = new Agente();  // nuevo para objetivos
 	}
 
-	public Multa(Long id, Float importe, String concepto, Date fecha, Time hora, Coche coche) {
+	public Multa(Long id, Float importe, String concepto, Date fecha, Time hora, Coche coche, Agente agente) {
 		this();
 		setId(id);
 		setImporte(importe);
@@ -40,6 +42,15 @@ public class Multa {
 		setFecha(fecha);
 		setHora(hora);
 		setCoche(coche);
+		setAgente(agente);  // nuevo para objetivos
+	}
+
+	public Agente getAgente() {  // nuevo para objetivos
+		return agente;
+	}
+
+	public void setAgente(Agente agente) {  // nuevo para objetivos
+		this.agente = agente;
 	}
 
 	public Time getHora() {
@@ -91,9 +102,11 @@ public class Multa {
 	}
 
 	@Override
-	public String toString() {
+	public String toString() {  // nuevo para objetivos
 		return "Multa [id=" + id + ", importe=" + importe + ", concepto=" + concepto + ", fecha=" + fecha + ", coche="
-				+ coche + ", hora=" + hora + "]";
+				+ coche + ", hora=" + hora + ", agente=" + agente + "]";
 	}
+
+
 
 }

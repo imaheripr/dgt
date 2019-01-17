@@ -15,24 +15,24 @@ import org.apache.log4j.Logger;
 import com.ipartek.formacion.daos.AgenteDAO;
 import com.ipartek.formacion.daos.MultaDAO;
 import com.ipartek.formacion.pojos.Agente;
+import com.ipartek.formacion.pojos.Multa;
 
 
 
-@WebServlet("/privado/objetivo_agente")
-public class ObjetivoController extends HttpServlet {
+@WebServlet("/privado/objetivos")
+public class ObjetivosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//LOG
-		private final static Logger LOG = Logger.getLogger(ObjetivoController.class);
+		private final static Logger LOG = Logger.getLogger(ObjetivosController.class);
 
-		private static AgenteDAO agenteDAO = null;
-		private static MultaDAO multaDAO = null;
 		
+		private static MultaDAO multaDAO = null;
+		private Agente agente;
 		
 		@Override
 	    public void init(ServletConfig config) throws ServletException {    
 	    	super.init(config);
-	    	agenteDAO = agenteDAO.getInstance(); 
-	    	multaDAO = multaDAO.getInstance();  
+	    	multaDAO = MultaDAO.getInstance();	
 	    }
 		
 
@@ -45,15 +45,16 @@ public class ObjetivoController extends HttpServlet {
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
-			String id_agente;
-			id_agente=request.getParameter("id_agente");
-			Agente a = new Agente();
-			
+		
+			String id_agente = request.getParameter("id_agente");
 			Long id = Long.parseLong(id_agente);
-			a.setId(id);
+			Multa m = new Multa();
+			m.setId(id);		
+		
+			
 
-			//multaDAO.objetivos(a.getId());
-			request.setAttribute("agente", a);
+			multaDAO.objetivos(m);
+			request.setAttribute("multa", m);
 	
 		}catch (Exception e) {
 			LOG.error(e);	
