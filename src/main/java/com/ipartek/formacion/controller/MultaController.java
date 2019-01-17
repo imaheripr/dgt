@@ -208,10 +208,10 @@ public class MultaController extends HttpServlet {
 			multaDAO.update(multa);  // metodo dao update con parametros incluidso en multa ( identificador que es el parseo de id_multa)
 			request.setAttribute("mensaje", "multa anulada");
 			
-			LOG.debug("Anulando multa" + identificador);  // mensje log
+			LOG.debug("Anulando multa" + identificador);  // mensaje log
 			
 			
-			vista =VIEW_LISTADO;  // ruta a listado multas activadas
+			vista =VIEW_INDEX;  // ruta a listado multas activadas
 		
 		}catch(Exception e){
 			request.setAttribute("mensaje", "multa no  anulada");
@@ -219,6 +219,10 @@ public class MultaController extends HttpServlet {
 		}
 	}
 
+	
+	
+	
+	
 	// metodo para volver a activar multas
 		private void activar(HttpServletRequest request) {
 			
