@@ -24,3 +24,16 @@ IN  p_id LONG)
 BEGIN
 SELECT m.id AS 'id_multa', c.id AS 'id_coche',fecha, importe, concepto, matricula, modelo,km FROM agente AS a, multa AS m, coche AS c WHERE a.id=m.id_agente AND m.id_coche=c.id AND a.id=p_id AND m.fecha_baja IS NOT NULL ORDER BY m.fecha DESC ;
 END
+
+-- objetivos
+CREATE DEFINER=`root`@`localhost` PROCEDURE `multa_objetivos`( 
+IN  p_id LONG,
+IN  p_importe double,
+OUT o_id LONG)
+BEGIN
+ SELECT id_agente, importe,
+  SUM(importe) AS 'total importes' 
+  FROM multa 
+  WHERE id_agente = p_id AND importe = p_importe ;
+SET o_id = LAST_INSERT_ID();
+END
