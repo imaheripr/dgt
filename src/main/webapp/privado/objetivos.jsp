@@ -1,7 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../includes/cabecera.jsp" %> 	
 
-<main>
-<section class="container-fluid mt-5 ">
+ <main role="main" class="container-fluid ">
 
 <c:if test = "${mensaje!=null}">
 <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -13,9 +13,29 @@
 
 </c:if>
 
-<a class="btn btn-lg btn-info btn-block mb-3" href="privado/objetivo_agente?op=2&id=${sessionScope.agente_logeado.id}" role="button">OBJETIVOS ANUALES</a>
-<a class="btn btn-lg btn-info btn-block  mb-3" href="#" role="button">OBJETIVOS MENSUALES</a>
+<h5>Objetivos anuales</h5>
 
-</section>
+<form>
+<label for="anio">Selecciona el año</label>
+ <select>
+ <c:forEach items="${anios}" var="a">
+  <option value="${a}">${a}</option>
+</c:forEach>
+</select> 
+<button>Seleccionar</button>
+</form>
+
+
+
+ 
+ <ul>
+<li>Total de multas</<li>
+<li>Total de multas activas</<li>
+<li>Total de multas anuladas</<li>
+<li>Total recaudado</<li>
+ </ul>
+
+
+
 </main>
 <%@ include file="../includes/footer.jsp"  %>

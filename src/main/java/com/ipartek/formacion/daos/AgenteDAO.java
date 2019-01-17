@@ -53,6 +53,10 @@ public class AgenteDAO {
 		return registro;
 	}
 
+	
+	 
+	
+	
 	// metodo para obtener  id
 	public Agente getById(long id) {
 

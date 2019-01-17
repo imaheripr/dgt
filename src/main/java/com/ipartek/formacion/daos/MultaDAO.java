@@ -114,4 +114,19 @@ public class MultaDAO {
 
 	}
 	
+	public boolean objetivos (Multa m) throws SQLException {
+		
+		boolean resul = false;
+		String sql = "";
+		try (Connection conn = ConnectionManager.getConnection(); 
+			CallableStatement cs = conn.prepareCall(sql);) {
+
+	
+		}
+		return resul;
+
+	}
+
+	
+	
 }
