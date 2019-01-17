@@ -21,6 +21,9 @@ public class AgenteDAO {
 	private static final String SQL_ALL_MULTAS_ANULADAS = "{call agente_getMultasAnuladas(?)}";
 	private static final String SQL_LOGIN = "{call agente_login(?,?)}";
 	
+	private static final String SQL_ANIO = "SELECT DISTINCT anyo FROM v_objetivos where id_agente=? order by anyo DESC;";
+	//SELECT DISTINCT anyo FROM v_objetivos where id_agente=4;
+	
 	// dao con instance /singleton
 	private static AgenteDAO INSTANCE = null;
 	
@@ -180,5 +183,34 @@ public class AgenteDAO {
 		}		
 		return usuario;
 	}
+	
+	
+	public ArrayList<Integer> getYearMultasAgente(Long id) {
+		String sql = SQL_ANIO;
+		ArrayList<Integer> anios = new ArrayList<Integer>();
+		try ( Connection conn = ConnectionManager.getConnection();
+				  PreparedStatement pst = conn.prepareStatement(sql);
+					){
+		// parametros entrada
+		pst.setLong(1, id);
+		try ( ResultSet rs = pst.executeQuery() ){	
+				
+				while(rs.next()) { 						
+					Integer i=0 ;
+					i = rs.getInt("anyo");
+					anios.add(i);								
+				}						
+		}
+			
+		}catch (Exception e) {
+			LOG.fatal (e);
+		}		
+		return anios;
+	}
+	
+	
+	
+	
+	
 
 } // FIN DAO
