@@ -31,6 +31,7 @@ public class ObjetivosController extends HttpServlet {
 		private ObjetivoDAO objetivoDAO = null;
 		private Objetivo objetivo = null;
 		private Objetivo objetivo2 = null;
+		private ArrayList<Objetivo> anyo = null;
 		private ArrayList<Objetivo> historico = null;
 		@Override
 	    public void init(ServletConfig config) throws ServletException {    
@@ -59,6 +60,10 @@ public class ObjetivosController extends HttpServlet {
 		
 		historico = objetivoDAO.historico(id); 
 		request.setAttribute("historico", historico);	
+		
+	
+		anyo = objetivoDAO.selectAnyo(id); 
+		request.setAttribute("anyo", anyo);	
 		
 		request.getRequestDispatcher("objetivos.jsp").forward(request, response);
 			

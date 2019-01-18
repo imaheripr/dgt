@@ -42,9 +42,13 @@ public class ObjetivoDAO {
 	private static final String SQL_HISTORICO=
 	"SELECT id_agente, fecha , numero_multas, importe FROM v_objetivos WHERE id_agente= ?  AND anyo=2018;";
 	
+	private static final String SQL_SELECT_ANIO=
+	"SELECT DISTINCT fecha from v_objetivos WHERE id_agente= ?;";
+	
 //	SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente=4 AND mes = MONTH(now()) AND anyo=YEAR(now());
 //	SELECT SUM(importe) AS 'importe', SUM(numero_multas) AS 'numero_multas' FROM v_objetivos WHERE id_agente=4  AND anyo=2018;
 //	SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente=4  AND anyo=2018;
+//  SELECT DISTINCT anyo from v_objetivos WHERE id_agente=4;
 	
 	
 	
@@ -61,6 +65,28 @@ public class ObjetivoDAO {
 		}
 	
 	
+	public ArrayList<Objetivo> selectAnyo(Long id_agente) {
+		String sql = SQL_SELECT_ANIO;
+		Objetivo o = null;
+		ArrayList<Objetivo> objetivos = new ArrayList<Objetivo>();
+		try (Connection conn = ConnectionManager.getConnection(); 
+				PreparedStatement pst = conn.prepareStatement(sql);) {
+			pst.setLong(1, id_agente);
+			try (ResultSet rs = pst.executeQuery()) {
+				while (rs.next()) {
+					o = new Objetivo();
+					o.setFecha(rs.getDate("fecha"));
+					objetivos.add(o);
+					
+				}
+			}
+
+		} catch (Exception e) {
+			LOG.fatal("selecAnyo:---> " + e);
+		}
+		LOG.debug("selecAnyo OK");
+		return objetivos;
+	}
 	
 	public Objetivo objetivoActual(Long id_agente, Integer i) {
 		String sql = SQL_MES_ACTUAL;
