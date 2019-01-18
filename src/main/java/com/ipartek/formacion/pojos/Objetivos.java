@@ -11,102 +11,104 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Objetivos {
 
 	private Long id_agente;
-
-	@NotNull(message = "No puede estar vacio y debe ser un valor numerico")
-	private Float importe;
-
-	@NotEmpty
-	@Size(min = 10, max = 150)
-	private String concepto;
 	private Date fecha;
-	private Coche coche;
 	private Time hora;
-	private Agente agente;  // nuevo para objetivos
-
-	public Multa() {
+	private int num_multas ;  
+	private float importe;
+	
+	public Objetivos() {
 		super();
-		this.id = -1L;
-		this.importe = (float) -1;
-		this.concepto = "";
+		this.id_agente = -1L;
 		this.fecha = null;
 		this.hora = null;
-		this.coche = new Coche();
-		this.agente = new Agente();  // nuevo para objetivos
+		this.num_multas = -1;
+		this.importe = (float) 1;
 	}
 
-	public Multa(Long id, Float importe, String concepto, Date fecha, Time hora, Coche coche, Agente agente) {
+	
+	
+	public Objetivos(Long id_agente, Date fecha, Time hora, int num_multas, float importe) {
 		this();
-		setId(id);
-		setImporte(importe);
-		setConcepto(concepto);
+		setId_agente(id_agente);
 		setFecha(fecha);
 		setHora(hora);
-		setCoche(coche);
-		setAgente(agente);  // nuevo para objetivos
+		setNum_multas(num_multas);
+		setImporte(importe);
 	}
 
-	public Agente getAgente() {  // nuevo para objetivos
-		return agente;
+
+
+	public Long getId_agente() {
+		return id_agente;
 	}
 
-	public void setAgente(Agente agente) {  // nuevo para objetivos
-		this.agente = agente;
+
+
+	public void setId_agente(Long id_agente) {
+		this.id_agente = id_agente;
 	}
 
-	public Time getHora() {
-		return hora;
-	}
 
-	public void setHora(Time hora) {
-		this.hora = hora;
-	}
-
-	public Coche getCoche() {
-		return coche;
-	}
-
-	public void setCoche(Coche coche) {
-		this.coche = coche;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Float getImporte() {
-		return importe;
-	}
-
-	public void setImporte(Float importe) {
-		this.importe = importe;
-	}
-
-	public String getConcepto() {
-		return concepto;
-	}
-
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
-	}
 
 	public Date getFecha() {
 		return fecha;
 	}
 
+
+
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
-	@Override
-	public String toString() {  // nuevo para objetivos
-		return "Multa [id=" + id + ", importe=" + importe + ", concepto=" + concepto + ", fecha=" + fecha + ", coche="
-				+ coche + ", hora=" + hora + ", agente=" + agente + "]";
+
+
+	public Time getHora() {
+		return hora;
 	}
 
+
+
+	public void setHora(Time hora) {
+		this.hora = hora;
+	}
+
+
+
+	public int getNum_multas() {
+		return num_multas;
+	}
+
+
+
+	public void setNum_multas(int num_multas) {
+		this.num_multas = num_multas;
+	}
+
+
+
+	public float getImporte() {
+		return importe;
+	}
+
+
+
+	public void setImporte(float importe) {
+		this.importe = importe;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Objetivos [id_agente=" + id_agente + ", fecha=" + fecha + ", hora=" + hora + ", num_multas="
+				+ num_multas + ", importe=" + importe + "]";
+	}
+
+
+
+	
+
+	
 
 
 }
