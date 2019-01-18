@@ -3,9 +3,11 @@ package com.ipartek.formacion.daos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+import com.ipartek.formacion.pojos.Agente;
 import com.ipartek.formacion.pojos.Objetivo;
 
 public class ObjetivoDAO {
@@ -31,7 +33,7 @@ public class ObjetivoDAO {
 			
 
 	private static final String SQL_MES_ACTUAL=
-	"SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente= ? AND mes = MONTH(now()) AND anyo=YEAR(now());";
+	"SELECT id_agente, fecha, numero_multas, importe FROM v_objetivos WHERE id_agente= ? AND mes = MONTH(now()) AND anyo=YEAR(now());";
 	
 	private static final String SQL_ANIO_ACTUAL=
 	"SELECT SUM(importe) AS 'importe', SUM(numero_multas) AS 'numero_multas' FROM v_objetivos WHERE id_agente= ?  AND anyo=YEAR(now());" ;
@@ -44,6 +46,21 @@ public class ObjetivoDAO {
 //	SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente=4  AND anyo=2018;
 	
 	
+	
+	
+	// row mapper para recoger parametros
+		private Objetivo rowMapper(ResultSet rs) throws SQLException { 
+			Objetivo registro = new Objetivo();
+			registro.setId_agente(rs.getLong("id_agente"));
+			registro.setFecha(rs.getDate("fecha"));
+			registro.setNum_multas(rs.getInt("numero_multas"));
+			registro.setImporte(rs.getInt("importe"));	
+
+			return registro;
+		}
+	
+	
+	
 	public Objetivo objetivoMesActual(Long id_agente) {
 		String sql = SQL_MES_ACTUAL;
 		Objetivo o = null;
@@ -53,11 +70,8 @@ public class ObjetivoDAO {
 			try (ResultSet rs = pst.executeQuery()) {
 				while (rs.next()) {
 					o = new Objetivo();
-					o.setId_agente(rs.getLong("id_agente"));
-					o.setFecha(rs.getDate("anyo"));
-					o.setFecha(rs.getDate("mes"));
-					o.setNum_multas(rs.getInt("numero_multas"));
-					o.setImporte(rs.getInt("importe"));
+					o = rowMapper(rs);	
+					
 				}
 			}
 

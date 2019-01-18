@@ -12,8 +12,13 @@
 	</div>
 </c:if>
 
+ Este mes de 
+ <fmt:formatDate pattern = "MMMM" value = "${objetivo.fecha }" />
+ 
+
  <hr>
  <h5>Historico</h5>
+ ${objetivo }
  <form>
 <label for="anio">Selecciona el año</label>
  <select>
