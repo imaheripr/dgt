@@ -36,7 +36,7 @@ public class ObjetivoDAO {
 	"SELECT id_agente, fecha, numero_multas, importe FROM v_objetivos WHERE id_agente= ? AND mes = MONTH(now()) AND anyo=YEAR(now());";
 	
 	private static final String SQL_ANIO_ACTUAL=
-	"SELECT SUM(importe) AS 'importe', SUM(numero_multas) AS 'numero_multas' FROM v_objetivos WHERE id_agente= ?  AND anyo=YEAR(now());" ;
+	"SELECT id_agente, fecha ,  SUM(numero_multas) AS 'numero_multas', SUM(importe) AS 'importe' FROM v_objetivos WHERE id_agente= ?  AND anyo=YEAR(now());" ;
 	
 	private static final String SQL_HISTORICO=
 	"SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente= ?  AND anyo= ?;";
@@ -61,8 +61,16 @@ public class ObjetivoDAO {
 	
 	
 	
-	public Objetivo objetivoMesActual(Long id_agente) {
+	public Objetivo objetivoActual(Long id_agente, Integer i) {
 		String sql = SQL_MES_ACTUAL;
+		
+		if(i==1) {
+		sql = SQL_MES_ACTUAL;
+		}else if(i==2) {
+			sql = SQL_ANIO_ACTUAL;
+		}
+		
+		
 		Objetivo o = null;
 		try (Connection conn = ConnectionManager.getConnection(); 
 				PreparedStatement pst = conn.prepareStatement(sql);) {
@@ -81,5 +89,7 @@ public class ObjetivoDAO {
 		LOG.debug("objetivoMesActual OK");
 		return o;
 	}
+	
+	
 	
 }

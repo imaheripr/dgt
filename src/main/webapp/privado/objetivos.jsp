@@ -12,9 +12,15 @@
 	</div>
 </c:if>
 
- Este mes de 
- <fmt:formatDate pattern = "MMMM" value = "${objetivo.fecha }" />
- 
+<ul>
+<li>Mes de  <fmt:formatDate pattern = "MMMM" value = "${objetivo.fecha }" />: ${objetivo.importe}/1000 </li>
+<li>Numero de multas ${objetivo.num_multas }</li>
+</ul>
+
+<ul>
+<li>Año <fmt:formatDate pattern = "yyyy" value = "${objetivo2.fecha }" />: ${objetivo2.importe}/1000 </li>
+<li>Numero de multas ${objetivo2.num_multas }</li>
+</ul>
 
  <hr>
  <h5>Historico</h5>
