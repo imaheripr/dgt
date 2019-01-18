@@ -1,12 +1,34 @@
 package com.ipartek.formacion.daos;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.ipartek.formacion.pojos.Coche;
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.pojos.Objetivo;
 
 public class ObjetivoDAO {
+
+	// LOG PARA MENSAJES
+		private final static Logger LOG = Logger.getLogger(AgenteDAO.class);
+	
+		private static ObjetivoDAO INSTANCE = null;
+	
+	
+		//metodo constructor superclase
+		private ObjetivoDAO() {
+			super();
+		}
+		
+		// instance/singleton
+		public synchronized static ObjetivoDAO getInstance() {
+			if (INSTANCE == null) {
+				INSTANCE = new ObjetivoDAO();
+			}
+			return INSTANCE;
+		}
+			
 
 	private static final String SQL_MES_ACTUAL=
 	"SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente= ? AND mes = MONTH(now()) AND anyo=YEAR(now());";
@@ -22,27 +44,28 @@ public class ObjetivoDAO {
 //	SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente=4  AND anyo=2018;
 	
 	
-	public Coche getMatricula(String matricula) {
-		String sql = SQL_GET_MATRICULA;
-		Coche coche = null;
+	public Objetivo objetivoMesActual(Long id_agente) {
+		String sql = SQL_MES_ACTUAL;
+		Objetivo o = null;
 		try (Connection conn = ConnectionManager.getConnection(); 
-				CallableStatement cs = conn.prepareCall(sql);) {
-						cs.setString(1, matricula);
-			try (ResultSet rs = cs.executeQuery()) {
+				PreparedStatement pst = conn.prepareStatement(sql);) {
+			pst.setLong(1, id_agente);
+			try (ResultSet rs = pst.executeQuery()) {
 				while (rs.next()) {
-					coche = new Coche();
-					coche.setId(rs.getLong("id"));
-					coche.setMatricula(rs.getString("matricula"));
-					coche.setModelo(rs.getString("modelo"));
-					coche.setKm(rs.getInt("km"));
+					o = new Objetivo();
+					o.setId_agente(rs.getLong("id_agente"));
+					o.setFecha(rs.getDate("anyo"));
+					o.setFecha(rs.getDate("mes"));
+					o.setNum_multas(rs.getInt("numero_multas"));
+					o.setImporte(rs.getInt("importe"));
 				}
 			}
 
 		} catch (Exception e) {
-			LOG.fatal("getMultas:---> " + e);
+			LOG.fatal("objetivoMesActual:---> " + e);
 		}
-		LOG.debug("Listado multas OK");
-		return coche;
+		LOG.debug("objetivoMesActual OK");
+		return o;
 	}
 	
 }
