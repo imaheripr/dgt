@@ -26,13 +26,10 @@ public class ObjetivosController extends HttpServlet {
 		private final static Logger LOG = Logger.getLogger(ObjetivosController.class);
 
 		
-		private static MultaDAO multaDAO = null;
-		private Agente agente;
-		
 		@Override
 	    public void init(ServletConfig config) throws ServletException {    
 	    	super.init(config);
-	    	multaDAO = MultaDAO.getInstance();	
+	    		
 	    }
 		
 
@@ -44,22 +41,9 @@ public class ObjetivosController extends HttpServlet {
 	
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		try {
-		
-			String id_agente = request.getParameter("id_agente");
-			Long id = Long.parseLong(id_agente);
-			Multa m = new Multa();
-			m.setId(id);		
-
-			multaDAO.objetivos(m);
-			request.setAttribute("multa", m);
-	
-		}catch (Exception e) {
-			LOG.error(e);	
 			
-		}finally {
-			request.getRequestDispatcher("privado/objetivos.jsp").forward(request, response);
-		}	
+		
+		
 	}
 	
 

@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class Objetivos {
+public class Objetivo {
 
 	private Long id_agente;
 	private Date fecha;
@@ -16,7 +16,7 @@ public class Objetivos {
 	private int num_multas ;  
 	private float importe;
 	
-	public Objetivos() {
+	public Objetivo() {
 		super();
 		this.id_agente = -1L;
 		this.fecha = null;
@@ -27,7 +27,7 @@ public class Objetivos {
 
 	
 	
-	public Objetivos(Long id_agente, Date fecha, Time hora, int num_multas, float importe) {
+	public Objetivo(Long id_agente, Date fecha, Time hora, int num_multas, float importe) {
 		this();
 		setId_agente(id_agente);
 		setFecha(fecha);
