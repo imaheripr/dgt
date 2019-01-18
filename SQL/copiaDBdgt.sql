@@ -128,7 +128,7 @@ CREATE TABLE `multa` (
 
 LOCK TABLES `multa` WRITE;
 /*!40000 ALTER TABLE `multa` DISABLE KEYS */;
-INSERT INTO `multa` VALUES (1,2,3,200,'por feo','2019-01-07 10:38:42','2019-01-11 09:30:15',NULL),(2,4,1,500,'exceso velocidad 240km/h','2019-01-07 10:39:23','2019-01-11 09:30:15',NULL),(3,1,2,700,'empinar codo 8.0','2018-01-07 10:39:42','2019-01-11 09:30:15',NULL),(4,1,4,700,'empinar codo 8.0','2019-01-07 10:39:42','2019-01-11 09:30:15',NULL),(5,1,1,500,'conduccion temeraria','2019-01-05 10:39:42','2019-01-11 09:30:15',NULL),(6,4,4,400,'por correr','2019-01-02 10:39:42','2019-01-11 09:30:15','2019-01-17 11:54:36'),(7,1,4,2134,'minimo 10 caracterdsgdsfges','2019-01-10 12:14:24','2019-01-11 09:30:15','2019-01-17 12:24:20'),(8,1,4,950,'Conducción temeraria','2019-01-11 10:03:09','2019-01-17 11:36:41','2019-01-17 12:23:57'),(9,1,4,222,'sdfsafsdafasfdsd','2019-01-15 08:41:15','2019-01-17 11:39:48','2019-01-17 12:15:48'),(10,1,4,20.2312,'Concepto largo para prueba porque esto se corta en version movil TODO','2019-01-16 09:01:40','2019-01-16 09:01:40','2019-01-17 11:56:41'),(11,1,4,25.25,'concepto','2019-01-16 09:58:55','2019-01-17 12:24:34',NULL),(12,4,4,222,'asdfsadfasdfasdasdfsadfsadf','2019-01-16 10:26:27','2019-01-17 12:24:37',NULL),(13,4,4,33,'decvcvcvcvcvcbvnvbnvbnvbn','2019-01-16 11:50:56','2019-01-17 12:24:31',NULL),(16,4,4,2134,'prueba listar para comparar con activar','2019-01-17 11:38:47','2019-01-17 12:31:28',NULL);
+INSERT INTO `multa` VALUES (1,2,3,200,'por feo','2019-01-07 10:38:42','2019-01-11 09:30:15',NULL),(2,4,1,500,'exceso velocidad 240km/h','2019-01-07 10:39:23','2019-01-11 09:30:15',NULL),(3,1,2,700,'empinar codo 8.0','2018-01-07 10:39:42','2019-01-11 09:30:15',NULL),(4,1,4,700,'empinar codo 8.0','2019-01-07 10:39:42','2019-01-11 09:30:15',NULL),(5,1,1,500,'conduccion temeraria','2019-01-05 10:39:42','2019-01-11 09:30:15',NULL),(6,4,4,400,'por correr','2019-01-02 10:39:42','2019-01-11 09:30:15','2019-01-17 11:54:36'),(7,1,4,2134,'minimo 10 caracterdsgdsfges','2019-01-10 12:14:24','2019-01-11 09:30:15','2019-01-17 12:24:20'),(8,1,4,950,'Conducción temeraria','2019-01-11 10:03:09','2019-01-17 11:36:41','2019-01-17 12:23:57'),(9,1,4,222,'sdfsafsdafasfdsd','2019-01-15 08:41:15','2019-01-17 11:39:48','2019-01-17 12:15:48'),(10,1,4,20.2312,'Concepto largo para prueba porque esto se corta en version movil TODO','2019-01-16 09:01:40','2019-01-16 09:01:40','2019-01-17 11:56:41'),(11,1,4,25.25,'concepto','2019-01-16 09:58:55','2019-01-17 12:24:34',NULL),(12,4,4,222,'asdfsadfasdfasdasdfsadfsadf','2019-01-16 10:26:27','2019-01-17 12:24:37',NULL),(13,4,4,33,'decvcvcvcvcvcbvnvbnvbnvbn','2019-01-16 11:50:56','2019-01-17 12:24:31',NULL),(16,4,4,2134,'prueba listar para comparar con activar','2019-01-17 11:38:47','2019-01-17 12:49:52',NULL);
 /*!40000 ALTER TABLE `multa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,6 +319,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `multa_objetivos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `multa_objetivos`()
+BEGIN
+SELECT * FROM dgt.v_objetivos;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `multa_update` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -373,4 +392,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-17 12:32:14
+-- Dump completed on 2019-01-18  9:03:42

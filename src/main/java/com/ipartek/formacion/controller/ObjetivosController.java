@@ -50,8 +50,6 @@ public class ObjetivosController extends HttpServlet {
 			Long id = Long.parseLong(id_agente);
 			Multa m = new Multa();
 			m.setId(id);		
-		
-			
 
 			multaDAO.objetivos(m);
 			request.setAttribute("multa", m);
