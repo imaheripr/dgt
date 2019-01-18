@@ -12,15 +12,7 @@
 	</div>
 </c:if>
 
- <form>
-<label for="anio">Selecciona el año</label>
- <select>
- <c:forEach items="${multa}" var="m">
-  <option value="${m}">${m}</option>
-</c:forEach>
-</select> 
-<button>Seleccionar</button>
-</form>
+
 
 
 <ul>
@@ -35,6 +27,15 @@
 
  <hr>
  <h5>Historico </h5>
+  <form>
+<label for="anio">Selecciona el año</label>
+ <select>
+ <c:forEach items="${multa}" var="m">
+  <option value="${m}">${m}</option>
+</c:forEach>
+</select> 
+<button>Seleccionar</button>
+</form>
  <c:forEach items= "${historico }" var="h">
 <ul>
 <li>MES:<fmt:formatDate pattern = "MMMM" value = "${h.fecha }" /></li>
