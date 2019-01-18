@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
@@ -39,7 +40,7 @@ public class ObjetivoDAO {
 	"SELECT id_agente, fecha ,  SUM(numero_multas) AS 'numero_multas', SUM(importe) AS 'importe' FROM v_objetivos WHERE id_agente= ?  AND anyo=YEAR(now());" ;
 	
 	private static final String SQL_HISTORICO=
-	"SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente= ?  AND anyo= ?;";
+	"SELECT id_agente, fecha , numero_multas, importe FROM v_objetivos WHERE id_agente= ?  AND anyo=2018;";
 	
 //	SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente=4 AND mes = MONTH(now()) AND anyo=YEAR(now());
 //	SELECT SUM(importe) AS 'importe', SUM(numero_multas) AS 'numero_multas' FROM v_objetivos WHERE id_agente=4  AND anyo=2018;
@@ -90,6 +91,31 @@ public class ObjetivoDAO {
 		return o;
 	}
 	
+	
+			
+	public ArrayList<Objetivo> historico(Long id_agente) {
+		String sql = SQL_HISTORICO;
+		ArrayList<Objetivo> objetivos = new ArrayList<Objetivo>();
+		
+		Objetivo o = null;
+		try (Connection conn = ConnectionManager.getConnection(); 
+				PreparedStatement pst = conn.prepareStatement(sql);) {
+			pst.setLong(1, id_agente);
+			try (ResultSet rs = pst.executeQuery()) {
+				while (rs.next()) {
+					o = new Objetivo();
+					o = rowMapper(rs);
+					objetivos.add(o);
+					
+				}
+			}
+
+		} catch (Exception e) {
+			LOG.fatal("objetivoMesActual:---> " + e);
+		}
+		LOG.debug("objetivoMesActual OK");
+		return objetivos;
+	}
 	
 	
 }

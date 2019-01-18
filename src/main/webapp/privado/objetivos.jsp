@@ -12,6 +12,17 @@
 	</div>
 </c:if>
 
+ <form>
+<label for="anio">Selecciona el año</label>
+ <select>
+ <c:forEach items="${multa}" var="m">
+  <option value="${m}">${m}</option>
+</c:forEach>
+</select> 
+<button>Seleccionar</button>
+</form>
+
+
 <ul>
 <li>Mes de  <fmt:formatDate pattern = "MMMM" value = "${objetivo.fecha }" />: ${objetivo.importe}/1000 </li>
 <li>Numero de multas ${objetivo.num_multas }</li>
@@ -23,17 +34,16 @@
 </ul>
 
  <hr>
- <h5>Historico</h5>
- ${objetivo }
- <form>
-<label for="anio">Selecciona el año</label>
- <select>
- <c:forEach items="${multa}" var="m">
-  <option value="${m}">${m}</option>
-</c:forEach>
-</select> 
-<button>Seleccionar</button>
-</form>
+ <h5>Historico </h5>
+ <c:forEach items= "${historico }" var="h">
+<ul>
+<li>MES:<fmt:formatDate pattern = "MMMM" value = "${h.fecha }" /></li>
+<li>${h.importe }</li>
+<li>${h.num_multas }</li>
+</ul>
+ </c:forEach>
+ 
+
 
 
  

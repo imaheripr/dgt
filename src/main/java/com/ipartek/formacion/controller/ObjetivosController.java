@@ -31,6 +31,7 @@ public class ObjetivosController extends HttpServlet {
 		private ObjetivoDAO objetivoDAO = null;
 		private Objetivo objetivo = null;
 		private Objetivo objetivo2 = null;
+		private ArrayList<Objetivo> historico = null;
 		@Override
 	    public void init(ServletConfig config) throws ServletException {    
 	    	super.init(config);
@@ -55,7 +56,9 @@ public class ObjetivosController extends HttpServlet {
 		
 		objetivo2 = objetivoDAO.objetivoActual(id,2); 
 		request.setAttribute("objetivo2", objetivo2);	
-													// si el objeto coche contiene matricula
+		
+		historico = objetivoDAO.historico(id); 
+		request.setAttribute("historico", historico);	
 		
 		request.getRequestDispatcher("objetivos.jsp").forward(request, response);
 			
