@@ -12,7 +12,7 @@ public class Objetivo {
 
 	private Long id_agente;
 	private Date fecha;
-	private Time hora;
+
 	private int num_multas ;  
 	private float importe;
 	
@@ -20,18 +20,17 @@ public class Objetivo {
 		super();
 		this.id_agente = -1L;
 		this.fecha = null;
-		this.hora = null;
+
 		this.num_multas = -1;
 		this.importe = (float) 1;
 	}
 
 	
 	
-	public Objetivo(Long id_agente, Date fecha, Time hora, int num_multas, float importe) {
+	public Objetivo(Long id_agente, Date fecha, int num_multas, float importe) {
 		this();
 		setId_agente(id_agente);
 		setFecha(fecha);
-		setHora(hora);
 		setNum_multas(num_multas);
 		setImporte(importe);
 	}
@@ -62,15 +61,6 @@ public class Objetivo {
 
 
 
-	public Time getHora() {
-		return hora;
-	}
-
-
-
-	public void setHora(Time hora) {
-		this.hora = hora;
-	}
 
 
 
@@ -100,7 +90,7 @@ public class Objetivo {
 
 	@Override
 	public String toString() {
-		return "Objetivos [id_agente=" + id_agente + ", fecha=" + fecha + ", hora=" + hora + ", num_multas="
+		return "Objetivos [id_agente=" + id_agente + ", fecha=" + fecha + ", num_multas="
 				+ num_multas + ", importe=" + importe + "]";
 	}
 
