@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.ipartek.formacion.pojos.Agente;
 import com.ipartek.formacion.pojos.Objetivo;
 
 public class ObjetivoDAO {
@@ -39,11 +38,15 @@ public class ObjetivoDAO {
 	private static final String SQL_ANIO_ACTUAL=
 	"SELECT id_agente, fecha ,  SUM(numero_multas) AS 'numero_multas', SUM(importe) AS 'importe' FROM v_objetivos WHERE id_agente= ?  AND anyo=YEAR(now());" ;
 	
-	private static final String SQL_HISTORICO=
-	"SELECT id_agente, fecha , numero_multas, importe FROM v_objetivos WHERE id_agente= ?  AND anyo=2018;";
+	private static final String SQL_HISTORICO_ACTUAL=
+	"SELECT id_agente, fecha , numero_multas, importe FROM v_objetivos WHERE id_agente= ?   AND anyo=YEAR(now());";
+	
+	private static final String SQL_HISTORICO_SELECT=
+			"SELECT id_agente, fecha , numero_multas, importe FROM v_objetivos WHERE id_agente= ?   AND anyo= ? order by fecha asc;";
+			
 	
 	private static final String SQL_SELECT_ANIO=
-	"SELECT DISTINCT fecha from v_objetivos WHERE id_agente= ?;";
+	"SELECT DISTINCT anyo from v_objetivos WHERE id_agente= ? order by anyo desc;";
 	
 //	SELECT id_agente, anyo, mes, numero_multas, importe FROM v_objetivos WHERE id_agente=4 AND mes = MONTH(now()) AND anyo=YEAR(now());
 //	SELECT SUM(importe) AS 'importe', SUM(numero_multas) AS 'numero_multas' FROM v_objetivos WHERE id_agente=4  AND anyo=2018;
@@ -65,18 +68,17 @@ public class ObjetivoDAO {
 		}
 	
 	
-	public ArrayList<Objetivo> selectAnyo(Long id_agente) {
+	public ArrayList<Integer> selectAnyo(Long id_agente) {
 		String sql = SQL_SELECT_ANIO;
-		Objetivo o = null;
-		ArrayList<Objetivo> objetivos = new ArrayList<Objetivo>();
+		Integer i = null;
+		ArrayList<Integer> anios = new ArrayList<Integer>();
 		try (Connection conn = ConnectionManager.getConnection(); 
 				PreparedStatement pst = conn.prepareStatement(sql);) {
 			pst.setLong(1, id_agente);
 			try (ResultSet rs = pst.executeQuery()) {
 				while (rs.next()) {
-					o = new Objetivo();
-					o.setFecha(rs.getDate("fecha"));
-					objetivos.add(o);
+					i =rs.getInt("anyo");
+					anios.add(i);
 					
 				}
 			}
@@ -85,7 +87,7 @@ public class ObjetivoDAO {
 			LOG.fatal("selecAnyo:---> " + e);
 		}
 		LOG.debug("selecAnyo OK");
-		return objetivos;
+		return anios;
 	}
 	
 	public Objetivo objetivoActual(Long id_agente, Integer i) {
@@ -111,22 +113,32 @@ public class ObjetivoDAO {
 			}
 
 		} catch (Exception e) {
-			LOG.fatal("objetivoMesActual:---> " + e);
+			LOG.fatal("objetivoActual:---> " + e);
 		}
-		LOG.debug("objetivoMesActual OK");
+		LOG.debug("objetivoActual OK");
 		return o;
 	}
 	
 	
 			
-	public ArrayList<Objetivo> historico(Long id_agente) {
-		String sql = SQL_HISTORICO;
+	public ArrayList<Objetivo> historico(Long id_agente, Integer a) {
+		String sql;
+		if(a!=0) {
+			sql = SQL_HISTORICO_SELECT;
+		}else {
+		sql = SQL_HISTORICO_ACTUAL;
+		}
 		ArrayList<Objetivo> objetivos = new ArrayList<Objetivo>();
-		
 		Objetivo o = null;
 		try (Connection conn = ConnectionManager.getConnection(); 
 				PreparedStatement pst = conn.prepareStatement(sql);) {
-			pst.setLong(1, id_agente);
+			if(a!=0) {
+				pst.setLong(1, id_agente);
+				pst.setInt(2, a);
+			}else {
+				pst.setLong(1, id_agente);
+			}
+			
 			try (ResultSet rs = pst.executeQuery()) {
 				while (rs.next()) {
 					o = new Objetivo();
@@ -137,9 +149,9 @@ public class ObjetivoDAO {
 			}
 
 		} catch (Exception e) {
-			LOG.fatal("objetivoMesActual:---> " + e);
+			LOG.fatal("historico:---> " + e);
 		}
-		LOG.debug("objetivoMesActual OK");
+		LOG.debug("historico OK");
 		return objetivos;
 	}
 	

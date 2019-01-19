@@ -1,8 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../includes/cabecera.jsp" %> 	
 
 <main>
 <section class="container-fluid mt-5 ">
-
 <c:if test = "${mensaje!=null}">
 	<div class="alert alert-info alert-dismissible fade show" role="alert">
 	  <strong> ${mensaje }</strong>
@@ -12,45 +12,69 @@
 	</div>
 </c:if>
 
+<div class="card-deck mb-3 text-center">
+<div class="card mb-4 box-shadow">
+<div class="card-header">
+<h4 class="my-0 font-weight-normal">Mes de  <fmt:formatDate pattern = "MMMM" value = "${objetivo.fecha }" /></h4>
+</div>
+<div class="card-body">
+<h1 class="card-title pricing-card-title">${objetivo.importe}€ <small class="text-muted">/1000</small></h1>
+</div>
+</div>    
+<div class="card mb-4 box-shadow">
+<div class="card-header">
+<h4 class="my-0 font-weight-normal">Año <fmt:formatDate pattern = "yyyy" value = "${objetivo2.fecha }" /></h4>
+</div>
+<div class="card-body">
+<h1 class="card-title pricing-card-title">${objetivo2.importe}€ <small class="text-muted">/12000</small></h1>
+</div>
+</div>      
+</div>
 
 
 
-<ul>
-<li>Mes de  <fmt:formatDate pattern = "MMMM" value = "${objetivo.fecha }" />: ${objetivo.importe}/1000 </li>
-<li>Numero de multas ${objetivo.num_multas }</li>
-</ul>
 
-<ul>
-<li>A�o <fmt:formatDate pattern = "yyyy" value = "${objetivo2.fecha }" />: ${objetivo2.importe}/1000 </li>
-<li>Numero de multas ${objetivo2.num_multas }</li>
-</ul>
+
+
 
  <hr>
  <h5>Historico </h5>
-  <form>
-<label for="anio">Selecciona el a�o</label>
-
-
- <select>
  
- <c:forEach items="${anyo}" var="a">
-  <option value="asdf"><fmt:formatDate pattern = "yyyy" value = "${a.fecha }" /></option>
+<form>
+<select class="form-control" onchange="cambiaranio(this)">
+<c:forEach items="${anios}" var="anio">
+<option value="${anio }" <c:if test="${anio == a }">selected</c:if> >${anio }</option>
 </c:forEach>
-
 </select> 
-<button>Seleccionar</button>
 </form>
+<script>
+function cambiaranio(a){
+console.log("Cambiando año "+a.value);
+location.href="privado/objetivos?id_agente="+${sessionScope.agente_logeado.id}+"&a="+a.value;
+}
+</script>
 
-
- <c:forEach items= "${historico }" var="h">
-<ul>
-<li>MES:<fmt:formatDate pattern = "MMMM" value = "${h.fecha }" /></li>
-<li>${h.importe }</li>
-<li>${h.num_multas }</li>
-</ul>
- </c:forEach>
  
-
+<table class="table"> 
+        <thead>
+            <tr>
+                <th>Mes</th> 
+                <th>Recaudado</th>           
+                <th>Total de Multas</th>
+                                                
+            </tr>
+        </thead>
+        <tbody>
+	         <c:forEach items="${historico }" var="h">	                    
+	            <tr>
+	            	<td><fmt:formatDate pattern = "MMMM" value = "${h.fecha }" /></td>
+	           		<td>${h.importe }</<td>
+					<td>${h.num_multas }</<td> 
+	            </tr>                                                   
+	        </c:forEach>                  
+        </tbody>      
+   
+    </table> 
 
 
  

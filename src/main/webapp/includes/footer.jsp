@@ -34,7 +34,7 @@
        let label;
        let concepto; //textarea
        
-       const MAX_CARARCTERES = 250; // TODO cambiar por 250 despues de las pruebas
+       const MAX_CARARCTERES = 250; 
        const MIN_CARARCTERES = 10;
        
        window.addEventListener('load', function() {

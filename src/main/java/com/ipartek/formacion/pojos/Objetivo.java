@@ -1,12 +1,6 @@
 package com.ipartek.formacion.pojos;
 
 import java.sql.Date;
-import java.sql.Time;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 public class Objetivo {
 

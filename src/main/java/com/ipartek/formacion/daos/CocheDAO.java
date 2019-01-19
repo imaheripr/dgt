@@ -1,13 +1,12 @@
 package com.ipartek.formacion.daos;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import org.apache.log4j.Logger;
 
 import com.ipartek.formacion.pojos.Coche;
-import java.sql.CallableStatement;
 
 public class CocheDAO {
 	

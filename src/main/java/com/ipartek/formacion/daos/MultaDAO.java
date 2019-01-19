@@ -122,7 +122,7 @@ public class MultaDAO {
 		boolean resul = false;
 		String sql  = SQL_OBJETIVOS;
 		try (Connection conn = ConnectionManager.getConnection(); 
-				PreparedStatement pst = conn.prepareStatement(SQL_OBJETIVOS);) {
+				PreparedStatement pst = conn.prepareStatement(sql);) {
 
 			// parametros de entrada
 			pst.setLong(1, m.getId());

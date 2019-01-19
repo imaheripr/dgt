@@ -12,12 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.ipartek.formacion.daos.AgenteDAO;
-import com.ipartek.formacion.daos.CocheDAO;
-import com.ipartek.formacion.daos.MultaDAO;
 import com.ipartek.formacion.daos.ObjetivoDAO;
-import com.ipartek.formacion.pojos.Agente;
-import com.ipartek.formacion.pojos.Multa;
 import com.ipartek.formacion.pojos.Objetivo;
 
 
@@ -31,7 +26,7 @@ public class ObjetivosController extends HttpServlet {
 		private ObjetivoDAO objetivoDAO = null;
 		private Objetivo objetivo = null;
 		private Objetivo objetivo2 = null;
-		private ArrayList<Objetivo> anyo = null;
+		private ArrayList<Integer> anios = null;
 		private ArrayList<Objetivo> historico = null;
 		@Override
 	    public void init(ServletConfig config) throws ServletException {    
@@ -49,6 +44,8 @@ public class ObjetivosController extends HttpServlet {
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String id_agente = request.getParameter("id_agente");
+		String anyo = request.getParameter("a");
+		Integer a;
 		
 		Long id = Long.parseLong(id_agente);
 		
@@ -58,12 +55,23 @@ public class ObjetivosController extends HttpServlet {
 		objetivo2 = objetivoDAO.objetivoActual(id,2); 
 		request.setAttribute("objetivo2", objetivo2);	
 		
-		historico = objetivoDAO.historico(id); 
-		request.setAttribute("historico", historico);	
+		try {
+			  a = Integer.parseInt(anyo);
+			  historico = objetivoDAO.historico(id,a); 
+			request.setAttribute("historico", historico);	
+			request.setAttribute("a", a);	
+			LOG.debug("historico año: "+a);
+			}catch(Exception e) {
+				a=null;
+				historico = objetivoDAO.historico(id,0); 
+				request.setAttribute("historico", historico);	
+				LOG.debug("historico año actual");
+			}
 		
-	
-		anyo = objetivoDAO.selectAnyo(id); 
-		request.setAttribute("anyo", anyo);	
+		
+		
+		anios = objetivoDAO.selectAnyo(id); 
+		request.setAttribute("anios", anios);	
 		
 		request.getRequestDispatcher("objetivos.jsp").forward(request, response);
 			
