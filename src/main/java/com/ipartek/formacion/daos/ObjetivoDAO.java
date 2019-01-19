@@ -62,7 +62,7 @@ public class ObjetivoDAO {
 			registro.setId_agente(rs.getLong("id_agente"));
 			registro.setFecha(rs.getDate("fecha"));
 			registro.setNum_multas(rs.getInt("numero_multas"));
-			registro.setImporte(rs.getInt("importe"));	
+			registro.setImporte(rs.getFloat("importe"));	
 
 			return registro;
 		}

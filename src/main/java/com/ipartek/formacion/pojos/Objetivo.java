@@ -8,7 +8,7 @@ public class Objetivo {
 	private Date fecha;
 
 	private int num_multas ;  
-	private float importe;
+	private Float importe;
 	
 	public Objetivo() {
 		super();
@@ -21,7 +21,7 @@ public class Objetivo {
 
 	
 	
-	public Objetivo(Long id_agente, Date fecha, int num_multas, float importe) {
+	public Objetivo(Long id_agente, Date fecha, int num_multas, Float importe) {
 		this();
 		setId_agente(id_agente);
 		setFecha(fecha);
@@ -76,7 +76,7 @@ public class Objetivo {
 
 
 
-	public void setImporte(float importe) {
+	public void setImporte(Float importe) {
 		this.importe = importe;
 	}
 

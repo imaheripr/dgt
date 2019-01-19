@@ -33,7 +33,7 @@
 		      <div class="input-group-prepend">
 		        <span class="input-group-text"><i class="fas fa-address-book"></i></span>
 		      </div>
-		     	<input type="text" id="placa" name=placa class="form-control"  value= "${not empty placa ? placa : '444'}" >
+		     	<input type="text" id="placa" name=placa class="form-control"  value= "${not empty placa ? placa : '222'}" >
 		    </div>
 		  </div> 
 	  
