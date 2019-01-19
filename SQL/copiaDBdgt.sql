@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `dgt` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `dgt`;
--- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dgt
 -- ------------------------------------------------------
--- Server version	8.0.12
+-- Server version	8.0.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -119,7 +119,7 @@ CREATE TABLE `multa` (
   KEY `fk_agente_idx` (`id_agente`),
   CONSTRAINT `fk_agente_has_multa` FOREIGN KEY (`id_agente`) REFERENCES `agente` (`id`),
   CONSTRAINT `fk_coche_has_multa` FOREIGN KEY (`id_coche`) REFERENCES `coche` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +128,7 @@ CREATE TABLE `multa` (
 
 LOCK TABLES `multa` WRITE;
 /*!40000 ALTER TABLE `multa` DISABLE KEYS */;
-INSERT INTO `multa` VALUES (1,2,3,200,'por feo','2019-01-07 10:38:42','2019-01-11 09:30:15',NULL),(2,4,1,500,'exceso velocidad 240km/h','2019-01-07 10:39:23','2019-01-11 09:30:15',NULL),(3,1,4,700,'empinar codo 8.0','2018-02-07 10:39:42','2019-01-11 09:30:15',NULL),(4,1,4,700,'empinar codo 8.0','2018-01-04 10:39:42','2019-01-11 09:30:15',NULL),(5,1,1,500,'conduccion temeraria','2019-01-05 10:39:42','2019-01-11 09:30:15',NULL),(6,4,4,400,'por correr','2019-01-06 10:39:42','2019-01-11 09:30:15',NULL),(7,1,4,2134,'minimo 10 caracterdsgdsfges','2019-01-10 12:14:24','2019-01-11 09:30:15',NULL),(8,1,4,950,'Conducción temeraria','2019-01-11 10:03:09','2019-01-11 10:03:09','2019-01-16 10:39:29'),(9,1,4,222,'sdfsafsdafasfdsd','2019-01-15 08:41:15','2019-01-15 08:41:15','2019-01-15 08:41:55'),(10,1,4,20.2312,'Concepto largo para prueba porque esto se corta en version movil TODO','2019-01-16 09:01:40','2019-01-16 09:01:40',NULL),(11,1,4,25.25,'concepto','2019-01-16 09:58:55','2019-01-16 09:58:55',NULL),(12,4,4,222,'asdfsadfasdfasdasdfsadfsadf','2019-01-16 10:26:27','2019-01-18 09:08:57',NULL),(13,4,4,33,'decvcvcvcvcvcbvnvbnvbnvbn','2019-01-16 11:50:56','2019-01-16 11:50:56',NULL);
+INSERT INTO `multa` VALUES (15,1,2,500,'arturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2019-01-01 00:10:50','2019-01-01 00:10:50','2019-01-01 00:10:50'),(16,1,2,200,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-12-19 01:11:37','2018-12-19 01:11:37',NULL),(17,1,2,200,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-11-19 02:14:17','2018-11-19 02:14:17',NULL),(18,1,2,300,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-06-19 03:14:17','2018-06-19 03:14:17',NULL),(19,1,2,400,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2017-01-19 04:14:17','2017-01-19 04:14:17',NULL),(20,2,2,100,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2016-01-19 05:14:17','2016-01-19 05:14:17',NULL),(21,2,2,200,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-03-19 06:14:17','2018-03-19 06:14:17','2018-03-23 06:14:17'),(22,2,2,300,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2019-01-11 07:14:17','2019-01-11 07:14:17',NULL),(23,2,2,400,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-06-19 18:14:17','2018-06-19 18:14:17',NULL),(24,3,2,50,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-06-19 18:14:17','2018-06-19 18:14:17','2018-09-19 18:14:17'),(25,3,2,100,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-06-19 18:14:17','2018-06-19 18:14:17',NULL),(26,3,2,150,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-06-19 18:14:17','2018-06-19 18:14:17',NULL),(27,3,2,200,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-06-19 18:14:17','2018-06-19 18:14:17',NULL),(28,4,2,25,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-06-19 18:14:17','2018-06-19 18:14:17',NULL),(29,4,2,100,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2018-06-19 18:14:17','2018-06-19 18:14:17',NULL),(30,4,2,300,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2016-12-19 19:14:17','2016-12-19 19:14:17',NULL),(31,4,2,650,'Parturient habitant maecenas sodales vulputate ornare torquent sem magnis massa placerat, egestas euismod scelerisque nam sociosqu enim montes molestie in.','2019-01-06 22:14:17','2019-01-06 22:14:17','2019-01-08 22:14:17');
 /*!40000 ALTER TABLE `multa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,10 +148,6 @@ SET character_set_client = utf8mb4;
  1 AS `numero_multas`,
  1 AS `importe`*/;
 SET character_set_client = @saved_cs_client;
-
---
--- Dumping events for database 'dgt'
---
 
 --
 -- Dumping routines for database 'dgt'
@@ -367,4 +363,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-18 11:38:50
+-- Dump completed on 2019-01-19 10:27:47
