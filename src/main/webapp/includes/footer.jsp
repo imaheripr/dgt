@@ -23,9 +23,12 @@
     		}
     	);
 	});
-	
+ 	function cambiaranio(a){
+ 		console.log("Cambiando año "+a.value);
+ 		location.href="privado/objetivos?id_agente="+${sessionScope.agente_logeado.id}+"&a="+a.value;
+ 		}
 	</script>
-	
+
 <!-- contador caracteres -->	
    
      
