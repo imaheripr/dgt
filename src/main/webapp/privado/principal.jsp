@@ -12,8 +12,8 @@
 </div>
 
 </c:if>
-<a class="btn btn-lg btn-info btn-block mb-3" href="privado/listar?operacion=0&id=${sessionScope.agente_logeado.id}" role="button">LISTAR ACTIVAS</a>
-<a class="btn btn-lg btn-info btn-block mb-3" href="privado/listar?operacion=1&id=${sessionScope.agente_logeado.id}" role="button">LISTAR MULTAS ANULADAS</a>
+<a class="btn btn-lg btn-info btn-block mb-3" href="privado/listar?operacion=0&id=${sessionScope.agente_logeado.id}" role="button">MULTAS ACTIVAS</a>
+<a class="btn btn-lg btn-info btn-block mb-3" href="privado/listar?operacion=1&id=${sessionScope.agente_logeado.id}" role="button">MULTAS ANULADAS</a>
 <a class="btn btn-lg btn-info btn-block  mb-3" href="privado/buscar" role="button">NUEVA MULTA</a>
 <a class="btn btn-lg btn-info btn-block  mb-3" href="privado/objetivos?id_agente=${sessionScope.agente_logeado.id}" role="button">OBJETIVOS</a>
 </section>

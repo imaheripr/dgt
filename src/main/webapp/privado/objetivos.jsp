@@ -16,19 +16,30 @@
 <div class="card-deck mb-3 text-center">
 <div class="card mb-4 box-shadow">
 <div class="card-header">
-<h4 class="my-0 font-weight-normal">Mes  <fmt:formatDate pattern = "MMMM" value = "${objetivo.fecha }" /></h4>
+<h4 class="my-0 font-weight-normal">Mes actual  <fmt:formatDate pattern = "MMMM" value = "${objetivo.fecha }" /></h4>
 </div>
 <div class="card-body">
-<h1 class="card-title pricing-card-title">${objetivo.importe!=null ? objetivo.importe : '0'}€ <small class="text-muted">/1000€</small></h1>
-								
+<h1 class="card-title pricing-card-title"> 
+<c:choose>
+    <c:when test="${objetivo.importe>0 }">
+    <fmt:formatNumber pattern="#,##0.00" value="${objetivo2.importe}"/>€ 
+    </c:when>
+</c:choose>	
+<small class="text-muted">/1000€</small></h1>						
 </div>
 </div>    
 <div class="card mb-4 box-shadow">
 <div class="card-header">
-<h4 class="my-0 font-weight-normal">Año <fmt:formatDate pattern = "yyyy" value = "${objetivo2.fecha }" /></h4>
+<h4 class="my-0 font-weight-normal">Año actual <fmt:formatDate pattern = "yyyy" value = "${objetivo2.fecha }" /></h4>
 </div>
 <div class="card-body">
-<h1 class="card-title pricing-card-title">${objetivo2.importe>0 ? objetivo2.importe : '0'}€ <small class="text-muted">/12000€</small></h1>
+<h1 class="card-title pricing-card-title">
+<c:choose>
+    <c:when test="${objetivo2.importe>0 }">
+    <fmt:formatNumber pattern="#,##0.00" value="${objetivo2.importe}"/>€ 
+    </c:when>
+</c:choose>
+<small class="text-muted">/12000€</small></h1>
 </div>
 </div>      
 </div>
@@ -63,7 +74,7 @@
 <c:forEach items="${historico }" var="h">	                    
  <tr>
 <td><fmt:formatDate pattern = "MMMM" value = "${h.fecha }" /></td>
-<td>${h.importe }</<td>
+<td><fmt:formatNumber pattern="#,##0.00" value="${h.importe }"/>€ </<td>
 <td>${h.num_multas }</<td> 
 </tr>                                                   
 </c:forEach>                  

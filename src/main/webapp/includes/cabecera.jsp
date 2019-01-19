@@ -25,16 +25,40 @@
 <header>
 <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
 	<a class="navbar-brand  mr-auto" href="${pageContext.request.contextPath}/privado/principal"><i class="fas fa-home fa-2x"></i></a>
+
 	
 	<ul class="navbar-nav float-right">
-       <li><a href="logout" class="badge badge-info mr-3 font-weight-normal">Logout</a></li>
-    </ul>
-	
-	<ul class="navbar-nav float-right">
-	<li><span class="badge badge-info mr-3 font-weight-normal">${sessionScope.agente_logeado.apellido}</span></li>
+	<li><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#perfil" >
+		 <i class="far fa-address-card"></i>
+		</button>
+		
 	</ul>      
 	
 </nav>
+<!-- Modal -->
+	<div class="modal fade" id="perfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Agente: ${sessionScope.agente_logeado.apellido}</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<ul class="list-unstyled mt-3 mb-4">			         	
+					<li>Numero de placa: ${sessionScope.agente_logeado.placa}</li>
+					<li>Departamento: ${sessionScope.agente_logeado.departamento}</li>				     
+					</ul>			   
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				<a href="logout" class="btn btn-info btn-block ">Cerrar Sesión </a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 </header>
 

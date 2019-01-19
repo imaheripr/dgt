@@ -176,10 +176,11 @@ public class AgenteDAO {
 						
 							while(rs.next()) { 						
 								Agente registro = new Agente();
-								registro.setId( rs.getLong("id"));
-								registro.setApellido(rs.getString("nombre"));		
-								registro.setPlaca( rs.getInt("placa"));
+								registro.setId( rs.getLong("id_agente"));
+								registro.setApellido(rs.getString("nombre_agente"));		
+								registro.setPlaca( rs.getInt("placa_agente"));
 								registro.setPassword(rs.getString("password"));		
+								registro.setDepartamento(rs.getString("nombre_dep"));	
 								return registro;								
 							}						
 					}

@@ -51,8 +51,9 @@
 <table id="example" class="table tablaOrdenable" style="width:100%"> 
         <thead>
             <tr>
-                <th>Fecha y Hora</th> 
+                <th>Fecha</th> 
                 <th>Matricula</th>           
+                <th>Hora</th>
                 <th>Importe</th>
                 <th>Concepto</th>
                 <th>Modelo</th>
@@ -63,11 +64,9 @@
         <tbody>
 	         <c:forEach items="${multas}" var="m">	        	            
 	            <tr>
-	               	<td>		     		
-				         	<fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
-				          	<fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />				     
-			     	</td>
-			     	<td>${m.coche.matricula}</td>
+	               	<td><fmt:formatDate pattern = "dd/MM/yyyy"  value = "${m.fecha}" /></td>				     
+			     	<td>${m.coche.matricula}</td>		     		
+				    <td><fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" /></td>
 			     	<td >${m.importe}</td>	
 				   	<td>${m.concepto}</td>               		
 					<td>${m.coche.modelo}</td> 
@@ -82,8 +81,9 @@
         </tbody>      
         <tfoot>
             <tr>
-                <th>Fecha y Hora</th> 
+                <th>Fecha</th> 
                 <th>Matricula</th>            
+                <th>Hora</th>
                 <th>Importe</th>
                 <th>Concepto</th>               
                 <th>Modelo</th>

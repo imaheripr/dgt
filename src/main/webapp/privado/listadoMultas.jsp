@@ -30,7 +30,7 @@
 					<ul class="list-unstyled mt-3 mb-4">			         	
 					<li>Fecha: ${m.fecha}</li>
 					<li>Matricula: ${m.coche.matricula}</li>	
-					<li>Importe: ${m.importe} €</li>
+					<li>Importe: <fmt:formatNumber pattern="#,##0.00" value="${m.importe}"/>€</li>
 					<li>Concepto: ${m.concepto}</li>
 							     
 					</ul>			   
@@ -49,8 +49,9 @@
 <table id="example" class="table tablaOrdenable" style="width:100%"> 
         <thead>
             <tr>
-                <th>Fecha y Hora</th> 
-                <th>Matricula</th>           
+                <th>Fecha</th> 
+                <th>Matricula</th>     
+                 <th>Hora</th>      
                 <th>Importe</th>
                 <th>Concepto</th>
                 <th>Modelo</th>
@@ -61,12 +62,10 @@
         <tbody>
 	         <c:forEach items="${multas}" var="m">	                    
 	            <tr>
-	               	<td>		     		
-				         	<fmt:formatDate pattern = "dd/MM/yy"  value = "${m.fecha}" />
-				          	<fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />				     
-			     	</td>
+	               	<td><fmt:formatDate pattern = "dd/MM/yyyy"  value = "${m.fecha}" /></td>
 			     	<td>${m.coche.matricula}</td>
-			     	<td >${m.importe}</td>	
+			     	 <td><fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" />	</td>	
+			     	<td ><fmt:formatNumber pattern="#,##0.00" value="${m.importe}"/></td>	
 				   	<td>${m.concepto}</td>               		
 					<td>${m.coche.modelo}</td> 
 					<td>${m.coche.km}</td>
@@ -81,7 +80,8 @@
         <tfoot>
             <tr>
                 <th>Fecha y Hora</th> 
-                <th>Matricula</th>            
+                <th>Matricula</th>  
+                  <th>Hora</th>          
                 <th>Importe</th>
                 <th>Concepto</th>               
                 <th>Modelo</th>

@@ -15,24 +15,36 @@ public class Agente {
 	@NotEmpty
 	private String password;
 
+	private String departamento;
 	
 	
-	
+	public String getDepartamento() {
+		return departamento;
+	}
+
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+
 	public Agente() {
 		super();
 		this.id = -1L;
 		this.apellido ="" ;
 		this.placa = -1;
 		this.password="Pa$$w0rd";
+		this.departamento="departamento";
 	}
 
 
-	public Agente(Long id, String apellido, Integer placa, Integer id_departamento, String password) {
+	public Agente(Long id, String apellido, Integer placa, Integer id_departamento, String password, String departamento) {
 		this();
 		setId(id);
 		setApellido(apellido);
 		setPlaca(placa);
 		setPassword(password);
+		setDepartamento(departamento);
 	}
 
 	public Long getId() {
