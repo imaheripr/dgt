@@ -7,11 +7,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Acceso Agente</title>
-
+	 <title>Acceso Agente</title>
+	
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -33,7 +32,7 @@
 		      <div class="input-group-prepend">
 		        <span class="input-group-text"><i class="fas fa-address-book"></i></span>
 		      </div>
-		     	<input type="text" id="placa" name=placa class="form-control"  value= "${not empty placa ? placa : '222'}" >
+		     	<input type="text" id="placa" name=placa class="form-control" placeholder="Nº Placa" value= "${not empty placa ? placa : '222'}" >
 		    </div>
 		  </div> 
 	  

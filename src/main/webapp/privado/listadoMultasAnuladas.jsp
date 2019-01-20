@@ -64,7 +64,7 @@
         <tbody>
 	         <c:forEach items="${multas}" var="m">	        	            
 	            <tr>
-	               	<td><fmt:formatDate pattern = "dd/MM/yyyy"  value = "${m.fecha}" /></td>				     
+	               	<td><fmt:formatDate pattern = "yyyy/MM/dd"  value = "${m.fecha}" /></td>				     
 			     	<td>${m.coche.matricula}</td>		     		
 				    <td><fmt:formatDate pattern = "HH:mm"  value = "${m.hora}" /></td>
 			     	<td >${m.importe}</td>	
@@ -79,18 +79,7 @@
 	            </tr>	                                                   
 	        </c:forEach>                  
         </tbody>      
-        <tfoot>
-            <tr>
-                <th>Fecha</th> 
-                <th>Matricula</th>            
-                <th>Hora</th>
-                <th>Importe</th>
-                <th>Concepto</th>               
-                <th>Modelo</th>
-                <th>Kilometro</th> 
-                <th>Activar</th>                                        
-            </tr>
-        </tfoot>        
+            
     </table>   
  </div>
 </main>				

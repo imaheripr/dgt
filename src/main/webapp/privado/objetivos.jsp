@@ -19,13 +19,10 @@
 <h4 class="my-0 font-weight-normal">Mes actual  <fmt:formatDate pattern = "MMMM" value = "${objetivo.fecha }" /></h4>
 </div>
 <div class="card-body">
-<h1 class="card-title pricing-card-title"> 
-<c:choose>
-    <c:when test="${objetivo.importe>0 }">
-    <fmt:formatNumber pattern="#,##0.00" value="${objetivo2.importe}"/>€ 
-    </c:when>
-</c:choose>	
-<small class="text-muted">/1000€</small></h1>						
+<h1 class="card-title pricing-card-title text-${estado }"> 
+   <fmt:formatNumber pattern="#,##0.00" value="${not empty objetivo.importe ? objetivo.importe : '0.0'}"/>€ 
+
+<small class="text-muted">/1.000€</small></h1>						
 </div>
 </div>    
 <div class="card mb-4 box-shadow">
@@ -33,13 +30,10 @@
 <h4 class="my-0 font-weight-normal">Año actual <fmt:formatDate pattern = "yyyy" value = "${objetivo2.fecha }" /></h4>
 </div>
 <div class="card-body">
-<h1 class="card-title pricing-card-title">
-<c:choose>
-    <c:when test="${objetivo2.importe>0 }">
+<h1 class="card-title pricing-card-title text-${estado2 }">
     <fmt:formatNumber pattern="#,##0.00" value="${objetivo2.importe}"/>€ 
-    </c:when>
-</c:choose>
-<small class="text-muted">/12000€</small></h1>
+
+<small class="text-muted">/12.000€</small></h1>
 </div>
 </div>      
 </div>
@@ -49,9 +43,12 @@
 
 
 
+
  <h5>Historico </h5>
-<c:choose>
-    <c:when test="${ not empty historico }">
+ <c:choose>
+ <c:when test="${not empty anios }">
+
+
 <form>
 <select class="form-control" onchange="cambiaranio(this)">
 <c:forEach items="${anios}" var="anio">
@@ -62,7 +59,7 @@
 
 
 
-<table class="table"> 
+<table class="table table-hover"> 
 <thead>
 <tr>
 <th>Mes</th> 
@@ -71,8 +68,25 @@
 </tr>
 </thead>
 <tbody>
-<c:forEach items="${historico }" var="h">	                    
- <tr>
+<c:forEach items="${historico }" var="h">
+
+     
+ <c:choose>
+<c:when test="${h.importe >= 1000}">
+ <c:set var = "s" scope = "session" value = "success"/>  
+  <tr class="text-<c:out value = "${s}"/>">
+</c:when>
+<c:when test="${h.importe >= 1000/2}">
+ <c:set var = "s" scope = "session" value = "warning"/>  
+  <tr class="text-<c:out value = "${s}"/>">
+</c:when>
+<c:when test="${h.importe < 1000/2}">
+ <c:set var = "s" scope = "session" value = "danger"/>  
+  <tr class="text-<c:out value = "${s}"/>">
+</c:when>
+</c:choose>	
+           
+
 <td><fmt:formatDate pattern = "MMMM" value = "${h.fecha }" /></td>
 <td><fmt:formatNumber pattern="#,##0.00" value="${h.importe }"/>€ </<td>
 <td>${h.num_multas }</<td> 
@@ -80,14 +94,12 @@
 </c:forEach>                  
 </tbody>      
 </table>  
-    </c:when>    
-    <c:otherwise>
-       <h5>NO HAY DATOS DISPONIBLES</h5>
-      <a href="privado/principal"> Volver a Inicio</a>
-    </c:otherwise>
-</c:choose>
-
-
+    
+ </c:when>
+ <c:otherwise>
+ SIN DATOS
+ </c:otherwise>
+ </c:choose>
 
 
 

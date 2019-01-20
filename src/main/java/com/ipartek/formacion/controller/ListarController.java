@@ -53,7 +53,7 @@ public class ListarController extends HttpServlet {
 		String operacion = request.getParameter("operacion"); // operacion para saber si multas activas o anuladas
 		String id = request.getParameter("id");
 		
-		try {
+		
 			Long identificador = Long.parseLong(id);	
 	        if (operacion.equals("0")) {// si recibo parametro operacion 0 listo multas activas
 				multas = agenteDAO.getMultas(identificador);
@@ -71,10 +71,7 @@ public class ListarController extends HttpServlet {
 	        	request.getRequestDispatcher("/404.jsp").forward(request, response);
 	    		
 	        }
-		}catch(Exception e) {
-			LOG.debug("Cambiado el parametro en la url");	
-			request.getRequestDispatcher("/404.jsp").forward(request, response);
-		}
+		
 	}
 	
 	// lo que me llege por doGet va a doProcess

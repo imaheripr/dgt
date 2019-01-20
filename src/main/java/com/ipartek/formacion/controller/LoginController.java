@@ -66,18 +66,6 @@ public class LoginController extends HttpServlet {
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-//		HttpSession session = request.getSession();
-//		session.setMaxInactiveInterval(60 * 60 * 24 * 365 * 10);
-//
-//		a = agenteDAO.getById(ID_AGENTE_PREDEFINIDO);
-//		session.setAttribute("agente_logeado", a);
-//
-//		// response.sendRedirect( request.getContextPath() + PRIVADO_PRINCIPAL);
-//		request.getRequestDispatcher(PRIVADO_PRINCIPAL).forward(request, response);
-//		LOG.debug("Logeado en pagina principal");
-
-		
 		// recojo parametros
 		String placa = request.getParameter("placa");
 		String pass = request.getParameter("pass");
@@ -89,11 +77,6 @@ public class LoginController extends HttpServlet {
 		boolean redirect = false;  // para redireccionar la ruta
 		Integer placaInt = 0; // para parseo 
 		
-		try {
-			placaInt = Integer.parseInt(placa);
-		} catch (Exception e) {
-			request.setAttribute("error", "Solo numeros");
-		}
 		
 		try {
 			placaInt = Integer.parseInt(placa);

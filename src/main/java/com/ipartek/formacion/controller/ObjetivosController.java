@@ -19,6 +19,8 @@ import com.ipartek.formacion.pojos.Objetivo;
 
 @WebServlet("/privado/objetivos")
 public class ObjetivosController extends HttpServlet {
+	private static final float OBJETIVO_ANUAL_12000 = 12000F;
+	private static final float OBJETIVO_MENSUAL_1000 = 1000F;
 	private static final long serialVersionUID = 1L;
 	//LOG
 		private final static Logger LOG = Logger.getLogger(ObjetivosController.class);
@@ -28,6 +30,9 @@ public class ObjetivosController extends HttpServlet {
 		private Objetivo objetivo2 = null;
 		private ArrayList<Integer> anios = null;
 		private ArrayList<Objetivo> historico = null;
+		Integer a;
+		String estado="";
+		String estado2="";
 		@Override
 	    public void init(ServletConfig config) throws ServletException {    
 	    	super.init(config);
@@ -45,37 +50,62 @@ public class ObjetivosController extends HttpServlet {
 	
 		String id_agente = request.getParameter("id_agente");
 		String anyo = request.getParameter("a");
-		Integer a;
 		
 		Long id = Long.parseLong(id_agente);
 		
 		objetivo = objetivoDAO.objetivoActual(id,1); 
+		try {
+			estado = color(objetivo.getImporte(),OBJETIVO_MENSUAL_1000);
+		}catch(Exception e) {
+			estado = color(0F,OBJETIVO_MENSUAL_1000);
+		}
+		
 		request.setAttribute("objetivo", objetivo);	
+		request.setAttribute("estado", estado);
 		
 		objetivo2 = objetivoDAO.objetivoActual(id,2); 
+		estado2 = color(objetivo2.getImporte(),OBJETIVO_ANUAL_12000);
 		request.setAttribute("objetivo2", objetivo2);	
+		request.setAttribute("estado2", estado2);
+		anios = objetivoDAO.selectAnyo(id);
+		
+		Integer maxAnio= objetivoDAO.ultimoAnio(anios);
 		
 		try {
 			  a = Integer.parseInt(anyo);
 			  historico = objetivoDAO.historico(id,a); 
+
 			request.setAttribute("historico", historico);	
 			request.setAttribute("a", a);	
 			LOG.debug("historico año: "+a);
 			}catch(Exception e) {
 				a=null;
-				historico = objetivoDAO.historico(id,0); 
+				historico = objetivoDAO.historico(id,maxAnio); 
 				request.setAttribute("historico", historico);	
 				LOG.debug("historico año actual");
 			}
 		
 		
 		
-		anios = objetivoDAO.selectAnyo(id); 
+		 
 		request.setAttribute("anios", anios);	
 		
 		request.getRequestDispatcher("objetivos.jsp").forward(request, response);
 			
 	}
+	
+	private static String color(Float importe, Float i) {
+		String resultado="";
+		if(importe>=i) {
+			resultado ="success";
+		}else if(importe>=(i/2)) {
+			resultado ="warning";
+		}else {
+			resultado ="danger";
+		}
+		return resultado;
+	}
+	
 }
 	
 	

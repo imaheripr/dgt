@@ -2,7 +2,7 @@
 
 <main>
 
-<section class="container-fluid mt-5 ">
+<section class="container-fluid mt-3 ">
 <c:if test = "${mensaje!=null}">
 <div class="alert alert-info alert-dismissible fade show" role="alert">
   <strong> ${mensaje }</strong>

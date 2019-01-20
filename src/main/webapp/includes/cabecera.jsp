@@ -6,8 +6,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>DGT ${sessionScope.agente_logeado.apellido} </title> 
+    <title>MULTOMETRO ${sessionScope.agente_logeado.apellido} </title> 
     <base href="${pageContext.request.contextPath}/">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
@@ -40,13 +42,14 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Agente: ${sessionScope.agente_logeado.apellido}</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Sesión Actual</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<ul class="list-unstyled mt-3 mb-4">			         	
+					<ul class="list-unstyled mt-3 mb-4">		
+					<li>Agente: ${sessionScope.agente_logeado.apellido}	</li>         	
 					<li>Numero de placa: ${sessionScope.agente_logeado.placa}</li>
 					<li>Departamento: ${sessionScope.agente_logeado.departamento}</li>				     
 					</ul>			   
