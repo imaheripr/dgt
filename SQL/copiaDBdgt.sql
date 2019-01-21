@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `dgt` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `dgt`;
--- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dgt
 -- ------------------------------------------------------
--- Server version	8.0.13
+-- Server version	8.0.12
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -148,6 +148,10 @@ SET character_set_client = utf8mb4;
  1 AS `numero_multas`,
  1 AS `importe`*/;
 SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping events for database 'dgt'
+--
 
 --
 -- Dumping routines for database 'dgt'
@@ -358,7 +362,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_objetivos` AS select `multa`.`id_agente` AS `id_agente`,`multa`.`fecha` AS `fecha`,year(`multa`.`fecha`) AS `anyo`,month(`multa`.`fecha`) AS `mes`,count(0) AS `numero_multas`,sum(`multa`.`importe`) AS `importe` from `multa` group by `multa`.`id_agente`,year(`multa`.`fecha`),month(`multa`.`fecha`) */;
+/*!50001 VIEW `v_objetivos` AS select `multa`.`id_agente` AS `id_agente`,`multa`.`fecha` AS `fecha`,year(`multa`.`fecha`) AS `anyo`,month(`multa`.`fecha`) AS `mes`,count(0) AS `numero_multas`,sum(`multa`.`importe`) AS `importe` from `multa` where isnull(`multa`.`fecha_baja`) group by `multa`.`id_agente`,year(`multa`.`fecha`),month(`multa`.`fecha`) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -372,4 +376,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-19 13:51:58
+-- Dump completed on 2019-01-21  8:44:58
