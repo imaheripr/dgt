@@ -1,5 +1,5 @@
 <%@ include file="../includes/cabecera.jsp" %> 	
-<main role="main" class="container mt-5">	
+<main role="main" class="container mt-3">	
 
 <div class="alert alert-info alert-dismissible fade show" role="alert">
   <strong> ${mensaje }</strong>
@@ -27,7 +27,7 @@
 	<div class="form-group">
 	<label for="concepto">Concepto  <span id="contadorLabel">(0/250)</span></label>
 	 <br>
-	<textarea name="concepto"  class="form-control" placeholder="minimo 10 caracteres maximo 150"  id="concepto" cols="30" rows="10" >${concepto!=null ? concepto : ''}</textarea>		    
+	<textarea name="concepto"  class="form-control" placeholder="minimo 10 caracteres maximo 255"  id="concepto" cols="30" rows="10" >${concepto!=null ? concepto : ''}</textarea>		    
 	</div>	
 	
 

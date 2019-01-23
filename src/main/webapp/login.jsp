@@ -32,7 +32,7 @@
 		      <div class="input-group-prepend">
 		        <span class="input-group-text"><i class="fas fa-address-book"></i></span>
 		      </div>
-		     	<input type="text" id="placa" name=placa class="form-control" placeholder="Nº Placa" value= "${not empty placa ? placa : '222'}" >
+		     	<input type="text" id="placa" name=placa class="form-control" placeholder="Nº Placa: 222" value= "${not empty placa ? placa : ''}" >
 		    </div>
 		  </div> 
 	  
@@ -43,7 +43,7 @@
 		      <div class="input-group-prepend">
 		        <span class="input-group-text">  <i class="fas fa-unlock-alt"></i>  </span>
 		      </div>
-		      <input type="text" class="form-control" id="pass" name="pass" placeholder="Pa$$w0rd" value="${not empty pass ? pass : '123456'}">
+		      <input type="pass" class="form-control" id="pass" name="pass" placeholder="123456" value="${not empty pass ? pass : ''}">
 		    </div>
 		  </div>  
 	 
