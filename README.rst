@@ -8,9 +8,12 @@ Aplicación web para moviles , que registra multas.
 
 TECNOLOGIAS
 ----------------
-JAVAEE, MySQL, proyecto mavenizado 3.0 
+J2EE 1.8 
+MySQL InnoDBJ2EE 1.8 
+Proyecto mavenizado 3.1
 Uso de JSLT expression language.
 Maquetado con BOOTSTRAP.
+
 
 Apendice Base de Datos
 ***************************
