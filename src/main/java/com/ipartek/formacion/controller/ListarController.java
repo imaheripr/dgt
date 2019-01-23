@@ -48,6 +48,7 @@ public class ListarController extends HttpServlet {
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		// recojo parametros
 		String operacion = request.getParameter("operacion"); // operacion para saber si multas activas o anuladas

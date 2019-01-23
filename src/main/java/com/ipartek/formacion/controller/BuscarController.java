@@ -32,12 +32,14 @@ public class BuscarController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		cocheDAO = CocheDAO.getInstance();
+		
 
 	}
 
 	// do get para recibir formulario al pulsar nueva multa
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		request.setAttribute("mensaje", "Busca una matricula ");
 
 		request.getRequestDispatcher(BUSCAR_MATRICULA_JSP).forward(request, response); // AL PULSAR EN NUEVA MULTA DIRECTAMENTE ENVIO A BUSCAR MATRICULA
@@ -48,7 +50,7 @@ public class BuscarController extends HttpServlet {
 	// DO POST PARA CREAR MULTA
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		
 		String matriculaBuscar = request.getParameter("buscar"); 							//	recojo parametro de la matricula introducida en formulario
 		Coche c = new Coche();  															// creo objeto para introducir matricula

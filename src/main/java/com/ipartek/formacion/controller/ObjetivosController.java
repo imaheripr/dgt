@@ -47,7 +47,8 @@ public class ObjetivosController extends HttpServlet {
 	
 	
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		request.setCharacterEncoding("UTF-8");
+		
 		String id_agente = request.getParameter("id_agente");
 		String anyo = request.getParameter("a");
 		

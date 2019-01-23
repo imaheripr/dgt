@@ -73,7 +73,7 @@ public class MultaController extends HttpServlet {
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
 		vista = VIEW_INDEX;
 
 		try {

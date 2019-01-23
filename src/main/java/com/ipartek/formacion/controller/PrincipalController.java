@@ -24,6 +24,7 @@ public class PrincipalController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LOG.debug("Entrando a principal");
+		request.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher(PRINCIPAL_JSP).forward(request, response);
 	}
 
