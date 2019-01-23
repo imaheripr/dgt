@@ -14,6 +14,12 @@ Maquetado con BOOTSTRAP.
 
 Apendice Base de Datos
 ***************************
+Multapp trabaja con Bases de Datos diseñadas en MySQL InnoBD con el fin de asegurar la integridad de los registros.
+
+dgt.sql: Se encuentra en la carpeta SQL en la rama del proyecto. Contiene el script que genera la base de datos y su contenido.
+
+database.properties: archivo con los datos necesarios para la conexion con la BBDD. Están hubicados en la carpeta resources del proyecto.
+
 Instalar la base de datos adjunta, carpeta SQL, o puedes acceder mediante el siguiente enlace:
 https://github.com/imaheripr/dgt/blob/master/SQL/copiaDBdgt.sql
 
@@ -46,6 +52,7 @@ Multa registrada con exito
 .. image::  capturas/Captura5.JPG
 
 
-    
+    Desarrolladores
+App desarollada por Imanol y David
     
     
