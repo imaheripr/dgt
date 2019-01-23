@@ -3,6 +3,7 @@ package com.ipartek.formacion.pojos;
 import java.sql.Date;
 import java.sql.Time;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,7 +13,7 @@ public class Multa {
 
 	private Long id;
 
-	@NotNull(message = "No puede estar vacio y debe ser un valor numerico")
+	@NotNull(message = "Error")
 	private Float importe;
 
 	@NotEmpty

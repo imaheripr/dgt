@@ -2,6 +2,7 @@ package com.ipartek.formacion.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.Set;
 
 import javax.servlet.ServletConfig;
@@ -178,16 +179,21 @@ public class MultaController extends HttpServlet {
 		operacion = request.getParameter("operacion");
 		id_agente = request.getParameter("id_agente");
 		id_coche = request.getParameter("id_coche");
+		
 		importe1 = request.getParameter("importe");
+		String importe_punto = importe1.replaceAll(",", ".");
+		
 		concepto = request.getParameter("concepto");
 		matricula = request.getParameter("matricula");
 		try {
-			importe2 = Float.parseFloat(importe1);
+			
+			importe2 = Float.parseFloat(importe_punto);
+			
 		} catch (Exception e) {
 			importe2 = null;
 			
 		}finally {
-			request.setAttribute("importe", importe1);
+			request.setAttribute("importe", importe2);
 			request.setAttribute("concepto", concepto);
 		}
 	}
