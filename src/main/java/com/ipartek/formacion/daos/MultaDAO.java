@@ -47,7 +47,7 @@ public class MultaDAO {
 		try (Connection conn = ConnectionManager.getConnection(); 
 			CallableStatement cs = conn.prepareCall(sql);) {
 			
-			// parametros de entrada
+			// parametros de entrada//
 			cs.setFloat(1, multa.getImporte());
 			cs.setString(2, multa.getConcepto());
 			cs.setLong(3, multa.getCoche().getId());
